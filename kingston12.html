@@ -242,8 +242,21 @@ h2 em{font-family:var(--serif);text-transform:none;color:var(--gold);font-weight
 footer{background:var(--ink);color:var(--muted);font-size:13px;font-family:var(--mono)}
 footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));display:none}
-.dock a{display:flex;justify-content:center;gap:10px;background:var(--red);color:var(--cream);text-decoration:none;font-weight:800;padding:15px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-@media (max-width:680px){.dock{display:block}}
+.dock{gap:8px}
+.dock a{flex:1;display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:800;padding:14px 8px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);font-size:15px}
+.dk-call{background:var(--gold);color:var(--ink)}
+.dk-dd{background:#eb1700;color:#fff}
+.dk-ue{background:#06c167;color:#03150b}
+.deliv{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.deliv span{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.deliv a{display:inline-flex;align-items:center;padding:11px 18px;border-radius:999px;font-weight:800;font-size:14.5px;text-decoration:none;transition:transform .15s}
+.deliv a:hover{transform:translateY(-2px)}
+.deliv .dd{background:#eb1700;color:#fff}
+.deliv .ue{background:#06c167;color:#03150b}
+.depo{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:16px;display:grid;gap:8px}
+.depo .amt{font-family:var(--display);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.depo code{font-family:var(--mono);font-weight:700;font-size:16px;user-select:all;word-break:break-all;background:#fff3c4;padding:4px 8px;border-radius:6px}
+@media (max-width:680px){.dock{display:flex}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -267,6 +280,10 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
     <div class="ctas">
       <a class="btn hot" href="#key">Crack the dot code →</a>
       <a class="btn line" href="#menu">Full menu</a>
+    </div>
+    <div class="deliv"><span>Delivery</span>
+      <a class="dd" href="https://www.doordash.com/en/store/kingston-12-patty-shop-toronto-26142839/" target="_blank" rel="noopener">Order on DoorDash</a>
+      <a class="ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener">Order on Uber Eats</a>
     </div>
     <div class="from"><span><b>$3</b>patties</span><span><b>$30</b>baked dozen</span><span><b>$24</b>frozen dozen</span><span><b>blogTO</b>as featured</span></div>
   </div>
@@ -343,6 +360,10 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
   <p class="sub">Breakfast plates from 9am, then oxtail, curry goat and chicken lunches with rice and peas or white rice. Everything below is on their current ordering menu.</p>
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="panel" id="panel" role="tabpanel"></div>
+  <div class="deliv" style="margin-top:28px"><span>Want it delivered?</span>
+    <a class="dd" href="https://www.doordash.com/en/store/kingston-12-patty-shop-toronto-26142839/" target="_blank" rel="noopener">Order on DoorDash</a>
+    <a class="ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener">Order on Uber Eats</a>
+  </div>
 
   <div class="plates">
     <div class="plate"><span class="k">Lunch &amp; dinner</span><h3>Oxtail</h3><p>Slow-cooked, with rice and peas or white rice and coleslaw.</p><span class="big">from $15</span></div>
@@ -377,7 +398,7 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
     <p class="sub">Office lunch, party, church event, family function. Build your order, pick a pickup time, and send it in.</p>
     <div class="promise">
       <div><b>48h</b><span>Orders need at least 48 hours' notice, so everything is baked and cooked fresh for you.</span></div>
-      <div><b>✓</b><span>Every order is confirmed by Kingston 12 before anything goes in the oven. Nothing is prepared or charged until you hear back.</span></div>
+      <div><b>50%</b><span>Lock in your order with a 50% deposit by Interac e-Transfer. Your order is confirmed as soon as the deposit arrives. Pay the rest at pickup.</span></div>
       <div><b>☎</b><span>Questions? Call (416) 784-5611.</span></div>
     </div>
   </div>
@@ -414,7 +435,7 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
         <p class="hint">Check everything before you send.</p>
         <div class="sum-box"><span class="k">Order</span><ul class="sum-list" id="sItems"></ul></div>
         <div class="sum-box"><span class="k">Pickup</span><div id="sPick"></div></div>
-        <label class="agree" for="cAgree"><input type="checkbox" id="cAgree"><span>I understand this is an order <b>request</b>. Kingston 12 will contact me to confirm before it's prepared, and payment is made at pickup.</span></label>
+        <label class="agree" for="cAgree"><input type="checkbox" id="cAgree"><span>I'll send a <b>50% deposit by Interac e-Transfer</b> to lock in this order. It's confirmed once the deposit arrives, and I'll pay the rest at pickup.</span></label>
         <p class="err" id="e3" role="alert"></p>
         <div class="navb"><button type="button" class="cbtn alt" id="b3">← Edit</button><button type="submit" class="cbtn" id="send">Send order request</button></div>
       </fieldset>
@@ -423,7 +444,13 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
       <span class="demo" id="demoTag">Preview mode · no email was sent</span>
       <span class="big">Request sent</span>
       <p id="doneMsg"></p>
-      <p>Your order is <b>not confirmed yet</b>. Kingston 12 will call or email you to confirm. Nothing is prepared until then.</p>
+      <div class="depo">
+        <span style="font-weight:800">Last step: send your deposit</span>
+        <span class="amt" id="depAmt">$0.00</span>
+        <span>by Interac e-Transfer to</span>
+        <code id="depTo"></code>
+        <span style="font-size:14px;color:#4b584e">Put your name and pickup date in the e-Transfer message. Your order is confirmed once the deposit arrives. Pay the rest at pickup.</span>
+      </div>
       <div><button type="button" class="cbtn alt" id="again">Start a new order</button></div>
     </div>
   </div>
@@ -450,7 +477,7 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
 </main>
 
 <footer><div class="wrap"><span>Kingston 12 Patty Shop &amp; Caribbean Dishes</span><span>Concept by Ian · not affiliated with or published by the business</span></div></footer>
-<div class="dock"><a href="#visit">Order · (416) 784-5611</a></div>
+<div class="dock"><a class="dk-call" href="#visit">Call</a><a class="dk-dd" href="https://www.doordash.com/en/store/kingston-12-patty-shop-toronto-26142839/" target="_blank" rel="noopener">DoorDash</a><a class="dk-ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener">Uber Eats</a></div>
 
 <script>
 (function(){
@@ -563,6 +590,9 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
   // CATERING ORDER REQUEST
   // Go-live: put the restaurant's Web3Forms access key here (it is tied to their email). Empty = preview mode, nothing is sent.
   const ORDER_KEY="";
+  // Go-live: the restaurant's e-Transfer email. Empty = shows a placeholder.
+  const ETRANSFER_EMAIL="";
+  const deposit=()=>Math.round(cTot()*50)/100;
   const CI=[
     ["Baked patty boxes (12)","Beef",30],["Baked patty boxes (12)","Spicy beef",30],["Baked patty boxes (12)","Chicken",30],["Baked patty boxes (12)","Vegetable",30],["Baked patty boxes (12)","Beef & cheese",42],
     ["Frozen patty boxes (12, bake at home)","Beef",24],["Frozen patty boxes (12, bake at home)","Chicken",24],["Frozen patty boxes (12, bake at home)","Vegetable",24],["Frozen patty boxes (12, bake at home)","Beef & cheese",40],
@@ -603,18 +633,20 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
     document.getElementById("sItems").innerHTML=CI.filter(it=>it.q).map(it=>`<li><span>${it.q} × ${esc(it.g.startsWith("Plates")?it.n:it.n+" box"+(it.g.startsWith("Frozen")?" (frozen)":""))}</span><span>${money(it.q*it.p)}</span></li>`).join("")+`<li style="border-top:2px solid #141210;padding-top:6px;font-weight:800"><span>Estimated total, before tax</span><span>${money(cTot())}</span></li>`;
     document.getElementById("sPick").innerHTML=`<b>${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} at ${tEl.options[tEl.selectedIndex].text}</b><br>${esc(val("cName"))} · ${esc(val("cPhone"))} · ${esc(val("cEmail"))}${val("cNotes")?`<br><i>${esc(val("cNotes"))}</i>`:""}`;
     document.getElementById("cAgree").checked=false;stepTo(3);};
-  function orderText(d){return CI.filter(it=>it.q).map(it=>`${it.q} x ${it.g} - ${it.n} ($${(it.q*it.p).toFixed(2)})`).join("\n")+`\n\nEstimated total before tax: ${money(cTot())}\nPickup: ${d.toLocaleString("en-CA",{weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"})}\nName: ${val("cName")}\nPhone: ${val("cPhone")}\nEmail: ${val("cEmail")}\nNotes: ${val("cNotes")||"-"}\n\nNOT CONFIRMED. Reply to this email or call the customer to confirm before preparing.`;}
+  function orderText(d){return CI.filter(it=>it.q).map(it=>`${it.q} x ${it.g} - ${it.n} ($${(it.q*it.p).toFixed(2)})`).join("\n")+`\n\nEstimated total before tax: ${money(cTot())}\nPickup: ${d.toLocaleString("en-CA",{weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"})}\nName: ${val("cName")}\nPhone: ${val("cPhone")}\nEmail: ${val("cEmail")}\nNotes: ${val("cNotes")||"-"}\n\n50% DEPOSIT DUE: ${money(deposit())} by Interac e-Transfer. Order is confirmed once the deposit arrives. Balance of ${money(cTot()-deposit())} due at pickup.`;}
   document.getElementById("cForm").addEventListener("submit",async ev=>{ev.preventDefault();const e=document.getElementById("e3");
     if(!document.getElementById("cAgree").checked){e.textContent="Tick the box to confirm you understand this is a request.";return;}
     const d=pickDate();if(d<earliest()){e.textContent="That pickup time is now less than 48 hours away. Go back and pick a later time.";return;}
     const btn=document.getElementById("send");btn.textContent="Sending…";
     let sent=false;
     if(ORDER_KEY){try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
-      body:JSON.stringify({access_key:ORDER_KEY,subject:`Catering request: pickup ${d.toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric"})} (NOT CONFIRMED)`,from_name:"Kingston 12 website",name:val("cName"),email:val("cEmail"),replyto:val("cEmail"),message:orderText(d)})});
+      body:JSON.stringify({access_key:ORDER_KEY,subject:`Catering request: pickup ${d.toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric"})} (awaiting ${money(deposit())} deposit)`,from_name:"Kingston 12 website",name:val("cName"),email:val("cEmail"),replyto:val("cEmail"),message:orderText(d)})});
       sent=(await r.json()).success;}catch(x){}
       if(!sent){btn.textContent="Send order request";e.textContent="Couldn't send right now. Please call (416) 784-5611 to place your order.";return;}}
     document.getElementById("demoTag").hidden=!!ORDER_KEY;
     document.getElementById("doneMsg").textContent=`Thanks ${val("cName").split(" ")[0]}. Your request for pickup on ${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} has been sent to Kingston 12.`;
+    document.getElementById("depAmt").textContent=money(deposit());
+    document.getElementById("depTo").textContent=ETRANSFER_EMAIL||"[Kingston 12's e-Transfer email, added at launch]";
     document.getElementById("cForm").hidden=true;document.querySelector(".prog").hidden=true;document.getElementById("cDone").hidden=false;btn.textContent="Send order request";});
   document.getElementById("again").onclick=()=>{CI.forEach(it=>it.q=0);cUpd();document.getElementById("cForm").reset();document.getElementById("cForm").hidden=false;document.querySelector(".prog").hidden=false;document.getElementById("cDone").hidden=true;stepTo(1);};
   cUpd();
