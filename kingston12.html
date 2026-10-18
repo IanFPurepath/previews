@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<style>html{background:#06301b}body{margin:0}img{max-width:100%}</style>
+<style>html{background:#06301b}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Kingston 12 Patty Shop</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{background:var(--ground);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.55;overflow-x:hidden}
+html{overflow-x:clip}
+body{background:var(--ground);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.55;overflow-x:clip}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
@@ -175,6 +176,54 @@ h2 em{font-family:var(--serif);text-transform:none;color:var(--gold);font-weight
 .fine{font-size:12.5px;color:#5a675c;margin-top:10px}
 @media (max-width:860px){.box .wrap{grid-template-columns:1fr}}
 
+/* CATERING */
+.cater .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+@media (max-width:900px){.cater .wrap{grid-template-columns:1fr}}
+.promise{display:grid;gap:12px;margin-top:28px}
+.promise div{display:flex;gap:14px;align-items:flex-start;background:var(--ground-2);border-radius:16px;padding:14px 16px}
+.promise b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;color:var(--gold);min-width:56px}
+.promise span{font-size:15px}
+.cform{background:var(--cream);color:var(--ink);border-radius:30px;padding:clamp(18px,3vw,30px);min-width:0}
+.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.prog span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding-top:8px;border-top:4px solid #d8d0b6;color:#6b756c}
+.prog span.on{border-color:var(--red);color:var(--ink);font-weight:700}
+.cform fieldset{border:0;margin:0;padding:0;min-width:0}
+.cform h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:30px;margin:0 0 4px;line-height:1}
+.cform .hint{margin:0 0 14px;color:#4b584e;font-size:14.5px}
+.grp{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#a33a1f;margin:16px 0 6px;font-weight:700}
+.ci{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed #cfc5a8}
+.ci .n{font-weight:600;font-size:15px;min-width:0}
+.ci .n small{display:block;font-family:var(--mono);font-size:12px;color:#5a675c;font-weight:500}
+.ci .stp{display:flex;align-items:center;gap:8px}
+.ci .stp button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-weight:800}
+.ci .stp button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ci .stp output{font-family:var(--mono);font-weight:700;min-width:2ch;text-align:center}
+.ci .lt{font-family:var(--mono);font-size:13.5px;min-width:6ch;text-align:right;font-variant-numeric:tabular-nums}
+.ctot{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:12px;border-top:3px solid var(--ink)}
+.ctot b{font-family:var(--display);font-size:40px;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+.fld{display:grid;gap:5px}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:13px;font-weight:800}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:16px;padding:11px 12px;border-radius:12px;border:2px solid #cfc5a8;background:#fff;color:var(--ink);width:100%}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--ink)}
+.err{color:#b3261e;font-weight:700;font-size:14px;margin:12px 0 0;min-height:1.2em}
+.navb{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.cbtn{all:unset;cursor:pointer;padding:13px 20px;border-radius:999px;font-weight:800;background:var(--red);color:#fff;box-shadow:0 4px 0 #9e2610}
+.cbtn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+.cbtn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.sum-list{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+.sum-list li{display:flex;justify-content:space-between;gap:12px}
+.sum-list li span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.sum-box{background:#fff;border-radius:16px;padding:16px;display:grid;gap:10px;margin-bottom:14px}
+.sum-box .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#5a675c}
+.agree{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;background:#fff3c4;border:2px solid var(--ink);border-radius:14px;padding:12px 14px}
+.agree input{width:22px;height:22px;flex:0 0 auto;margin-top:2px;accent-color:var(--red)}
+.done{text-align:left;display:grid;gap:10px}
+.done .big{font-family:var(--display);font-size:46px;line-height:.95;text-transform:uppercase}
+.demo{font-family:var(--mono);font-size:12px;background:var(--ink);color:var(--gold);padding:6px 10px;border-radius:8px;justify-self:start}
+
 .press blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(40px,7vw,92px);line-height:1;max-width:16ch;text-wrap:balance}
 .press blockquote span{color:var(--gold)}
 .press cite{display:block;margin-top:22px;font-family:var(--mono);font-style:normal;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -204,7 +253,7 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
 
 <nav><div class="wrap">
   <a class="logo" href="#top">KINGSTON <span>12</span></a>
-  <div class="nav-links"><a href="#key">Patty key</a><a href="#menu">Menu</a><a href="#boxes">Boxes</a><a href="#visit">Visit</a><a class="call" href="#visit">Order</a></div>
+  <div class="nav-links"><a href="#key">Patty key</a><a href="#menu">Menu</a><a href="#catering">Catering</a><a href="#visit">Visit</a><a class="call" href="#visit">Order</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -320,6 +369,65 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
     <p class="fine">Prices from Kingston 12's online ordering page (Oct 2026), before tax. Singles are $3 each, beef &amp; cheese $4.50.</p>
   </div>
 </div></div>
+
+<section class="cater" id="catering"><div class="wrap">
+  <div>
+    <p class="eyebrow">Catering &amp; bulk orders</p>
+    <h2>Order <em>ahead</em></h2>
+    <p class="sub">Office lunch, party, church event, family function. Build your order, pick a pickup time, and send it in.</p>
+    <div class="promise">
+      <div><b>48h</b><span>Orders need at least 48 hours' notice, so everything is baked and cooked fresh for you.</span></div>
+      <div><b>✓</b><span>Every order is confirmed by Kingston 12 before anything goes in the oven. Nothing is prepared or charged until you hear back.</span></div>
+      <div><b>☎</b><span>Questions? Call (416) 784-5611.</span></div>
+    </div>
+  </div>
+
+  <div class="cform">
+    <div class="prog" aria-hidden="true"><span id="pg1" class="on">1 · Your order</span><span id="pg2">2 · Pickup</span><span id="pg3">3 · Review</span></div>
+    <form id="cForm" novalidate>
+      <fieldset id="cs1">
+        <h3>Build your order</h3>
+        <p class="hint">Prices before tax, from the current menu.</p>
+        <div id="cItems"></div>
+        <div class="ctot"><span>Estimated total</span><b id="cTotal">$0.00</b></div>
+        <p class="err" id="e1" role="alert"></p>
+        <div class="navb"><span></span><button type="button" class="cbtn" id="n1">Next: pickup time →</button></div>
+      </fieldset>
+
+      <fieldset id="cs2" hidden>
+        <h3>Pickup details</h3>
+        <p class="hint">Pickup at 1808 Eglinton Ave W. Earliest pickup is 48 hours from now. Closed Sundays.</p>
+        <div class="fgrid">
+          <div class="fld"><label for="cDate">Pickup date</label><input type="date" id="cDate" required></div>
+          <div class="fld"><label for="cTime">Pickup time</label><select id="cTime" required></select></div>
+          <div class="fld"><label for="cName">Your name</label><input id="cName" autocomplete="name" required></div>
+          <div class="fld"><label for="cPhone">Phone</label><input id="cPhone" type="tel" autocomplete="tel" required></div>
+          <div class="fld full"><label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="email" required></div>
+          <div class="fld full"><label for="cNotes">Notes (optional)</label><textarea id="cNotes" rows="3" placeholder="Event type, number of people, spice level, anything we should know"></textarea></div>
+        </div>
+        <p class="err" id="e2" role="alert"></p>
+        <div class="navb"><button type="button" class="cbtn alt" id="b2">← Back</button><button type="button" class="cbtn" id="n2">Review order →</button></div>
+      </fieldset>
+
+      <fieldset id="cs3" hidden>
+        <h3>Review &amp; confirm</h3>
+        <p class="hint">Check everything before you send.</p>
+        <div class="sum-box"><span class="k">Order</span><ul class="sum-list" id="sItems"></ul></div>
+        <div class="sum-box"><span class="k">Pickup</span><div id="sPick"></div></div>
+        <label class="agree" for="cAgree"><input type="checkbox" id="cAgree"><span>I understand this is an order <b>request</b>. Kingston 12 will contact me to confirm before it's prepared, and payment is made at pickup.</span></label>
+        <p class="err" id="e3" role="alert"></p>
+        <div class="navb"><button type="button" class="cbtn alt" id="b3">← Edit</button><button type="submit" class="cbtn" id="send">Send order request</button></div>
+      </fieldset>
+    </form>
+    <div class="done" id="cDone" hidden>
+      <span class="demo" id="demoTag">Preview mode · no email was sent</span>
+      <span class="big">Request sent</span>
+      <p id="doneMsg"></p>
+      <p>Your order is <b>not confirmed yet</b>. Kingston 12 will call or email you to confirm. Nothing is prepared until then.</p>
+      <div><button type="button" class="cbtn alt" id="again">Start a new order</button></div>
+    </div>
+  </div>
+</div></section>
 
 <section id="visit" style="padding-top:0"><div class="wrap">
   <p class="eyebrow">Pull up</p>
@@ -451,6 +559,65 @@ footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;j
   document.getElementById("bk").onclick=()=>{mode="bk";renderB();};
   document.getElementById("fz").onclick=()=>{mode="fz";if(B[sel].fz==null)sel=0;renderB();};
   renderB();
+
+  // CATERING ORDER REQUEST
+  // Go-live: put the restaurant's Web3Forms access key here (it is tied to their email). Empty = preview mode, nothing is sent.
+  const ORDER_KEY="";
+  const CI=[
+    ["Baked patty boxes (12)","Beef",30],["Baked patty boxes (12)","Spicy beef",30],["Baked patty boxes (12)","Chicken",30],["Baked patty boxes (12)","Vegetable",30],["Baked patty boxes (12)","Beef & cheese",42],
+    ["Frozen patty boxes (12, bake at home)","Beef",24],["Frozen patty boxes (12, bake at home)","Chicken",24],["Frozen patty boxes (12, bake at home)","Vegetable",24],["Frozen patty boxes (12, bake at home)","Beef & cheese",40],
+    ["Plates & sides","Oxtail, large",24],["Plates & sides","Curry goat, large",22],["Plates & sides","Chicken lunch, large",21],["Plates & sides","Rice & peas or white rice",10],["Plates & sides","Coco bread",2]
+  ].map(([g,n,p])=>({g,n,p,q:0}));
+  const ci=document.getElementById("cItems");let lastG="";
+  CI.forEach((it,i)=>{if(it.g!==lastG){const h=document.createElement("div");h.className="grp";h.textContent=it.g;ci.appendChild(h);lastG=it.g;}
+    const r=document.createElement("div");r.className="ci";
+    r.innerHTML=`<span class="n">${esc(it.n)}<small>$${it.p.toFixed(2)} each</small></span><span class="stp"><button type="button" id="cm${i}" aria-label="Remove one ${it.n}">−</button><output id="cq${i}">0</output><button type="button" id="cp${i}" aria-label="Add one ${it.n}">+</button></span><span class="lt" id="cl${i}">–</span>`;
+    ci.appendChild(r);
+    r.querySelector("#cm"+i).onclick=()=>{if(it.q>0){it.q--;cUpd();}};
+    r.querySelector("#cp"+i).onclick=()=>{it.q++;cUpd();};});
+  const money=n=>"$"+n.toFixed(2);
+  function cTot(){return CI.reduce((a,it)=>a+it.q*it.p,0);}
+  function cUpd(){CI.forEach((it,i)=>{document.getElementById("cq"+i).textContent=it.q;document.getElementById("cl"+i).textContent=it.q?money(it.q*it.p):"–";});
+    document.getElementById("cTotal").textContent=money(cTot());document.getElementById("e1").textContent="";}
+  // 48-hour rule
+  const pad=n=>String(n).padStart(2,"0"),ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const earliest=()=>new Date(Date.now()+48*3600*1000);
+  const dEl=document.getElementById("cDate"),tEl=document.getElementById("cTime");
+  dEl.min=ymd(earliest());
+  for(let h=10;h<=20;h++)for(const m of [0,30]){if(h===20&&m===30)continue;const o=document.createElement("option");o.value=`${pad(h)}:${pad(m)}`;o.textContent=`${h>12?h-12:h}:${pad(m)} ${h>=12?"pm":"am"}`;tEl.appendChild(o);}
+  const pickDate=()=>dEl.value?new Date(`${dEl.value}T${tEl.value}:00`):null;
+  function stepTo(n){[1,2,3].forEach(k=>{document.getElementById("cs"+k).hidden=k!==n;document.getElementById("pg"+k).classList.toggle("on",k<=n);});
+    document.getElementById("catering").scrollIntoView({behavior:"smooth",block:"start"});}
+  document.getElementById("n1").onclick=()=>{if(!cTot()){document.getElementById("e1").textContent="Add at least one item to your order.";return;}stepTo(2);};
+  document.getElementById("b2").onclick=()=>stepTo(1);
+  document.getElementById("b3").onclick=()=>stepTo(2);
+  const val=id=>document.getElementById(id).value.trim();
+  document.getElementById("n2").onclick=()=>{const e=document.getElementById("e2"),d=pickDate();
+    if(!d){e.textContent="Pick a pickup date.";return;}
+    if(d.getDay()===0){e.textContent="Kingston 12 is closed Sundays. Pick another day.";return;}
+    if(d<earliest()){e.textContent="Catering orders need at least 48 hours' notice. Pick a later date or time.";return;}
+    if(!val("cName")){e.textContent="Add your name.";return;}
+    if(val("cPhone").replace(/\D/g,"").length<10){e.textContent="Add a phone number we can call to confirm.";return;}
+    if(!/^\S+@\S+\.\S+$/.test(val("cEmail"))){e.textContent="Add a valid email.";return;}
+    e.textContent="";
+    document.getElementById("sItems").innerHTML=CI.filter(it=>it.q).map(it=>`<li><span>${it.q} × ${esc(it.g.startsWith("Plates")?it.n:it.n+" box"+(it.g.startsWith("Frozen")?" (frozen)":""))}</span><span>${money(it.q*it.p)}</span></li>`).join("")+`<li style="border-top:2px solid #141210;padding-top:6px;font-weight:800"><span>Estimated total, before tax</span><span>${money(cTot())}</span></li>`;
+    document.getElementById("sPick").innerHTML=`<b>${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} at ${tEl.options[tEl.selectedIndex].text}</b><br>${esc(val("cName"))} · ${esc(val("cPhone"))} · ${esc(val("cEmail"))}${val("cNotes")?`<br><i>${esc(val("cNotes"))}</i>`:""}`;
+    document.getElementById("cAgree").checked=false;stepTo(3);};
+  function orderText(d){return CI.filter(it=>it.q).map(it=>`${it.q} x ${it.g} - ${it.n} ($${(it.q*it.p).toFixed(2)})`).join("\n")+`\n\nEstimated total before tax: ${money(cTot())}\nPickup: ${d.toLocaleString("en-CA",{weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"})}\nName: ${val("cName")}\nPhone: ${val("cPhone")}\nEmail: ${val("cEmail")}\nNotes: ${val("cNotes")||"-"}\n\nNOT CONFIRMED. Reply to this email or call the customer to confirm before preparing.`;}
+  document.getElementById("cForm").addEventListener("submit",async ev=>{ev.preventDefault();const e=document.getElementById("e3");
+    if(!document.getElementById("cAgree").checked){e.textContent="Tick the box to confirm you understand this is a request.";return;}
+    const d=pickDate();if(d<earliest()){e.textContent="That pickup time is now less than 48 hours away. Go back and pick a later time.";return;}
+    const btn=document.getElementById("send");btn.textContent="Sending…";
+    let sent=false;
+    if(ORDER_KEY){try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({access_key:ORDER_KEY,subject:`Catering request: pickup ${d.toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric"})} (NOT CONFIRMED)`,from_name:"Kingston 12 website",name:val("cName"),email:val("cEmail"),replyto:val("cEmail"),message:orderText(d)})});
+      sent=(await r.json()).success;}catch(x){}
+      if(!sent){btn.textContent="Send order request";e.textContent="Couldn't send right now. Please call (416) 784-5611 to place your order.";return;}}
+    document.getElementById("demoTag").hidden=!!ORDER_KEY;
+    document.getElementById("doneMsg").textContent=`Thanks ${val("cName").split(" ")[0]}. Your request for pickup on ${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} has been sent to Kingston 12.`;
+    document.getElementById("cForm").hidden=true;document.querySelector(".prog").hidden=true;document.getElementById("cDone").hidden=false;btn.textContent="Send order request";});
+  document.getElementById("again").onclick=()=>{CI.forEach(it=>it.q=0);cUpd();document.getElementById("cForm").reset();document.getElementById("cForm").hidden=false;document.querySelector(".prog").hidden=false;document.getElementById("cDone").hidden=true;stepTo(1);};
+  cUpd();
 
   try{const now=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
     const d=now.getDay(),h=now.getHours(),open=d!==0&&h>=9&&h<21;
