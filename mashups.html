@@ -179,7 +179,9 @@ footer .wrap{padding-block:26px 104px;display:flex;flex-wrap:wrap;gap:10px 24px;
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:8px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(6,18,11,.9) 40%)}
 .dock a{flex:1;display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:800;padding:14px 8px;border-radius:999px;font-size:15px}
 .dk1{background:var(--gold);color:var(--night)}.dk2{background:#eb1700;color:#fff}.dk3{background:#06c167;color:#04130a}
-@media (max-width:760px){.dock{display:flex}}
+@media (max-width:760px){.dock{display:flex;transform:translateY(130%);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s}.dock.show{transform:none;opacity:1;pointer-events:auto}
+#order{display:grid;grid-template-columns:1fr 1fr;gap:10px}#order .btn{justify-content:center;white-space:nowrap;padding:15px 10px}#order .gl{grid-column:1/-1}}
+@media (max-width:430px){#order .op,#order .dd svg,#order .ue svg{display:none}}
 
 @supports (animation-timeline: view()){
   .rise{animation:up linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
@@ -206,8 +208,8 @@ footer .wrap{padding-block:26px 104px;display:flex;flex-wrap:wrap;gap:10px 24px;
       <p class="sub1">Jamaican Fusion Foods</p>
       <p class="lede">Jerk chicken pizza. Wings with <b>Caribbean flava</b>. Oxtail, curry goat and stew chicken done right, plus a new fusion special every Saturday.</p>
       <div class="ctas" id="order">
-        <a class="btn dd" href="https://order.online/store/mash-upstoronto-restaraunt-york-52112515" target="_blank" rel="noopener">Order on DoorDash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn ue" href="https://www.ubereats.com/ca/store/mash-ups-toronto/VxN1IBodWhuQmK5G-CHCXA" target="_blank" rel="noopener">Order on Uber Eats <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn dd" href="https://order.online/store/mash-upstoronto-restaraunt-york-52112515" target="_blank" rel="noopener"><span class="op">Order on </span>DoorDash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ue" href="https://www.ubereats.com/ca/store/mash-ups-toronto/VxN1IBodWhuQmK5G-CHCXA" target="_blank" rel="noopener"><span class="op">Order on </span>Uber Eats <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn gl" href="#menu">See the menu</a>
       </div>
     </div>
@@ -331,6 +333,10 @@ footer .wrap{padding-block:26px 104px;display:flex;flex-wrap:wrap;gap:10px 24px;
       st.querySelectorAll(".gcard").forEach(c=>{const k=+c.dataset.depth;c.style.transform=`translate(${(-x*k).toFixed(1)}px,${(-y*k).toFixed(1)}px)`;});});
   }
 })();
+
+(function(){var d=document.querySelector('.dock'),h=document.getElementById('order');if(!d)return;
+if(!h||!('IntersectionObserver' in window)){d.classList.add('show');return;}
+new IntersectionObserver(function(e){var r=e[0];d.classList.toggle('show',!r.isIntersecting&&r.boundingClientRect.top<0);}).observe(h);})();
 </script>
 </body>
 </html>
