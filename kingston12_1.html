@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>html{background:#06301b}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Kingston 12 Patty Shop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@1&family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: bottle-green night shopfront. Wordmark + live patty, food ticker, PATTY KEY (dot legend) as the centrepiece, full tabbed menu, boxes-of-12 picker, breakfast/plates callouts, visit. Single deliberate dark look. */
+:root{
+  --ground:#06301b; --ground-2:#0b4526; --ground-3:#0f5530; --ink:#03150b;
+  --gold:#ffc31f; --crust:#f39a1b; --red:#ff4b2b; --cream:#fff3d4; --muted:#a8c4a9;
+  --d-red:#ff4b2b; --d-blue:#3f8cff; --d-green:#3ddc6e; --d-orange:#ff8a1f;
+  --display:"Anton","Impact","Arial Narrow Bold",sans-serif;
+  --serif:"Instrument Serif","Georgia",serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{background:var(--ground);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.55;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button{font:inherit;color:inherit}
+
+.concept{background:var(--ink);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted)}
+.concept .wrap{padding-block:7px;display:flex;gap:6px 16px;flex-wrap:wrap;justify-content:space-between}
+.concept b{color:var(--gold)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px;gap:12px}
+.logo{font-family:var(--display);font-size:22px;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:18px;align-items:center;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.nav-links a{text-decoration:none;opacity:.85}
+.nav-links a:hover{color:var(--gold);opacity:1}
+@media (max-width:680px){.nav-links a:not(.call){display:none}}
+.call{background:var(--gold);color:var(--ink);padding:9px 14px;border-radius:999px;font-weight:700;opacity:1!important}
+
+/* HERO */
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:center;padding-block:20px 56px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;gap:10px;align-items:center}
+.kicker::before{content:"";width:28px;height:2px;background:var(--red)}
+.mark{font-family:var(--display);text-transform:uppercase;line-height:.82;margin:14px 0 0;font-weight:400}
+.mark .l1{display:block;font-size:clamp(64px,13.5vw,168px);letter-spacing:-.01em}
+.mark .l2{display:flex;align-items:flex-end;gap:.12em;font-size:clamp(110px,24vw,300px);color:transparent;-webkit-text-stroke:3px var(--gold);letter-spacing:-.03em}
+.mark .l2 small{font-size:clamp(22px,4vw,44px);-webkit-text-stroke:0;color:var(--cream);line-height:1.02;padding-bottom:.55em;letter-spacing:.02em}
+.mark .l2 small em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--gold);font-size:1.15em}
+.rise{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.l2 .rise{animation-delay:.12s}
+@keyframes rise{from{transform:translateY(28px) skewY(4deg)}to{transform:none}}
+.lede{font-size:clamp(17px,1.6vw,20px);max-width:46ch;margin:22px 0 26px}
+.lede em{font-family:var(--serif);font-size:1.25em;color:var(--gold)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:999px;font-weight:800;text-decoration:none;font-size:15px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px) rotate(-1deg)}
+.btn.hot{background:var(--red);color:var(--cream);box-shadow:0 6px 0 #9e2610}
+.btn.line{border:2px solid var(--cream)}
+.from{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.from b{display:block;font-family:var(--display);font-size:30px;color:var(--gold);letter-spacing:0;font-weight:400}
+.art{position:relative;min-width:0}
+.art svg.patty{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.sticker{position:absolute;left:0;top:0;width:clamp(96px,22%,150px);aspect-ratio:1;max-width:100%}
+.sticker svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.sticker b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:clamp(22px,3vw,34px);color:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.art .bob{animation:bob 4.5s ease-in-out infinite;transform-origin:170px 240px}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(-2deg)}}
+.art .halo{animation:halo 4.5s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.14}50%{opacity:.28}}
+.art .crumbs circle{animation:crumb 3.6s ease-in infinite}
+.art .crumbs circle:nth-child(2){animation-delay:.9s}.art .crumbs circle:nth-child(3){animation-delay:1.8s}.art .crumbs circle:nth-child(4){animation-delay:2.6s}
+@keyframes crumb{0%{transform:translateY(-18px);opacity:0}25%{opacity:1}100%{transform:translateY(22px);opacity:0}}
+.art svg.patty{transition:transform .3s}
+.art:hover svg.patty{transform:scale(1.03) rotate(-1deg)}
+.steam path{fill:none;stroke:var(--cream);stroke-width:5;stroke-linecap:round;opacity:.5;animation:steam 3.2s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:.9s}.steam path:nth-child(3){animation-delay:1.8s}
+@keyframes steam{0%{transform:translateY(14px);opacity:0}40%{opacity:.55}100%{transform:translateY(-22px);opacity:0}}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.art{max-width:520px;margin:0 auto;width:100%}}
+
+.ticker{background:var(--gold);color:var(--ink);transform:rotate(-2deg);margin:0 -3vw;border-block:3px solid var(--ink);overflow:hidden}
+.ticker .track{display:flex;width:max-content;animation:tick 34s linear infinite;padding-block:14px}
+.ticker span{font-family:var(--display);font-size:clamp(26px,4vw,40px);text-transform:uppercase;white-space:nowrap;padding-right:28px;display:flex;align-items:center;gap:28px}
+.ticker span i{width:14px;height:14px;border-radius:50%;background:var(--red);display:inline-block}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section{padding-block:96px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(46px,8vw,104px);line-height:.88;margin:0;text-wrap:balance}
+h2 em{font-family:var(--serif);text-transform:none;color:var(--gold);font-weight:400}
+.sub{max-width:54ch;color:var(--muted);font-size:17px;margin:18px 0 0}
+
+/* PATTY KEY */
+.colorkey{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.ck{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:999px;background:var(--ground-2);font-weight:800;font-size:15px}
+.ck i{width:18px;height:18px;border-radius:50%;display:block;box-shadow:0 0 0 3px var(--ink)}
+.ck i.none{background:transparent;border:2px dashed var(--muted);box-shadow:none}
+.ck small{font-family:var(--mono);font-weight:500;color:var(--muted);font-size:12px}
+.rule{margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.rule b{color:var(--cream)}
+.keyzone{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px;margin-top:40px;align-items:start}
+.reveal{background:var(--cream);color:var(--ink);border-radius:30px;padding:28px;position:sticky;top:calc(16px + env(safe-area-inset-top,0px));min-width:0}
+.reveal svg{width:100%;height:auto;display:block}
+.reveal .tag{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a33a1f;font-weight:700}
+.reveal h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(36px,4.4vw,54px);margin:6px 0 6px;line-height:.92}
+.reveal p{margin:0;color:#34443a}
+.reveal .rp{display:inline-block;margin-top:14px;background:var(--ink);color:var(--gold);font-family:var(--mono);font-weight:700;padding:6px 12px;border-radius:999px;font-variant-numeric:tabular-nums}
+.grid8{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kc{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:8px;padding:14px 14px 16px;border-radius:20px;background:var(--ground-2);border:2px solid transparent;transition:transform .15s,border-color .15s,background .15s}
+.kc:hover{border-color:rgba(255,243,212,.35);transform:translateY(-2px)}
+.kc[aria-pressed="true"]{border-color:var(--gold);background:var(--ground-3)}
+.kc:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.kc svg{width:100%;height:auto;display:block}
+.kc b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;line-height:1}
+.kc span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.grid8.g4{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px}
+@media (max-width:860px){.grid8.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kc{cursor:default;position:relative}
+.kc:hover{transform:none;border-color:transparent}
+.kc .kp{font-family:var(--mono);font-weight:700;color:var(--gold);font-size:13px}
+.kc .kb{position:absolute;top:10px;right:10px;font-style:normal;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 7px;border-radius:999px}
+.keynote{margin-top:16px;font-size:13.5px;color:var(--muted)}
+@media (max-width:860px){.keyzone{grid-template-columns:1fr}.reveal{position:relative;top:0}}
+
+/* MENU */
+.menu-sec{background:var(--ink)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+.tab{all:unset;cursor:pointer;padding:11px 18px;border-radius:999px;border:2px solid rgba(255,243,212,.25);font-family:var(--display);font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.tab[aria-selected="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.tab:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.panel{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px 40px}
+.mi{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 0;border-bottom:1px dashed rgba(255,243,212,.18)}
+.mi h4{margin:0;font-size:18px;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mi h4 .dots{display:inline-flex;gap:4px}
+.mi h4 .dots i{width:11px;height:11px;border-radius:50%;display:block}
+.mi .pr{font-family:var(--mono);font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.mi p{margin:0;grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.sizes{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.sizes span{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--ground-2);font-variant-numeric:tabular-nums}
+.sizes span b{color:var(--gold)}
+.badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--cream);padding:2px 8px;border-radius:999px;font-weight:700}
+
+/* PLATES strip */
+.plates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
+.plate{border-radius:28px;padding:26px;display:grid;gap:8px;align-content:start;min-height:220px;position:relative;overflow:hidden}
+.plate:nth-child(1){background:var(--red)}
+.plate:nth-child(2){background:var(--gold);color:var(--ink)}
+.plate:nth-child(3){background:var(--ground-3)}
+.plate .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.plate h3{font-family:var(--display);font-weight:400;font-size:clamp(34px,4vw,48px);text-transform:uppercase;margin:0;line-height:.92}
+.plate p{margin:0;font-size:15px}
+.plate .big{font-family:var(--display);font-size:44px;line-height:1;margin-top:auto;font-variant-numeric:tabular-nums}
+.plates.four{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:32px}
+.plate:nth-child(4){background:var(--cream);color:var(--ink)}
+@media (max-width:1000px){.plates.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.plates{grid-template-columns:1fr}}
+@media (max-width:560px){.plates.four{grid-template-columns:1fr}}
+
+/* BOXES */
+.box{background:var(--cream);color:var(--ink);border-radius:36px;margin-inline:max(10px,env(safe-area-inset-left,0px))}
+.box .wrap{padding-block:72px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}
+.box h2 em{color:var(--red)}
+.box .sub{color:#3b4a3e}
+.box .eyebrow{color:var(--red)}
+.seg{display:inline-flex;background:#e9e1c8;border-radius:999px;padding:4px;margin-bottom:16px}
+.seg button{all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;font-weight:800}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.seg button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.flav{display:grid;gap:10px}
+.fl{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;background:#fff;border-radius:16px;border:2px solid #d8d0b6}
+.fl[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+.fl:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.fl .dots{display:flex;gap:4px;width:44px}
+.fl .dots i{width:12px;height:12px;border-radius:50%;display:block}
+.fl .dots i.none{border:2px dashed #8a948b}
+.fl b{font-weight:800}
+.fl span.pp{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums}
+.fl[disabled]{opacity:.4;cursor:not-allowed}
+.tray{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:24px 0 18px}
+.slot{aspect-ratio:2/1.15;max-width:100%;border-radius:999px 999px 10px 10px;border:2px solid var(--ink);background:linear-gradient(170deg,var(--gold),var(--crust));position:relative}
+.slot.frozen{background:linear-gradient(170deg,#f5f0e2,#d8d2bf);border-style:dashed}
+.slot i{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);display:flex;gap:2px}
+.slot i em{width:6px;height:6px;border-radius:50%;display:block}
+.sum{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:3px solid var(--ink);padding-top:16px;flex-wrap:wrap}
+.sum .big{font-family:var(--display);font-size:clamp(48px,6vw,72px);line-height:1;font-variant-numeric:tabular-nums}
+.save{font-family:var(--mono);font-size:13px;background:var(--red);color:var(--cream);padding:6px 12px;border-radius:999px;font-weight:700}
+.order{margin-top:18px;background:var(--ink);color:var(--cream);border-radius:18px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.order .ph{font-family:var(--display);font-size:28px;user-select:all;font-variant-numeric:tabular-nums}
+.fine{font-size:12.5px;color:#5a675c;margin-top:10px}
+@media (max-width:860px){.box .wrap{grid-template-columns:1fr}}
+
+/* CATERING */
+.cater .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+@media (max-width:900px){.cater .wrap{grid-template-columns:1fr}}
+.promise{display:grid;gap:12px;margin-top:28px}
+.promise div{display:flex;gap:14px;align-items:flex-start;background:var(--ground-2);border-radius:16px;padding:14px 16px}
+.promise b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;color:var(--gold);min-width:56px}
+.promise span{font-size:15px}
+.cform{background:var(--cream);color:var(--ink);border-radius:30px;padding:clamp(18px,3vw,30px);min-width:0}
+.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.prog span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding-top:8px;border-top:4px solid #d8d0b6;color:#6b756c}
+.prog span.on{border-color:var(--red);color:var(--ink);font-weight:700}
+.cform fieldset{border:0;margin:0;padding:0;min-width:0}
+.cform h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:30px;margin:0 0 4px;line-height:1}
+.cform .hint{margin:0 0 14px;color:#4b584e;font-size:14.5px}
+.grp{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#a33a1f;margin:16px 0 6px;font-weight:700}
+.ci{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed #cfc5a8}
+.ci .n{font-weight:600;font-size:15px;min-width:0}
+.ci .n small{display:block;font-family:var(--mono);font-size:12px;color:#5a675c;font-weight:500}
+.ci .stp{display:flex;align-items:center;gap:8px}
+.ci .stp button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-weight:800}
+.ci .stp button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ci .stp output{font-family:var(--mono);font-weight:700;min-width:2ch;text-align:center}
+.ci .lt{font-family:var(--mono);font-size:13.5px;min-width:6ch;text-align:right;font-variant-numeric:tabular-nums}
+.ctot{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:12px;border-top:3px solid var(--ink)}
+.ctot b{font-family:var(--display);font-size:40px;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+.fld{display:grid;gap:5px}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:13px;font-weight:800}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:16px;padding:11px 12px;border-radius:12px;border:2px solid #cfc5a8;background:#fff;color:var(--ink);width:100%}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--ink)}
+.err{color:#b3261e;font-weight:700;font-size:14px;margin:12px 0 0;min-height:1.2em}
+.navb{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.cbtn{all:unset;cursor:pointer;padding:13px 20px;border-radius:999px;font-weight:800;background:var(--red);color:#fff;box-shadow:0 4px 0 #9e2610}
+.cbtn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+.cbtn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.sum-list{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+.sum-list li{display:flex;justify-content:space-between;gap:12px}
+.sum-list li span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.sum-box{background:#fff;border-radius:16px;padding:16px;display:grid;gap:10px;margin-bottom:14px}
+.sum-box .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#5a675c}
+.agree{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;background:#fff3c4;border:2px solid var(--ink);border-radius:14px;padding:12px 14px}
+.agree input{width:22px;height:22px;flex:0 0 auto;margin-top:2px;accent-color:var(--red)}
+.done{text-align:left;display:grid;gap:10px}
+.done .big{font-family:var(--display);font-size:46px;line-height:.95;text-transform:uppercase}
+.demo{font-family:var(--mono);font-size:12px;background:var(--ink);color:var(--gold);padding:6px 10px;border-radius:8px;justify-self:start}
+
+.press blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(40px,7vw,92px);line-height:1;max-width:16ch;text-wrap:balance}
+.press blockquote span{color:var(--gold)}
+.press cite{display:block;margin-top:22px;font-family:var(--mono);font-style:normal;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.crew{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.crew span{border:2px solid var(--gold);color:var(--gold);border-radius:999px;padding:8px 16px;font-family:var(--display);font-size:20px;text-transform:uppercase}
+
+.spots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
+.spot{background:var(--ground-2);border-radius:28px;padding:28px;display:grid;gap:10px;align-content:start;position:relative;overflow:hidden}
+.spot .no{font-family:var(--display);font-size:120px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,195,31,.35);position:absolute;right:16px;top:14px}
+.spot h3{font-family:var(--display);font-weight:400;font-size:40px;text-transform:uppercase;margin:0;line-height:1}
+.spot p{margin:0}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;margin-top:8px}
+.open-now{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold)}
+.open-now i{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,195,31,.2)}
+.phone-big{font-family:var(--display);font-size:clamp(48px,9vw,110px);line-height:.9;margin-top:56px;user-select:all;color:var(--gold);font-variant-numeric:tabular-nums;word-break:break-word}
+footer{background:var(--ink);color:var(--muted);font-size:13px;font-family:var(--mono)}
+footer .wrap{padding-block:28px 96px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));display:none}
+.dock{gap:8px}
+.dock a{flex:1;display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:800;padding:14px 8px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);font-size:15px}
+.dk-call{background:var(--gold);color:var(--ink)}
+.dk-dd{background:#eb1700;color:#fff}
+.dk-ue{background:#06c167;color:#03150b}
+.deliv{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.deliv span{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.deliv a{display:inline-flex;align-items:center;padding:11px 18px;border-radius:999px;font-weight:800;font-size:14.5px;text-decoration:none;transition:transform .15s}
+.deliv a:hover{transform:translateY(-2px)}
+.deliv .sf{background:var(--red);color:#fff;font-size:16px;padding:14px 22px;box-shadow:0 5px 0 #9e2610;margin-right:6px}
+.deliv .dd{background:#eb1700;color:#fff;font-size:16px;padding:14px 22px}
+.deliv .ue{background:#06c167;color:#03150b;font-size:16px;padding:14px 22px}
+.depo{background:#fff;border:2px solid var(--ink);border-radius:16px;padding:16px;display:grid;gap:8px}
+.depo .amt{font-family:var(--display);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.depo code{font-family:var(--mono);font-weight:700;font-size:16px;user-select:all;word-break:break-all;background:#fff3c4;padding:4px 8px;border-radius:6px}
+@media (max-width:680px){.dock{display:flex;transform:translateY(130%);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s}.dock.show{transform:none;opacity:1;pointer-events:auto}
+.deliv{flex-wrap:nowrap;gap:10px}.deliv a{flex:1 1 0;justify-content:center;white-space:nowrap;padding:14px 10px!important;font-size:15.5px!important;margin:0!important}}
+@media (max-width:430px){.deliv .op{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="concept"><div class="wrap"><span><b>CONCEPT PREVIEW</b> · sample site made for Kingston 12, not their official website</span><span>menu &amp; prices from their online ordering page, Oct 2026 · dot codes per blogTO</span></div></div>
+
+<nav><div class="wrap">
+  <a class="logo" href="#top">KINGSTON <span>12</span></a>
+  <div class="nav-links"><a href="#start">Start here</a><a href="#menu">Menu</a><a href="#catering">Catering</a><a href="#key">Patty guide</a><a href="#visit">Visit</a><a class="call" href="#visit">Order</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <div class="kicker">Patty Shop &amp; Caribbean Dishes · Eglinton West</div>
+    <h1 class="mark">
+      <span class="l1"><span class="rise">Kingston</span></span>
+      <span class="l2"><span class="rise">12</span><small>Patty<br>Shop <em>&amp;</em></small></span>
+    </h1>
+    <p class="lede">Eight patties, each stamped with its own dot code. Oxtail and curry goat plates. Ackee and saltfish breakfast from 9. <em>Little Jamaica,</em> done properly.</p>
+    <div class="ctas">
+      <a class="btn line" href="#start">What to order →</a>
+      <a class="btn line" href="#menu">Full menu</a>
+    </div>
+    <div class="deliv"><a class="dd" href="https://order.online/store/kingston-12-patty-shop-toronto-26142839" target="_blank" rel="noopener"><span class="op">Order on </span>DoorDash</a><a class="ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener"><span class="op">Order on </span>Uber Eats</a>
+    </div>
+    <div class="from"><span><b>$3</b>patties</span><span><b>$30</b>baked dozen</span><span><b>$24</b>frozen dozen</span><span><b>blogTO</b>as featured</span></div>
+  </div>
+  <div class="art" aria-hidden="true">
+    <svg class="patty" viewBox="0 0 340 300">
+      <defs>
+        <linearGradient id="crust" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#f6a51e"/><stop offset="1" stop-color="#d9770f"/></linearGradient>
+        <radialGradient id="crust2" cx=".42" cy=".3" r=".85"><stop offset="0" stop-color="#ffe37a"/><stop offset=".45" stop-color="#ffbf2e"/><stop offset=".8" stop-color="#ef9415"/><stop offset="1" stop-color="#c86a0c"/></radialGradient>
+        <radialGradient id="meat" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#d0683a"/><stop offset=".6" stop-color="#b14e26"/><stop offset="1" stop-color="#8e3b1c"/></radialGradient>
+        <clipPath id="biteClip"><circle cx="274" cy="170" r="32"/><circle cx="248" cy="136" r="22"/><circle cx="292" cy="208" r="21"/></clipPath>
+        <filter id="blur6"><feGaussianBlur stdDeviation="6"/></filter>
+        <filter id="glow"><feGaussianBlur stdDeviation="10"/></filter>
+        <path id="dome" d="M30 236 A140 140 0 0 1 310 236 Q170 254 30 236 Z"/>
+        <clipPath id="domeClip"><use href="#dome"/></clipPath>
+        <clipPath id="domeInset"><path d="M44 232 A126 126 0 0 1 296 232 Q170 246 44 232 Z"/></clipPath>
+        <mask id="biteMask"><rect width="340" height="300" fill="#fff"/><circle cx="274" cy="170" r="38" fill="#000"/><circle cx="248" cy="136" r="28" fill="#000"/><circle cx="292" cy="208" r="27" fill="#000"/></mask>
+      </defs>
+      <ellipse cx="170" cy="262" rx="150" ry="16" fill="#021009" opacity=".55" filter="url(#blur6)"/>
+      <ellipse cx="170" cy="170" rx="150" ry="90" fill="#ffb21f" opacity=".18" filter="url(#glow)" class="halo"/>
+      <g class="bob">
+        <!-- flaky inner pastry around the bite -->
+        <g clip-path="url(#domeInset)" fill="#ffe7a6"><circle cx="274" cy="170" r="38"/><circle cx="248" cy="136" r="28"/><circle cx="292" cy="208" r="27"/></g>
+        <g clip-path="url(#domeInset)" id="rimFlakes" fill="#f7c95a"></g>
+        <!-- filling peeking out of the bite -->
+        <g clip-path="url(#domeInset)">
+          <circle cx="274" cy="170" r="32" fill="url(#meat)"/><circle cx="248" cy="136" r="22" fill="url(#meat)"/><circle cx="292" cy="208" r="21" fill="url(#meat)"/>
+          <g clip-path="url(#biteClip)" id="mince"></g>
+        </g>
+        <!-- crust -->
+        <g mask="url(#biteMask)">
+          <use href="#dome" fill="url(#crust2)" stroke="#a85608" stroke-width="3"/>
+          <g clip-path="url(#domeClip)" fill="none" stroke-linecap="round">
+            <path d="M54 236 A116 116 0 0 1 286 236" stroke="#fff1b8" stroke-width="2.5" opacity=".55" stroke-dasharray="38 14 22 10"/>
+            <path d="M70 236 A100 100 0 0 1 270 236" stroke="#d27a10" stroke-width="2" opacity=".45" stroke-dasharray="26 18 40 12"/>
+            <path d="M88 236 A82 82 0 0 1 252 236" stroke="#fff1b8" stroke-width="2" opacity=".35" stroke-dasharray="18 22 30 10"/>
+            <g id="flakes" fill="#fff4c4" stroke="none" opacity=".55"></g>
+          </g>
+          <ellipse cx="128" cy="150" rx="62" ry="30" fill="#fff8d8" opacity=".38" filter="url(#blur6)" transform="rotate(-18 128 150)"/>
+          <g id="crimps" stroke="#a65a08" stroke-width="3" stroke-linecap="round" opacity=".8"></g>
+          <g id="heroDots"></g>
+        </g>
+      </g>
+      <g class="steam"><path d="M262 106 q14 -18 0 -36 q-14 -18 0 -36"/><path d="M294 124 q14 -18 0 -36 q-14 -18 0 -36"/><path d="M150 70 q12 -16 0 -32 q-12 -16 0 -32"/><path d="M214 66 q12 -16 0 -32 q-12 -16 0 -32"/></g>
+      <g class="crumbs" fill="#ffd968"><circle cx="284" cy="224" r="3.5"/><circle cx="286" cy="226" r="2.5"/><circle cx="312" cy="230" r="2"/><circle cx="270" cy="236" r="3"/></g>
+    </svg>
+    <div class="sticker">
+      <svg viewBox="0 0 120 120"><defs><path id="c" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#ffc31f"/>
+        <text font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" letter-spacing="2.4" fill="#03150b"><textPath href="#c">FRESH OUT THE OVEN · EGLINTON WEST · </textPath></text></svg>
+      <b>HOT</b>
+    </div>
+  </div>
+</div></header>
+
+<div class="ticker" aria-hidden="true"><div class="track">
+  <span>Beef patty <i></i> Oxtail <i></i> Curry goat <i></i> Ackee &amp; saltfish <i></i> Fry dumpling <i></i> Coco bread <i></i> Saltfish fritters <i></i> Ting <i></i></span>
+  <span>Beef patty <i></i> Oxtail <i></i> Curry goat <i></i> Ackee &amp; saltfish <i></i> Fry dumpling <i></i> Coco bread <i></i> Saltfish fritters <i></i> Ting <i></i></span>
+</div></div>
+
+<main>
+<section class="press" style="padding-block:88px 24px"><div class="wrap">
+  <p class="eyebrow">Word on Eglinton</p>
+  <blockquote>"Some of the most <span>underrated</span> patties in the city."</blockquote>
+  <cite>as covered by blogTO</cite>
+  <div class="crew"><span>Gordon</span><span>Cecil</span><span>George</span></div>
+  <p class="sub">Three partners, one mission: quality patties for the neighbourhood. Opened late 2023, now on a second location.</p>
+</div></section>
+
+<section id="start" style="padding-top:36px"><div class="wrap">
+  <p class="eyebrow">First time here?</p>
+  <h2>Start <em>with</em> these</h2>
+  <p class="sub">Four easy orders straight off the menu.</p>
+  <div class="plates four">
+    <div class="plate"><span class="k">The classic</span><h3>Beef patty + coco bread</h3><p>The shop's most popular patty, tucked inside soft, slightly sweet coco bread.</p><span class="big">$5</span></div>
+    <div class="plate"><span class="k">The plate</span><h3>Oxtail</h3><p>With rice and peas or white rice, and coleslaw. Small, medium or large.</p><span class="big">from $15</span></div>
+    <div class="plate"><span class="k">The morning</span><h3>Ackee &amp; saltfish</h3><p>Medium breakfast with lima beans and mixed vegetables. Add a fry dumpling for $2.50.</p><span class="big">$16</span></div>
+    <div class="plate"><span class="k">The crew</span><h3>Box of 12</h3><p>A dozen baked patties for the office or the party. Frozen boxes too, to bake at home.</p><span class="big">$30</span></div>
+  </div>
+</div></section>
+
+<section class="menu-sec" id="menu"><div class="wrap">
+  <p class="eyebrow">Full menu</p>
+  <h2>More than <em>patties</em></h2>
+  <p class="sub">Breakfast plates from 9am, then oxtail, curry goat and chicken lunches with rice and peas or white rice. Everything below is on their current ordering menu.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+  <div class="deliv" style="margin-top:28px"><a class="dd" href="https://order.online/store/kingston-12-patty-shop-toronto-26142839" target="_blank" rel="noopener">Order on DoorDash</a><a class="ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener">Order on Uber Eats</a>
+  </div>
+
+</div></section>
+
+<div class="box" id="boxes"><div class="wrap">
+  <div>
+    <p class="eyebrow">Feeding a crew?</p>
+    <h2>Boxes <em>of</em> twelve</h2>
+    <p class="sub">Baked and ready for the office, or frozen to bake at home. A box costs less than buying twelve singles.</p>
+    <div class="tray" id="tray" aria-hidden="true"></div>
+    <div class="sum"><span class="big" id="bxPrice">$30</span><span class="save" id="bxSave">Save $6 vs. singles</span></div>
+    <div class="order"><span>Call it in<br><span class="ph">(416) 784-5611</span></span><span style="font-family:var(--mono);font-size:12px;opacity:.8">Mon–Sat · opens 9am</span></div>
+  </div>
+  <div>
+    <div class="seg" role="group" aria-label="Baked or frozen">
+      <button type="button" id="bk" aria-pressed="true">Baked</button>
+      <button type="button" id="fz" aria-pressed="false">Frozen</button>
+    </div>
+    <div class="flav" id="flav"></div>
+    <p class="fine">Prices from Kingston 12's online ordering page (Oct 2026), before tax. Singles are $3 each, beef &amp; cheese $4.50.</p>
+  </div>
+</div></div>
+
+<section class="cater" id="catering"><div class="wrap">
+  <div>
+    <p class="eyebrow">Catering &amp; bulk orders</p>
+    <h2>Order <em>ahead</em></h2>
+    <p class="sub">Office lunch, party, church event, family function. Build your order, pick a pickup time, and send it in.</p>
+    <div class="promise">
+      <div><b>48h</b><span>Orders need at least 48 hours' notice, so everything is baked and cooked fresh for you.</span></div>
+      <div><b>50%</b><span>Lock in your order with a 50% deposit by Interac e-Transfer. Your order is confirmed as soon as the deposit arrives. Pay the rest at pickup.</span></div>
+      <div><b>☎</b><span>Questions? Call (416) 784-5611.</span></div>
+    </div>
+  </div>
+
+  <div class="cform">
+    <div class="prog" aria-hidden="true"><span id="pg1" class="on">1 · Your order</span><span id="pg2">2 · Pickup</span><span id="pg3">3 · Review</span></div>
+    <form id="cForm" novalidate>
+      <fieldset id="cs1">
+        <h3>Build your order</h3>
+        <p class="hint">Prices before tax, from the current menu.</p>
+        <div id="cItems"></div>
+        <div class="ctot"><span>Estimated total</span><b id="cTotal">$0.00</b></div>
+        <p class="err" id="e1" role="alert"></p>
+        <div class="navb"><span></span><button type="button" class="cbtn" id="n1">Next: pickup time →</button></div>
+      </fieldset>
+
+      <fieldset id="cs2" hidden>
+        <h3>Pickup details</h3>
+        <p class="hint">Pickup at 1808 Eglinton Ave W. Earliest pickup is 48 hours from now. Closed Sundays.</p>
+        <div class="fgrid">
+          <div class="fld"><label for="cDate">Pickup date</label><input type="date" id="cDate" required></div>
+          <div class="fld"><label for="cTime">Pickup time</label><select id="cTime" required></select></div>
+          <div class="fld"><label for="cName">Your name</label><input id="cName" autocomplete="name" required></div>
+          <div class="fld"><label for="cPhone">Phone</label><input id="cPhone" type="tel" autocomplete="tel" required></div>
+          <div class="fld full"><label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="email" required></div>
+          <div class="fld full"><label for="cNotes">Notes (optional)</label><textarea id="cNotes" rows="3" placeholder="Event type, number of people, spice level, anything we should know"></textarea></div>
+        </div>
+        <p class="err" id="e2" role="alert"></p>
+        <div class="navb"><button type="button" class="cbtn alt" id="b2">← Back</button><button type="button" class="cbtn" id="n2">Review order →</button></div>
+      </fieldset>
+
+      <fieldset id="cs3" hidden>
+        <h3>Review &amp; confirm</h3>
+        <p class="hint">Check everything before you send.</p>
+        <div class="sum-box"><span class="k">Order</span><ul class="sum-list" id="sItems"></ul></div>
+        <div class="sum-box"><span class="k">Pickup</span><div id="sPick"></div></div>
+        <label class="agree" for="cAgree"><input type="checkbox" id="cAgree"><span>I'll send a <b>50% deposit by Interac e-Transfer</b> to lock in this order. It's confirmed once the deposit arrives, and I'll pay the rest at pickup.</span></label>
+        <p class="err" id="e3" role="alert"></p>
+        <div class="navb"><button type="button" class="cbtn alt" id="b3">← Edit</button><button type="submit" class="cbtn" id="send">Send order request</button></div>
+      </fieldset>
+    </form>
+    <div class="done" id="cDone" hidden>
+      <span class="demo" id="demoTag">Preview mode · no email was sent</span>
+      <span class="big">Request sent</span>
+      <p id="doneMsg"></p>
+      <div class="depo">
+        <span style="font-weight:800">Last step: send your deposit</span>
+        <span class="amt" id="depAmt">$0.00</span>
+        <span>by Interac e-Transfer to</span>
+        <code id="depTo"></code>
+        <span style="font-size:14px;color:#4b584e">Put your name and pickup date in the e-Transfer message. Your order is confirmed once the deposit arrives. Pay the rest at pickup.</span>
+      </div>
+      <div><button type="button" class="cbtn alt" id="again">Start a new order</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="key"><div class="wrap">
+  <p class="eyebrow">At the counter</p>
+  <h2>Which patty <em>is</em> which?</h2>
+  <p class="sub">Fresh out of the oven they all look alike, so every patty gets stamped with coloured dots that show the filling. Point at the dots and you always get the one you want.</p>
+  <div class="colorkey" aria-label="Dot colour key">
+    <span class="ck"><i class="none"></i>No dots <small>classic beef</small></span>
+    <span class="ck"><i style="background:var(--d-red)"></i>Red <small>chicken</small></span>
+    <span class="ck"><i style="background:var(--d-green)"></i>Green <small>veggie</small></span>
+    <span class="ck"><i style="background:var(--d-blue)"></i>Blue <small>beef + cheese</small></span>
+    <span class="ck"><i style="background:var(--d-orange)"></i>Orange <small>ackee &amp; saltfish</small></span>
+  </div>
+  <div class="grid8 g4" id="grid8" aria-label="All eight patties"></div>
+  <p class="keynote">Spicy beef is on the menu too. Ask at the counter which stamp it gets that day.</p>
+</div></section>
+
+<section id="visit" style="padding-top:0"><div class="wrap">
+  <p class="eyebrow">Pull up</p>
+  <h2>Two spots. <em>Same</em> crust.</h2>
+  <div class="spots">
+    <div class="spot"><span class="no">01</span>
+      <span class="open-now" id="openState"><i></i><span>Mon–Sat from 9am</span></span>
+      <h3>Eglinton West</h3>
+      <p>1808 Eglinton Ave W<br>York, ON M6E 2H6</p>
+      <div class="hours"><span>Mon–Sat</span><span>9:00 – 21:00</span><span>Sun</span><span>Closed</span><span>Online</span><span>11:00 – 18:45</span></div>
+    </div>
+    <div class="spot"><span class="no">02</span>
+      <span class="open-now"><i></i><span>Hours TBC</span></span>
+      <h3>Dundas West</h3>
+      <p>Between Swan Dive and Kwento<br>Dundas St W, Toronto</p>
+    </div>
+  </div>
+  <div class="phone-big">(416) 784-5611</div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>Kingston 12 Patty Shop &amp; Caribbean Dishes</span><span>Concept by Ian · not affiliated with or published by the business</span></div></footer>
+<div class="dock"><a class="dk-call" href="#visit">Call</a><a class="dk-dd" href="https://order.online/store/kingston-12-patty-shop-toronto-26142839" target="_blank" rel="noopener">DoorDash</a><a class="dk-ue" href="https://www.ubereats.com/ca/store/kingston-12-patty-shop-eglinton-ave/n_wE9ClESii_JxLyr9Bqnw" target="_blank" rel="noopener">Uber Eats</a></div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const COL={r:"#ff4b2b",b:"#3f8cff",g:"#3ddc6e",o:"#ff8a1f"};
+  const esc=s=>s.replace(/&/g,"&amp;");
+  function crimps(g,cx,cy,R){for(let a=188;a<=352;a+=7){const t=a*Math.PI/180,l=document.createElementNS(NS,"line");
+    l.setAttribute("x1",cx+(R-16)*Math.cos(t));l.setAttribute("y1",cy+(R-16)*Math.sin(t));
+    l.setAttribute("x2",cx+(R-3)*Math.cos(t));l.setAttribute("y2",cy+(R-3)*Math.sin(t));g.appendChild(l);}}
+  function dots(g,list,cx,y,r){g.innerHTML="";const gap=r*2.4,s=cx-(list.length-1)*gap/2;
+    list.forEach((k,i)=>{const c=document.createElementNS(NS,"circle");c.setAttribute("cx",s+i*gap);c.setAttribute("cy",y);c.setAttribute("r",r);c.setAttribute("fill",COL[k]);c.setAttribute("stroke","#7a3b05");c.setAttribute("stroke-width","2");g.appendChild(c);});}
+  function glyph(list){const gap=19,s=80-(list.length-1)*gap/2;
+    let d=list.map((k,i)=>`<circle cx="${s+i*gap}" cy="62" r="7.5" fill="${COL[k]}" stroke="#7a3b05" stroke-width="1.6"/>`).join("");
+    if(!list.length)d=`<text x="80" y="67" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10.5" font-weight="700" letter-spacing="1" fill="#7a3b05">THE CLASSIC</text>`;
+    return `<svg viewBox="0 0 160 92" aria-hidden="true"><path d="M12 86 A68 68 0 0 1 148 86 Q80 94 12 86 Z" fill="url(#crust)" stroke="#a85608" stroke-width="2"/>${d}</svg>`;}
+  const mini=list=>list.length?list.map(k=>`<i style="background:${COL[k]}"></i>`).join(""):"";
+
+  (function(){const g=document.getElementById("crimps"),cx=170,cy=236,R=140;
+    for(let a=186;a<=354;a+=8){const t=a*Math.PI/180,nx=Math.cos(t),ny=Math.sin(t),tx=-ny,ty=nx;
+      for(const off of [-3.2,0,3.2]){const l=document.createElementNS(NS,"line"),bx=cx+R*nx+tx*off,by=cy+R*ny+ty*off;
+        l.setAttribute("x1",bx-nx*3);l.setAttribute("y1",by-ny*3);l.setAttribute("x2",bx-nx*15);l.setAttribute("y2",by-ny*15);g.appendChild(l);}}
+    const f=document.getElementById("flakes");let seed=7;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280;};
+    for(let i=0;i<46;i++){const a=(190+rnd()*160)*Math.PI/180,r=20+rnd()*105,e=document.createElementNS(NS,"ellipse");
+      e.setAttribute("cx",cx+r*Math.cos(a));e.setAttribute("cy",cy+r*Math.sin(a));e.setAttribute("rx",2+rnd()*5);e.setAttribute("ry",0.8+rnd()*1.4);
+      e.setAttribute("transform",`rotate(${(a*180/Math.PI+90).toFixed(0)} ${cx+r*Math.cos(a)} ${cy+r*Math.sin(a)})`);f.appendChild(e);}})();
+  dots(document.getElementById("heroDots"),["r","g","b","o"],150,196,11);
+
+  (function(){const m=document.getElementById("mince"),rf=document.getElementById("rimFlakes");if(!m)return;let sd=42;const r=()=>{sd=(sd*9301+49297)%233280;return sd/233280;};
+    const pal=["#e07a48","#c45a2c","#a8441f","#f08e57","#b8502a","#d96b3b"];
+    for(let i=0;i<170;i++){const x=222+r()*100,y=106+r()*130,c=document.createElementNS(NS,"circle");
+      c.setAttribute("cx",x);c.setAttribute("cy",y);c.setAttribute("r",1.6+r()*3.6);c.setAttribute("fill",pal[Math.floor(r()*pal.length)]);m.appendChild(c);}
+    for(let i=0;i<18;i++){const e=document.createElementNS(NS,"ellipse");e.setAttribute("cx",226+r()*96);e.setAttribute("cy",110+r()*124);e.setAttribute("rx",2.6);e.setAttribute("ry",1.1);
+      e.setAttribute("fill",i%3?"#4fa83a":"#ffb21f");e.setAttribute("transform",`rotate(${Math.floor(r()*180)} ${e.getAttribute("cx")} ${e.getAttribute("cy")})`);m.appendChild(e);}
+    const sh=document.createElementNS(NS,"ellipse");sh.setAttribute("cx",262);sh.setAttribute("cy",152);sh.setAttribute("rx",14);sh.setAttribute("ry",6);sh.setAttribute("fill","#ffd2a8");sh.setAttribute("opacity",".18");sh.setAttribute("transform","rotate(-35 262 152)");m.appendChild(sh);
+    [[274,170,38,32],[248,136,28,22],[292,208,27,21]].forEach(([cx,cy,ro,ri])=>{for(let k=0;k<26;k++){const a=r()*Math.PI*2,rr=ri+(ro-ri)*r(),e=document.createElementNS(NS,"ellipse");
+      const x=cx+rr*Math.cos(a),y=cy+rr*Math.sin(a);e.setAttribute("cx",x);e.setAttribute("cy",y);e.setAttribute("rx",2+r()*3);e.setAttribute("ry",1);e.setAttribute("transform",`rotate(${(a*180/Math.PI+90).toFixed(0)} ${x} ${y})`);rf.appendChild(e);}});})();
+  // PATTY GUIDE
+  const P=[
+    {n:"Classic Beef",d:[],tag:"No dots",p:"$3.00",badge:"Most popular"},
+    {n:"Chicken",d:["r"],tag:"1 red dot",p:"$3.00"},
+    {n:"Veggie",d:["g"],tag:"1 green dot",p:"$3.00"},
+    {n:"Beef & Cheese",d:["b","b"],tag:"2 blue dots",p:"$4.50"},
+    {n:"Mozzarella Beef",d:["b","b","b"],tag:"3 blue dots",p:"Ask in store"},
+    {n:"Chicken & Cheese",d:["r","r","r"],tag:"3 red dots",p:"Ask in store"},
+    {n:"Veggie & Cheese",d:["r","g"],tag:"1 red + 1 green",p:"Ask in store"},
+    {n:"Ackee & Saltfish",d:["o","o"],tag:"2 orange dots",p:"Ask in store"}
+  ];
+  const grid=document.getElementById("grid8");
+  P.forEach(p=>{const c=document.createElement("div");c.className="kc";
+    c.innerHTML=glyph(p.d)+`<b>${esc(p.n)}</b><span>${p.tag}</span><span class="kp">${p.p}</span>${p.badge?`<em class="kb">${p.badge}</em>`:""}`;grid.appendChild(c);});
+
+  // MENU
+  const M={
+    "Patties":[
+      ["Beef Patty","$3.00","Seasoned ground beef in flaky pastry.",[]],
+      ["Spicy Beef Patty","$3.00","The classic with extra heat.",null],
+      ["Chicken Patty","$3.00","Golden-baked, curried minced chicken.",["r"]],
+      ["Vegetable Patty","$3.00","Seasoned vegetables in pastry.",["g"]],
+      ["Beef & Cheese Patty","$4.50","Beef and melted cheese.",["b","b"]],
+      ["Coco Bread","$2.00","Lightly sweet, a hint of coconut. Wrap your patty in it.",null,"Add on"]],
+    "Breakfast":[
+      ["Small Breakfast","$12","Boiled food or fried dumpling."],
+      ["Medium Breakfast","$16","Ackee and saltfish or callaloo, with lima beans and mixed vegetables."],
+      ["Large Breakfast","$22","Ackee and saltfish or callaloo, bigger portion."],
+      ["Porridge","","Oats with banana, or cornmeal.",null,null,[["M","$6"],["L","$13"]]],
+      ["Fry Dumpling","$2.50","Each."],
+      ["Saltfish Fritters","$3.50",""]],
+    "Plates":[
+      ["Oxtail","","With rice and peas or white rice, and coleslaw.",null,null,[["S","$15"],["M","$20"],["L","$24"]]],
+      ["Curry Goat","","With rice and peas or white rice, and coleslaw.",null,null,[["S","$12"],["M","$18"],["L","$22"]]],
+      ["Chicken Lunch","from $9","With rice and peas or white rice, plus coleslaw or steamed vegetables."],
+      ["Fried King Fish","$18","Medium. Finished with lemon and parsley."],
+      ["Lunch Special","$7.50","Rice and peas or white rice.",null,"Deal"],
+      ["Leg & Thigh","$7.25","Chicken only."]],
+    "Soup & Sides":[
+      ["Beef Soup","","Beef, baby potatoes, carrots and peppers.",null,null,[["M","$10"],["L","$15"]]],
+      ["Rice & Peas or White Rice","$10","On its own."],
+      ["Pasta Salad","$7",""],
+      ["Fritters","$3.50",""]],
+    "Drinks":[
+      ["Ting / Pink Ting","$3.00","Jamaican grapefruit soda."],
+      ["D&G Pineapple","$3.00",""],
+      ["D&G Kola Champagne, Cream Soda, Ginger Beer","$3.50",""],
+      ["Grace Tropical Rhythm","$4.00","Sorrel, pineapple & ginger, or mango carrot."],
+      ["Grace Coconut Water","$3.00","310 ml."],
+      ["Pop","$2.50",""],["Water","$1.75",""]]
+  };
+  const tabs=document.getElementById("tabs"),panel=document.getElementById("panel");
+  Object.keys(M).forEach((k,i)=>{const t=document.createElement("button");t.type="button";t.className="tab";t.role="tab";t.id="tab"+i;t.textContent=k;t.onclick=()=>show(k);tabs.appendChild(t);});
+  function show(k){[...tabs.children].forEach(t=>t.setAttribute("aria-selected",String(t.textContent===k)));
+    panel.innerHTML=M[k].map(([n,p,d,dt,badge,sz])=>`<div class="mi"><h4>${dt&&dt.length?`<span class="dots">${mini(dt)}</span>`:""}${esc(n)}${badge?` <span class="badge">${badge}</span>`:""}</h4><span class="pr">${p}</span>${d?`<p>${esc(d)}</p>`:""}${sz?`<div class="sizes">${sz.map(([s,v])=>`<span>${s} <b>${v}</b></span>`).join("")}</div>`:""}</div>`).join("");}
+  show("Patties");
+
+  // BOXES
+  const B=[
+    {n:"Beef",d:[],bk:30,fz:24,single:3},
+    {n:"Spicy Beef",d:null,bk:30,fz:null,single:3},
+    {n:"Chicken",d:["r"],bk:30,fz:24,single:3},
+    {n:"Vegetable",d:["g"],bk:30,fz:24,single:3},
+    {n:"Beef & Cheese",d:["b","b"],bk:42,fz:40,single:4.5}];
+  let mode="bk",sel=0;
+  const flav=document.getElementById("flav"),tray=document.getElementById("tray");
+  for(let i=0;i<12;i++){const s=document.createElement("div");s.className="slot";s.appendChild(document.createElement("i"));tray.appendChild(s);}
+  function renderB(){flav.innerHTML="";
+    B.forEach((b,i)=>{const price=b[mode],el=document.createElement("button");el.type="button";el.className="fl";el.id="bx"+i;
+      el.setAttribute("aria-pressed",String(i===sel));if(price==null)el.disabled=true;
+      el.innerHTML=`<span class="dots">${b.d&&b.d.length?mini(b.d):b.d?'<i class="none"></i>':""}</span><b>${esc(b.n)}</b><span class="pp">${price==null?"Baked only":"$"+price}</span>`;
+      el.onclick=()=>{sel=i;renderB();};flav.appendChild(el);});
+    const b=B[sel],price=b[mode];
+    document.getElementById("bxPrice").textContent="$"+price;
+    const save=b.single*12-price;
+    document.getElementById("bxSave").textContent=mode==="bk"?`Save $${save%1?save.toFixed(2):save} vs. 12 singles`:"Unbaked · bake at home";
+    [...tray.children].forEach(s=>{s.classList.toggle("frozen",mode==="fz");
+      s.firstChild.innerHTML=(b.d||[]).map(k=>`<em style="background:${COL[k]}"></em>`).join("");});
+    document.getElementById("bk").setAttribute("aria-pressed",String(mode==="bk"));
+    document.getElementById("fz").setAttribute("aria-pressed",String(mode==="fz"));}
+  document.getElementById("bk").onclick=()=>{mode="bk";renderB();};
+  document.getElementById("fz").onclick=()=>{mode="fz";if(B[sel].fz==null)sel=0;renderB();};
+  renderB();
+
+  // CATERING ORDER REQUEST
+  // Go-live: put the restaurant's Web3Forms access key here (it is tied to their email). Empty = preview mode, nothing is sent.
+  const ORDER_KEY="";
+  // Go-live: the restaurant's e-Transfer email. Empty = shows a placeholder.
+  const ETRANSFER_EMAIL="";
+  const deposit=()=>Math.round(cTot()*50)/100;
+  const CI=[
+    ["Baked patty boxes (12)","Beef",30],["Baked patty boxes (12)","Spicy beef",30],["Baked patty boxes (12)","Chicken",30],["Baked patty boxes (12)","Vegetable",30],["Baked patty boxes (12)","Beef & cheese",42],
+    ["Frozen patty boxes (12, bake at home)","Beef",24],["Frozen patty boxes (12, bake at home)","Chicken",24],["Frozen patty boxes (12, bake at home)","Vegetable",24],["Frozen patty boxes (12, bake at home)","Beef & cheese",40],
+    ["Plates & sides","Oxtail, large",24],["Plates & sides","Curry goat, large",22],["Plates & sides","Chicken lunch, large",21],["Plates & sides","Rice & peas or white rice",10],["Plates & sides","Coco bread",2]
+  ].map(([g,n,p])=>({g,n,p,q:0}));
+  const ci=document.getElementById("cItems");let lastG="";
+  CI.forEach((it,i)=>{if(it.g!==lastG){const h=document.createElement("div");h.className="grp";h.textContent=it.g;ci.appendChild(h);lastG=it.g;}
+    const r=document.createElement("div");r.className="ci";
+    r.innerHTML=`<span class="n">${esc(it.n)}<small>$${it.p.toFixed(2)} each</small></span><span class="stp"><button type="button" id="cm${i}" aria-label="Remove one ${it.n}">−</button><output id="cq${i}">0</output><button type="button" id="cp${i}" aria-label="Add one ${it.n}">+</button></span><span class="lt" id="cl${i}">–</span>`;
+    ci.appendChild(r);
+    r.querySelector("#cm"+i).onclick=()=>{if(it.q>0){it.q--;cUpd();}};
+    r.querySelector("#cp"+i).onclick=()=>{it.q++;cUpd();};});
+  const money=n=>"$"+n.toFixed(2);
+  function cTot(){return CI.reduce((a,it)=>a+it.q*it.p,0);}
+  function cUpd(){CI.forEach((it,i)=>{document.getElementById("cq"+i).textContent=it.q;document.getElementById("cl"+i).textContent=it.q?money(it.q*it.p):"–";});
+    document.getElementById("cTotal").textContent=money(cTot());document.getElementById("e1").textContent="";}
+  // 48-hour rule
+  const pad=n=>String(n).padStart(2,"0"),ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const earliest=()=>new Date(Date.now()+48*3600*1000);
+  const dEl=document.getElementById("cDate"),tEl=document.getElementById("cTime");
+  dEl.min=ymd(earliest());
+  for(let h=10;h<=20;h++)for(const m of [0,30]){if(h===20&&m===30)continue;const o=document.createElement("option");o.value=`${pad(h)}:${pad(m)}`;o.textContent=`${h>12?h-12:h}:${pad(m)} ${h>=12?"pm":"am"}`;tEl.appendChild(o);}
+  const pickDate=()=>dEl.value?new Date(`${dEl.value}T${tEl.value}:00`):null;
+  function stepTo(n){[1,2,3].forEach(k=>{document.getElementById("cs"+k).hidden=k!==n;document.getElementById("pg"+k).classList.toggle("on",k<=n);});
+    document.getElementById("catering").scrollIntoView({behavior:"smooth",block:"start"});}
+  document.getElementById("n1").onclick=()=>{if(!cTot()){document.getElementById("e1").textContent="Add at least one item to your order.";return;}stepTo(2);};
+  document.getElementById("b2").onclick=()=>stepTo(1);
+  document.getElementById("b3").onclick=()=>stepTo(2);
+  const val=id=>document.getElementById(id).value.trim();
+  document.getElementById("n2").onclick=()=>{const e=document.getElementById("e2"),d=pickDate();
+    if(!d){e.textContent="Pick a pickup date.";return;}
+    if(d.getDay()===0){e.textContent="Kingston 12 is closed Sundays. Pick another day.";return;}
+    if(d<earliest()){e.textContent="Catering orders need at least 48 hours' notice. Pick a later date or time.";return;}
+    if(!val("cName")){e.textContent="Add your name.";return;}
+    if(val("cPhone").replace(/\D/g,"").length<10){e.textContent="Add a phone number we can call to confirm.";return;}
+    if(!/^\S+@\S+\.\S+$/.test(val("cEmail"))){e.textContent="Add a valid email.";return;}
+    e.textContent="";
+    document.getElementById("sItems").innerHTML=CI.filter(it=>it.q).map(it=>`<li><span>${it.q} × ${esc(it.g.startsWith("Plates")?it.n:it.n+" box"+(it.g.startsWith("Frozen")?" (frozen)":""))}</span><span>${money(it.q*it.p)}</span></li>`).join("")+`<li style="border-top:2px solid #141210;padding-top:6px;font-weight:800"><span>Estimated total, before tax</span><span>${money(cTot())}</span></li>`;
+    document.getElementById("sPick").innerHTML=`<b>${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} at ${tEl.options[tEl.selectedIndex].text}</b><br>${esc(val("cName"))} · ${esc(val("cPhone"))} · ${esc(val("cEmail"))}${val("cNotes")?`<br><i>${esc(val("cNotes"))}</i>`:""}`;
+    document.getElementById("cAgree").checked=false;stepTo(3);};
+  function orderText(d){return CI.filter(it=>it.q).map(it=>`${it.q} x ${it.g} - ${it.n} ($${(it.q*it.p).toFixed(2)})`).join("\n")+`\n\nEstimated total before tax: ${money(cTot())}\nPickup: ${d.toLocaleString("en-CA",{weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"})}\nName: ${val("cName")}\nPhone: ${val("cPhone")}\nEmail: ${val("cEmail")}\nNotes: ${val("cNotes")||"-"}\n\n50% DEPOSIT DUE: ${money(deposit())} by Interac e-Transfer. Order is confirmed once the deposit arrives. Balance of ${money(cTot()-deposit())} due at pickup.`;}
+  document.getElementById("cForm").addEventListener("submit",async ev=>{ev.preventDefault();const e=document.getElementById("e3");
+    if(!document.getElementById("cAgree").checked){e.textContent="Tick the box to confirm you understand this is a request.";return;}
+    const d=pickDate();if(d<earliest()){e.textContent="That pickup time is now less than 48 hours away. Go back and pick a later time.";return;}
+    const btn=document.getElementById("send");btn.textContent="Sending…";
+    let sent=false;
+    if(ORDER_KEY){try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({access_key:ORDER_KEY,subject:`Catering request: pickup ${d.toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric"})} (awaiting ${money(deposit())} deposit)`,from_name:"Kingston 12 website",name:val("cName"),email:val("cEmail"),replyto:val("cEmail"),message:orderText(d)})});
+      sent=(await r.json()).success;}catch(x){}
+      if(!sent){btn.textContent="Send order request";e.textContent="Couldn't send right now. Please call (416) 784-5611 to place your order.";return;}}
+    document.getElementById("demoTag").hidden=!!ORDER_KEY;
+    document.getElementById("doneMsg").textContent=`Thanks ${val("cName").split(" ")[0]}. Your request for pickup on ${d.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"})} has been sent to Kingston 12.`;
+    document.getElementById("depAmt").textContent=money(deposit());
+    document.getElementById("depTo").textContent=ETRANSFER_EMAIL||"[Kingston 12's e-Transfer email, added at launch]";
+    document.getElementById("cForm").hidden=true;document.querySelector(".prog").hidden=true;document.getElementById("cDone").hidden=false;btn.textContent="Send order request";});
+  document.getElementById("again").onclick=()=>{CI.forEach(it=>it.q=0);cUpd();document.getElementById("cForm").reset();document.getElementById("cForm").hidden=false;document.querySelector(".prog").hidden=false;document.getElementById("cDone").hidden=true;stepTo(1);};
+  cUpd();
+
+  try{const now=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));
+    const d=now.getDay(),h=now.getHours(),open=d!==0&&h>=9&&h<21;
+    document.querySelector("#openState span").textContent=open?"Open now":"Closed now · opens 9am Mon–Sat";}catch(e){}
+})();
+
+(function(){var d=document.querySelector('.dock'),h=document.querySelector('.hero .deliv');if(!d)return;
+if(!h||!('IntersectionObserver' in window)){d.classList.add('show');return;}
+new IntersectionObserver(function(e){var r=e[0];d.classList.toggle('show',!r.isIntersecting&&r.boundingClientRect.top<0);}).observe(h);})();
+</script>
+</body>
+</html>
