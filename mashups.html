@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>html{background:#06120b}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Mash-Ups Toronto</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: night-time Little Jamaica. Deep jungle green with moving gold/red/green light, the logo's gold script with red outline + green drop, floating glass menu cards, bento grid of what's good, sticky-tab menu, Saturday special, review marquee, visit. Single deliberate dark look. */
+:root{
+  --night:#06120b; --jungle:#0b2416; --jungle-2:#113321; --line:rgba(255,246,220,.12);
+  --gold:#ffcd1f; --gold-2:#ffb100; --red:#e63322; --green:#1fa64a; --cream:#fff6dc; --muted:#a9c2b0;
+  --script:"Shrikhand","Georgia",serif;
+  --head:"Bricolage Grotesque","Arial Black",sans-serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--night);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.55;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button{font:inherit;color:inherit}
+
+.concept{background:#000;color:var(--muted);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;position:relative;z-index:5}
+.concept .wrap{padding-block:7px;display:flex;gap:6px 16px;flex-wrap:wrap;justify-content:space-between}
+.concept b{color:var(--gold)}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;padding-top:12px}
+nav .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px 10px 20px;border-radius:999px;background:rgba(6,18,11,.6);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid var(--line)}
+.logo{font-family:var(--script);font-size:24px;text-decoration:none;color:var(--gold);-webkit-text-stroke:1px var(--red);text-shadow:2px 2px 0 var(--green)}
+.nl{display:flex;gap:6px;align-items:center}
+.nl a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px}
+.nl a:hover{background:rgba(255,246,220,.08)}
+.nl .go{background:var(--gold);color:var(--night);font-weight:800}
+@media (max-width:760px){.nl a:not(.go){display:none}}
+
+.hero{position:relative;overflow:hidden;margin-top:-64px;padding-top:64px}
+.mesh{position:absolute;inset:-20%;z-index:0;filter:blur(70px);opacity:.75;pointer-events:none}
+.mesh i{position:absolute;border-radius:50%;display:block;animation:drift 18s ease-in-out infinite}
+.mesh i:nth-child(1){width:46vw;height:46vw;left:48%;top:10%;background:radial-gradient(circle,var(--gold) 0,transparent 65%)}
+.mesh i:nth-child(2){width:40vw;height:40vw;left:66%;top:42%;background:radial-gradient(circle,var(--red) 0,transparent 65%);animation-delay:-6s}
+.mesh i:nth-child(3){width:50vw;height:50vw;left:18%;top:36%;background:radial-gradient(circle,var(--green) 0,transparent 65%);animation-delay:-12s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-6%,4%) scale(1.08)}66%{transform:translate(5%,-5%) scale(.95)}}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;padding-block:70px 90px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;padding-block:48px 70px}}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,246,220,.08);border:1px solid var(--line);font-size:13px;font-weight:600}
+.pill i{width:22px;height:22px;border-radius:50%;background:conic-gradient(var(--green) 0 33%,var(--gold) 0 66%,#000 0);display:block;box-shadow:0 0 0 2px rgba(255,246,220,.2)}
+.word{font-family:var(--script);font-weight:400;font-size:clamp(58px,9.6vw,150px);white-space:nowrap;line-height:.9;margin:18px 0 0;color:var(--gold);-webkit-text-stroke:clamp(2px,.35vw,4px) var(--red);text-shadow:clamp(4px,.7vw,9px) clamp(4px,.7vw,9px) 0 var(--green);letter-spacing:-.01em;transform:rotate(-4deg);transform-origin:left center}
+.word span{display:inline-block;animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pop{from{transform:translateY(24px) scale(.9)}to{transform:none}}
+.sub1{font-family:var(--head);font-weight:800;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(13px,1.3vw,16px);color:var(--cream);margin:22px 0 0}
+.lede{font-size:clamp(18px,1.8vw,22px);max-width:40ch;margin:14px 0 28px;color:#e5eee7}
+.lede b{color:var(--gold)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:999px;font-weight:800;font-size:16px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.dd{background:#eb1700;color:#fff;box-shadow:0 10px 30px -8px rgba(235,23,0,.7)}
+.btn.ue{background:#06c167;color:#04130a;box-shadow:0 10px 30px -8px rgba(6,193,103,.6)}
+.btn.gl{background:rgba(255,246,220,.08);border:1px solid var(--line);backdrop-filter:blur(8px)}
+.btn svg{width:18px;height:18px}
+
+.stage{position:relative;aspect-ratio:1/1;max-width:560px;width:100%;justify-self:center}
+.ring{position:absolute;inset:4%;animation:spin 30s linear infinite}
+.ring svg{width:100%;height:100%;overflow:visible}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{position:absolute;inset:22% 22% 26% 22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe27a,var(--gold) 40%,var(--gold-2) 70%,#c96f00);box-shadow:0 0 0 10px rgba(255,205,31,.12),0 30px 80px -10px rgba(255,177,0,.6),inset -18px -22px 40px rgba(150,60,0,.45);display:grid;place-items:center;text-align:center;color:var(--night)}
+.core b{font-family:var(--head);font-weight:800;font-size:clamp(16px,2.2vw,26px);line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.core b em{display:block;font-family:var(--script);font-style:normal;font-weight:400;font-size:2em;color:var(--red);text-transform:none;line-height:1;margin:4px 0}
+.gcard{position:absolute;padding:14px 16px;border-radius:20px;background:rgba(10,30,19,.55);border:1px solid rgba(255,246,220,.18);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);box-shadow:0 20px 50px -20px rgba(0,0,0,.7);min-width:150px;transition:transform .25s ease-out}
+.gcard .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.gcard .n{font-weight:800;font-size:16px;line-height:1.2;margin-top:4px}
+.gcard .p{font-family:var(--head);font-weight:800;font-size:26px;color:var(--gold);line-height:1;margin-top:6px}
+.gcard .dot{position:absolute;top:12px;right:12px;width:10px;height:10px;border-radius:50%}
+.g1{top:4%;left:-2%}.g2{top:66%;right:-4%}.g3{top:72%;left:-4%}
+.g1 .dot{background:var(--red)}.g2 .dot{background:var(--green)}.g3 .dot{background:var(--gold)}
+.bob{animation:bob 6s ease-in-out infinite}
+.g2.bob{animation-delay:-2s}.g3.bob{animation-delay:-4s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@media (max-width:520px){.gcard{min-width:0;padding:10px 12px}.gcard .p{font-size:20px}.gcard .n{font-size:14px}.g1{left:0}.g2{right:0;top:70%}.g3{display:none}}
+
+.mq{border-block:1px solid var(--line);background:linear-gradient(90deg,var(--jungle),var(--jungle-2));overflow:hidden}
+.mq .track{display:flex;width:max-content;animation:tick 36s linear infinite;padding-block:18px}
+.mq span{font-family:var(--head);font-weight:800;font-size:clamp(22px,3.2vw,36px);text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:28px;padding-right:28px}
+.mq span i{width:12px;height:12px;border-radius:50%;background:var(--gold);display:block}
+.mq span s{text-decoration:none;font-family:var(--script);text-transform:none;color:var(--gold);font-weight:400}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section{padding-block:100px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+h2{font-family:var(--head);font-weight:800;font-size:clamp(42px,7vw,92px);line-height:.92;letter-spacing:-.03em;margin:0;text-wrap:balance}
+h2 em{font-family:var(--script);font-style:normal;font-weight:400;color:var(--gold);letter-spacing:0}
+.sub{max-width:54ch;color:var(--muted);font-size:18px;margin:16px 0 0}
+
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(190px,auto);gap:16px;margin-top:44px}
+.tile{position:relative;border-radius:28px;padding:24px;overflow:hidden;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--jungle);transition:transform .3s}
+.tile:hover{transform:translateY(-4px)}
+.tile .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.tile h3{font-family:var(--head);font-weight:800;font-size:clamp(24px,2.6vw,36px);line-height:1;margin:0;letter-spacing:-.02em}
+.tile p{margin:0;font-size:15px;opacity:.9;max-width:36ch}
+.tile .p{margin-top:auto;font-family:var(--head);font-weight:800;font-size:clamp(34px,4vw,52px);line-height:1}
+.t-pizza{grid-column:span 2;grid-row:span 2;background:radial-gradient(120% 90% at 85% 15%,#ffe27a 0,var(--gold) 35%,var(--gold-2) 70%,#d46b00);color:var(--night);border:0}
+.t-pizza h3{font-size:clamp(40px,5.4vw,76px)}
+.t-pizza h3 em{font-family:var(--script);font-style:normal;font-weight:400;color:var(--red);display:block}
+.t-pizza .big{position:absolute;right:-6%;bottom:-14%;font-family:var(--script);font-size:clamp(160px,22vw,300px);color:rgba(230,51,34,.18);line-height:1;pointer-events:none}
+.t-wings{grid-column:span 2;background:linear-gradient(135deg,var(--green),#0d6e30);border:0}
+.t-combo{background:var(--red);border:0}
+.t-sat{background:#000;border:1px solid rgba(255,205,31,.4)}
+.t-sat h3{color:var(--gold)}
+.t-ox{grid-column:span 2;background:var(--jungle-2)}
+.t-pat{grid-column:span 2;background:linear-gradient(135deg,#1a1a1a,#2b2410)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips span{font-family:var(--mono);font-size:12.5px;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.2);font-variant-numeric:tabular-nums}
+.t-pizza .chips span{background:rgba(6,18,11,.12)}
+@media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-pizza{grid-row:span 1}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}.tile{grid-column:auto!important}}
+
+.menuwrap{margin-top:40px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.menuwrap{grid-template-columns:1fr}}
+.cats{position:sticky;top:calc(88px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:6px}
+@media (max-width:860px){.cats{top:calc(76px + env(safe-area-inset-top,0px));z-index:5;flex-direction:row;overflow-x:auto;scrollbar-width:none;padding:6px;background:var(--night);border-radius:999px}.cats::-webkit-scrollbar{display:none}}
+.cat{all:unset;cursor:pointer;padding:12px 16px;border-radius:14px;font-weight:700;font-size:15px;color:var(--muted);white-space:nowrap;display:flex;justify-content:space-between;gap:10px}
+.cat small{font-family:var(--mono);font-size:11px;opacity:.7}
+.cat:hover{color:var(--cream);background:rgba(255,246,220,.05)}
+.cat[aria-selected="true"]{background:var(--gold);color:var(--night)}
+.cat:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.list{display:grid;gap:10px;min-width:0}
+.it{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center;padding:18px 20px;border-radius:20px;background:rgba(255,246,220,.04);border:1px solid var(--line);transition:background .2s,border-color .2s,transform .2s}
+.it:hover{background:rgba(255,246,220,.07);border-color:rgba(255,205,31,.35);transform:translateX(4px)}
+.it h4{margin:0;font-family:var(--head);font-weight:800;font-size:20px;letter-spacing:-.01em}
+.it .pr{font-family:var(--head);font-weight:800;font-size:22px;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.it p{margin:0;grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.it .sz{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.it .sz span{font-family:var(--mono);font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,205,31,.1);border:1px solid rgba(255,205,31,.25)}
+.it .sz b{color:var(--gold)}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.ordrow{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+.sat .card{position:relative;border-radius:36px;padding:clamp(28px,5vw,64px);background:conic-gradient(from 210deg at 80% 20%,var(--green),#0a4a24,var(--night) 50%,#3a0d08,var(--red) 80%,var(--green));border:1px solid var(--line);display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;overflow:hidden}
+@media (max-width:860px){.sat .card{grid-template-columns:1fr}}
+.sat .day{font-family:var(--script);font-size:clamp(64px,11vw,140px);color:var(--gold);line-height:.95;-webkit-text-stroke:2px var(--red);text-shadow:5px 5px 0 #000}
+.sat ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sat li{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+.sat li b{color:var(--gold);font-family:var(--head);font-weight:800}
+
+.rq{overflow:hidden;margin-top:40px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rq .track{display:flex;gap:16px;width:max-content;animation:tick 40s linear infinite}
+.rq:hover .track{animation-play-state:paused}
+.rv{width:min(380px,80vw);flex:0 0 auto;border-radius:24px;padding:24px;background:var(--jungle);border:1px solid var(--line);display:grid;gap:12px;align-content:start}
+.rv .st{color:var(--gold);letter-spacing:3px}
+.rv q{font-family:var(--head);font-weight:500;font-size:21px;line-height:1.3;quotes:"“" "”"}
+.rv span{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+@media (max-width:860px){.vgrid{grid-template-columns:1fr}}
+.vc{border-radius:24px;padding:24px;background:var(--jungle);border:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.vc .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.vc h3{font-family:var(--head);font-weight:800;font-size:26px;margin:0;line-height:1.05}
+.vc p{margin:0;color:#dfe9e2}
+.vc a.map{font-weight:800;color:var(--gold);text-decoration:none}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.hrs .off{opacity:.55}
+.hrs .today{color:var(--gold);font-weight:700}
+.open{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.open i{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(255,205,31,.2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(255,205,31,0)}}
+.phone{font-family:var(--head);font-weight:800;font-size:clamp(44px,9vw,110px);letter-spacing:-.03em;line-height:.95;margin-top:48px;background:linear-gradient(90deg,var(--gold),#fff1a8,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:all;word-break:break-word}
+
+footer{border-top:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:12.5px}
+footer .wrap{padding-block:26px 104px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:8px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(6,18,11,.9) 40%)}
+.dock a{flex:1;display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:800;padding:14px 8px;border-radius:999px;font-size:15px}
+.dk1{background:var(--gold);color:var(--night)}.dk2{background:#eb1700;color:#fff}.dk3{background:#06c167;color:#04130a}
+@media (max-width:760px){.dock{display:flex}}
+
+@supports (animation-timeline: view()){
+  .rise{animation:up linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  @keyframes up{from{transform:translateY(40px) scale(.97)}to{transform:none}}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="concept"><div class="wrap"><span><b>CONCEPT PREVIEW</b> · sample site made for Mash-Ups, not their official website</span><span>menu &amp; prices from their Uber Eats and DoorDash pages, Oct 2026</span></div></div>
+
+<nav><div class="wrap"><div class="bar">
+  <a class="logo" href="#top">Mash-Ups</a>
+  <div class="nl"><a href="#good">What's good</a><a href="#menu">Menu</a><a href="#saturday">Saturdays</a><a href="#visit">Visit</a><a class="go" href="#order">Order now</a></div>
+</div></div></nav>
+
+<header class="hero" id="top">
+  <div class="mesh" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div>
+      <span class="pill"><i></i>Now open in Little Jamaica · 1678 Eglinton W</span>
+      <h1 class="word"><span>Mash-Ups</span></h1>
+      <p class="sub1">Jamaican Fusion Foods</p>
+      <p class="lede">Jerk chicken pizza. Wings with <b>Caribbean flava</b>. Oxtail, curry goat and stew chicken done right, plus a new fusion special every Saturday.</p>
+      <div class="ctas" id="order">
+        <a class="btn dd" href="https://order.online/store/mash-upstoronto-restaraunt-york-52112515" target="_blank" rel="noopener">Order on DoorDash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ue" href="https://www.ubereats.com/ca/store/mash-ups-toronto/VxN1IBodWhuQmK5G-CHCXA" target="_blank" rel="noopener">Order on Uber Eats <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn gl" href="#menu">See the menu</a>
+      </div>
+    </div>
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="ring"><svg viewBox="0 0 200 200"><defs><path id="rp" d="M100 100 m-88 0 a88 88 0 1 1 176 0 a88 88 0 1 1 -176 0"/></defs>
+        <text font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="2.2" fill="#fff6dc" opacity=".75"><textPath href="#rp">JAMAICAN FUSION FOODS ✦ LITTLE JAMAICA ✦ TAKE-OUT ✦ JERK × PIZZA ✦ </textPath></text></svg></div>
+      <div class="core"><b>Jerk<em>meets</em>Pizza</b></div>
+      <div class="gcard g1 bob" data-depth="18"><span class="dot"></span><div class="k">Signature</div><div class="n">Jerk Chicken Pizza</div><div class="p">$11.99</div></div>
+      <div class="gcard g2 bob" data-depth="28"><span class="dot"></span><div class="k">Under $10</div><div class="n">8 Wings, Fries &amp; Drink</div><div class="p">$9.99</div></div>
+      <div class="gcard g3 bob" data-depth="12"><span class="dot"></span><div class="k">Dinner</div><div class="n">Oxtail, regular</div><div class="p">$15.99</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="mq" aria-hidden="true"><div class="track">
+  <span>Jerk chicken pizza <i></i> Wings by the pound <i></i> <s>Caribbean flava</s> <i></i> Oxtail <i></i> Curry goat <i></i> Stew chicken <i></i> Patties <i></i></span>
+  <span>Jerk chicken pizza <i></i> Wings by the pound <i></i> <s>Caribbean flava</s> <i></i> Oxtail <i></i> Curry goat <i></i> Stew chicken <i></i> Patties <i></i></span>
+</div></div>
+
+<main>
+<section id="good"><div class="wrap">
+  <p class="eyebrow">What's good</p>
+  <h2 class="rise">Two cuisines. <em>One plate.</em></h2>
+  <p class="sub">The island kitchen meets the pizza shop. Here's where to start.</p>
+  <div class="bento">
+    <div class="tile t-pizza rise"><span class="k">The signature</span><h3>Jerk chicken <em>pizza</em></h3><p>Their jerk chicken on a cheesy pie. Jamaica meets pizza night.</p><div class="chips"><span>Cheese pizza $10.99</span></div><span class="p">$11.99</span><span class="big" aria-hidden="true">J</span></div>
+    <div class="tile t-wings rise"><span class="k">By the pound</span><h3>Wings with Caribbean flava</h3><div class="chips"><span>½ lb $8</span><span>1 lb $16</span><span>2 lb $30</span><span>3 lb $45</span></div><span class="p">from $8</span></div>
+    <div class="tile t-combo rise"><span class="k">Under $10</span><h3>Combos</h3><p>Patty &amp; a drink $5 · 6 wings &amp; drink $6.99</p><span class="p">$5+</span></div>
+    <div class="tile t-sat rise"><span class="k">Every Saturday</span><h3>Fusion special</h3><p>A different fusion entrée each week.</p><a href="#saturday" style="margin-top:auto;font-weight:800;color:var(--gold);text-decoration:none">See Saturdays →</a></div>
+    <div class="tile t-ox rise"><span class="k">Dinners</span><h3>Oxtail · curry goat · jerk</h3><div class="chips"><span>Oxtail $15.99 / $19.99</span><span>Curry goat $10.99 / $14.99</span><span>Jerk $10.99 / $14.99</span></div></div>
+    <div class="tile t-pat rise"><span class="k">Grab &amp; go</span><h3>Patties &amp; soup</h3><div class="chips"><span>Beef $3.50</span><span>Chicken $3.50</span><span>Veggie $3.50</span><span>Soup of the day $5</span></div></div>
+  </div>
+</div></section>
+
+<section id="menu" style="padding-top:20px"><div class="wrap">
+  <p class="eyebrow">Full menu</p>
+  <h2 class="rise">Pick your <em>plate</em></h2>
+  <div class="menuwrap">
+    <div class="cats" role="tablist" id="cats" aria-label="Menu categories"></div>
+    <div>
+      <div class="list" id="list" role="tabpanel"></div>
+      <p class="note">Prices from Mash-Ups' Uber Eats and DoorDash menus. In-store prices may differ.</p>
+      <div class="ordrow">
+        <a class="btn dd" href="https://order.online/store/mash-upstoronto-restaraunt-york-52112515" target="_blank" rel="noopener">Order on DoorDash</a>
+        <a class="btn ue" href="https://www.ubereats.com/ca/store/mash-ups-toronto/VxN1IBodWhuQmK5G-CHCXA" target="_blank" rel="noopener">Order on Uber Eats</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sat" id="saturday" style="padding-top:20px"><div class="wrap">
+  <div class="card rise">
+    <div>
+      <p class="eyebrow">Only on</p>
+      <div class="day">Saturday</div>
+      <p class="sub" style="color:#eef4ef">A different special fusion entrée every Saturday, on top of the regular cooked meals. Call to ask what's on this week.</p>
+    </div>
+    <ul>
+      <li><b>01</b><span>New fusion entrée each Saturday</span></li>
+      <li><b>02</b><span>Full cooked-meals menu all week</span></li>
+      <li><b>03</b><span>Call (416) 781-6606 for this week's special</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <p class="eyebrow">Word on Eglinton</p>
+  <h2 class="rise">Good food, <em>better vibes</em></h2>
+</div>
+  <div class="rq"><div class="track" id="rq"></div></div>
+</section>
+
+<section id="visit" style="padding-top:20px"><div class="wrap">
+  <p class="eyebrow">Pull up</p>
+  <h2 class="rise">Come <em>hungry</em></h2>
+  <div class="vgrid">
+    <div class="vc"><span class="open" id="openState"><i></i><span>Tue–Sat 11am–9pm</span></span><h3>1678 Eglinton Ave W</h3><p>York, ON M6E 2H5 · in Little Jamaica, steps from Oakwood station.</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Mash-Ups+1678+Eglinton+Ave+W+Toronto" target="_blank" rel="noopener">Get directions →</a></div>
+    <div class="vc"><span class="k">Hours</span><div class="hrs" id="hrs"></div></div>
+    <div class="vc"><span class="k">Order</span><h3>Take-out &amp; delivery</h3><p>Call it in, or order on DoorDash or Uber Eats.</p></div>
+  </div>
+  <div class="phone">(416) 781-6606</div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>Mash-Ups · Jamaican Fusion Foods · Little Jamaica, Toronto</span><span>Concept by Ian · not affiliated with or published by the business</span></div></footer>
+<div class="dock"><a class="dk1" href="#visit">Call</a><a class="dk2" href="https://order.online/store/mash-upstoronto-restaraunt-york-52112515" target="_blank" rel="noopener">DoorDash</a><a class="dk3" href="https://www.ubereats.com/ca/store/mash-ups-toronto/VxN1IBodWhuQmK5G-CHCXA" target="_blank" rel="noopener">Uber Eats</a></div>
+
+<script>
+(function(){
+  const esc=s=>s.replace(/&/g,"&amp;");
+  const M={
+    "Dinners":[["Jerk Chicken Dinner","",[["Reg","$10.99"],["Lrg","$14.99"]]],["Oxtail Dinner","",[["Reg","$15.99"],["Lrg","$19.99"]]],["Curry Goat Dinner","",[["Reg","$10.99"],["Lrg","$14.99"]]],["Curry Chicken Dinner","",[["Lrg","$14.99"]]]],
+    "Chicken & Curry":[["Jerk Chicken","$15.00",null,"Large $21.00"],["Stew Chicken","$10.99"],["Curry Chicken","$10.99"],["Curry Goat","$10.99"]],
+    "Pizza & Pasta":[["Jerk Chicken Pizza","$11.99",null,"The signature mash-up"],["Cheese Pizza","$10.99"],["Pasta","$25.00",null,"Big plate. Ask what's on it today."]],
+    "Wings":[["½ lb wings","$8.00",null,"6 to 8 pieces"],["1 lb wings","$16.00"],["2 lb wings","$30.00"],["3 lb wings","$45.00",null,"Party size"]],
+    "Combos":[["Patty & a Drink","$5.00"],["6 Wings & Drink","$6.99"],["8 Wings, Fries & Drink","$9.99"]],
+    "Patties & Soup":[["Beef Patty","$3.50"],["Chicken Patty","$3.50"],["Veggie Patty","$3.50"],["Soup of the Day","$5.00"]],
+    "Drinks":[["Coca-Cola · Coke Zero · Diet Coke","$2.00"],["A&W Root Beer · Orange Crush","$2.00"],["Cran Wata","$3.50"],["Water","$2.00"]]
+  };
+  const cats=document.getElementById("cats"),list=document.getElementById("list");
+  Object.keys(M).forEach((k,i)=>{const b=document.createElement("button");b.type="button";b.className="cat";b.id="cat"+i;b.setAttribute("role","tab");
+    b.innerHTML=`<span>${esc(k)}</span><small>${M[k].length}</small>`;b.onclick=()=>show(k);cats.appendChild(b);});
+  function show(k){[...cats.children].forEach(b=>b.setAttribute("aria-selected",String(b.querySelector("span").textContent===k)));
+    list.innerHTML=M[k].map(([n,p,sz,d])=>`<div class="it"><h4>${esc(n)}</h4><span class="pr">${p||""}</span>${d?`<p>${esc(d)}</p>`:""}${sz?`<div class="sz">${sz.map(([s,v])=>`<span>${s} <b>${v}</b></span>`).join("")}</div>`:""}</div>`).join("");}
+  show("Dinners");
+
+  const R=[["The pizza was amazing, and the jerk had such a rich, proper flavor.","Google review"],["Treats everyone like family.","Google review, about the owner"],["Fast service, good community.","Google review"],["Food and service was amazing. I will be back!","Google review"],["Friendly vibes. Food was nice and hot.","Google review"]];
+  const card=([q,s])=>`<div class="rv"><span class="st">★★★★★</span><q>${esc(q)}</q><span>${esc(s)}</span></div>`;
+  document.getElementById("rq").innerHTML=R.map(card).join("")+R.map(card).join("");
+
+  const H=[["Sun","12:00 – 18:00",12,18],["Mon","Closed"],["Tue","11:00 – 21:00",11,21],["Wed","11:00 – 21:00",11,21],["Thu","11:00 – 21:00",11,21],["Fri","11:00 – 21:00",11,21],["Sat","11:00 – 21:00",11,21]];
+  let now;try{now=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Toronto"}));}catch(e){now=new Date();}
+  const d=now.getDay(),h=now.getHours()+now.getMinutes()/60;
+  document.getElementById("hrs").innerHTML=[2,3,4,5,6,0,1].map(i=>{const x=H[i];const cls=(i===d?"today":"")+(x[1]==="Closed"?" off":"");return `<span class="${cls}">${x[0]}</span><span class="${cls}">${x[1]}</span>`;}).join("");
+  const t=H[d],open=t[2]!=null&&h>=t[2]&&h<t[3];
+  document.querySelector("#openState span").textContent=open?"Open now":(d===1?"Closed Mondays · back Tue 11am":"Closed now");
+
+  const st=document.getElementById("stage");
+  if(st&&matchMedia("(pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+    document.querySelector(".hero").addEventListener("pointermove",e=>{const r=st.getBoundingClientRect(),x=(e.clientX-(r.left+r.width/2))/r.width,y=(e.clientY-(r.top+r.height/2))/r.height;
+      st.querySelectorAll(".gcard").forEach(c=>{const k=+c.dataset.depth;c.style.transform=`translate(${(-x*k).toFixed(1)}px,${(-y*k).toFixed(1)}px)`;});});
+  }
+})();
+</script>
+</body>
+</html>
