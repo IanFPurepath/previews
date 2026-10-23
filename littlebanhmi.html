@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Little Banh Mi Shop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#f1efe6;color:#14110c;font-family:"Bricolage Grotesque",system-ui,sans-serif}
+a{color:#14110c}a:hover{color:#7a4b00}
+.sw *{box-sizing:border-box}
+.sw .in{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sw .mono{font-family:"DM Mono",ui-monospace,monospace}
+.sw .stack{display:flex;flex-direction:column;transition:gap .6s cubic-bezier(.2,1.3,.4,1)}
+.sw .band{transition:transform .6s cubic-bezier(.2,1.3,.4,1),border-radius .4s}
+.sw .head{all:unset;cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:16px;width:100%;padding-block:22px}
+.sw .head:focus-visible{outline:3px solid #14110c;outline-offset:-6px}
+.sw .big{font-weight:800;font-size:clamp(40px,7.4vw,112px);line-height:.86;letter-spacing:-.05em;text-transform:uppercase}
+.sw .pill{all:unset;cursor:pointer;padding:12px 18px;border-radius:999px;font-weight:800;font-size:16px;border:2px solid currentColor}
+.sw .pill:focus-visible,.sw .tog:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.sw .tog{all:unset;cursor:pointer;padding:14px 22px;border-radius:999px;background:#14110c;color:#f1efe6;font-weight:800}
+.sw .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.sw .seed{position:absolute;width:10px;height:5px;border-radius:50%;background:#f6dfa4;opacity:.8}
+@media (max-width:860px){.sw .cols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.sw *{transition:none!important;animation:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="sw" style="width:100%;overflow-x:clip;padding-block:18px 40px">
+  <div class="in mono" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:12px;padding-bottom:14px;color:#5d564a">
+    <span><b>CONCEPT PREVIEW</b> · made for Little Banh Mi Shop, not their official site</span><span>Dishes from their reviews &amp; listings, Oct 2026</span>
+  </div>
+
+  <div class="stack" style="{{stackStyle}}">
+    <sc-for list="{{layers}}" as="L" hint-placeholder-count="7">
+      <section class="band" style="{{L.style}}">
+        <div class="in">
+          <button class="head" onClick="{{L.toggle}}" aria-expanded="{{L.open}}">
+            <span class="big" style="min-width:0">{{L.name}}</span>
+            <span class="mono" style="font-size:13px;white-space:nowrap">{{L.tag}} · {{L.sign}}</span>
+          </button>
+          <sc-if value="{{L.isOpen}}" hint-placeholder-val="{{ false }}">
+            <div style="padding-bottom:28px;display:flex;flex-direction:column;gap:16px">
+              <p style="margin:0;font-size:clamp(18px,1.8vw,24px);line-height:1.4;max-width:46ch;font-weight:500">{{L.body}}</p>
+              <sc-if value="{{L.isTop}}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+                  <a href="https://www.ubereats.com/ca/search?q=Little%20Banh%20Mi%20Shop" target="_blank" rel="noopener" style="background:#06c167;color:#04130a;padding:14px 22px;border-radius:999px;font-weight:800;text-decoration:none">Order on Uber Eats</a>
+                  <button class="tog" onClick="{{explode}}">{{explodeLabel}}</button>
+                  <span class="mono" style="font-size:13px">5.0★ · 217 Google reviews</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{L.isFill}}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;flex-wrap:wrap;gap:10px">
+                    <sc-for list="{{fills}}" as="f" hint-placeholder-count="5"><button class="pill" onClick="{{f.pick}}" aria-pressed="{{f.sel}}" style="{{f.style}}">{{f.name}}</button></sc-for>
+                  </div>
+                  <p style="margin:0;font-size:18px;line-height:1.45;max-width:52ch">{{fillDesc}}</p>
+                  <p class="mono" style="margin:0;font-size:14px;opacity:.85">“{{fillQuote}}” · Google review</p>
+                </div>
+              </sc-if>
+              <sc-if value="{{L.isBottom}}" hint-placeholder-val="{{ false }}">
+                <div class="cols">
+                  <div><span class="mono" style="font-size:12px">FIND THE STALL</span><b style="display:block;font-size:30px;letter-spacing:-.03em;margin-top:6px">Market 707 · Unit 4B</b><span>707 Dundas St W · the shipping containers at Dundas &amp; Bathurst</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Little+Banh+Mi+Shop+707+Dundas+St+W+Toronto" target="_blank" rel="noopener" style="font-weight:800">Directions →</a></div>
+                  <div><span class="mono" style="font-size:12px">LUNCH HOURS · {{openMsg}}</span>
+                    <sc-for list="{{hours}}" as="h" hint-placeholder-count="7"><div style="{{h.style}}"><span>{{h.day}}</span><span>{{h.t}}</span></div></sc-for></div>
+                  <div><span class="mono" style="font-size:12px">ON THE SIDE</span><b style="display:block;font-size:30px;letter-spacing:-.03em;margin-top:6px">Fried rolls &amp; Vietnamese iced coffee</b><span>Strong drip coffee over ice with condensed milk. TikTok @littlebanhmishop.toronto</span></div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-for>
+  </div>
+  <p class="in mono" style="margin-top:18px;font-size:12px;color:#5d564a">Tap any layer to open it. Ask at the counter for today's prices.</p>
+
+  <section class="in" style="padding-block:90px 40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0;border-top:3px solid #14110c">
+      <div style="padding:28px 24px 28px 0;border-bottom:3px solid #14110c"><span class="mono" style="font-size:12px">01 · GRILL</span><b style="display:block;font-size:clamp(30px,3.4vw,48px);line-height:.95;letter-spacing:-.04em;margin-top:10px">Cooked to order</b><p style="margin:10px 0 0;font-size:17px;line-height:1.5">Nothing sits in a tray. The beef hits the grill when you order it.</p></div>
+      <div style="padding:28px 24px;border-bottom:3px solid #14110c"><span class="mono" style="font-size:12px">02 · BREAD</span><b style="display:block;font-size:clamp(30px,3.4vw,48px);line-height:.95;letter-spacing:-.04em;margin-top:10px">Crackly, then soft</b><p style="margin:10px 0 0;font-size:17px;line-height:1.5">“Super flaky on the outside, warm and soft on the inside.” A regular said it best.</p></div>
+      <div style="padding:28px 0 28px 24px;border-bottom:3px solid #14110c"><span class="mono" style="font-size:12px">03 · HEAT</span><b style="display:block;font-size:clamp(30px,3.4vw,48px);line-height:.95;letter-spacing:-.04em;margin-top:10px">Real chili</b><p style="margin:10px 0 0;font-size:17px;line-height:1.5">Fresh sliced chilis and a house habanero sauce. Tell us how brave you are.</p></div>
+    </div>
+  </section>
+
+  <section class="in" style="padding-block:40px 80px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:start">
+      <div>
+        <span class="mono" style="font-size:12px">THE MENU</span>
+        <h2 style="margin:8px 0 22px;font-weight:800;font-size:clamp(44px,6vw,90px);line-height:.86;letter-spacing:-.05em;text-transform:uppercase">Short list.<br>No misses.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.55;max-width:42ch">Five sandwiches, crispy rolls and a coffee strong enough for the afternoon. Order ahead on Uber Eats to skip the line.</p>
+      </div>
+      <div style="display:grid">
+        <sc-for list="{{menuRows}}" as="m" hint-placeholder-count="7">
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:2px solid #14110c">
+            <span class="mono" style="font-size:12px">{{m.no}}</span>
+            <span style="min-width:0"><b style="font-size:24px;letter-spacing:-.03em">{{m.n}}</b><br><span style="font-size:15px;color:#5d564a">{{m.d}}</span></span>
+            <span class="mono" style="font-size:12px;white-space:nowrap">{{m.k}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#14110c;color:#f1efe6;padding-block:80px;overflow:hidden">
+    <div class="in" style="display:grid;gap:30px">
+      <span class="mono" style="font-size:12px;color:#f3a35b">FROM THE REVIEWS · 5.0 FROM 217</span>
+      <sc-for list="{{quotes}}" as="q" hint-placeholder-count="3">
+        <p style="margin:0;font-weight:800;font-size:clamp(28px,4.4vw,64px);line-height:.98;letter-spacing:-.04em;max-width:22ch">“{{q}}”</p>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="in" style="padding-block:80px">
+    <span class="mono" style="font-size:12px">QUESTIONS</span>
+    <div style="display:grid;margin-top:14px;max-width:900px;border-top:2px solid #14110c">
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+        <div style="border-bottom:2px solid #14110c">
+          <button onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px 0;font-weight:800;font-size:clamp(18px,2vw,24px);letter-spacing:-.02em"><span>{{q.q}}</span><span class="mono">{{q.sign}}</span></button>
+          <sc-if value="{{q.isOpen}}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 0 20px;font-size:17px;line-height:1.55;max-width:60ch">{{q.a}}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer class="in" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:baseline;padding-top:20px;border-top:3px solid #14110c">
+    <b style="font-weight:800;font-size:clamp(34px,5vw,70px);letter-spacing:-.05em;text-transform:uppercase;line-height:.9">Little Bánh Mì</b>
+    <span class="mono" style="font-size:12px">Market 707 · 707 Dundas St W, Unit 4B · Site concept by Ian</span>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { open:'top', exploded:false, f:'Grilled Chicken', faq:0 }; }
+  renderVals() {
+    const F = [
+      ['Grilled Chicken','#b8651f','Marinated chicken off the grill, juicy and smoky. The one regulars order first.','Easily one of the best and most authentic chicken bánh mì sandwiches I’ve ever tried.'],
+      ['Pork','#8f3420','Caramelized pork with fatty and lean bits, seasoned simply so the pickles and chili shine.','Pork was caramelized nicely. Fresh chilis and habanero hot sauce are super fragrant.'],
+      ['Spicy Beef','#6b1717','Beef cooked fresh on the grill for every single order, with real heat.','The beef was cooked freshly on the grill for each order. Everything is top-notch.'],
+      ['Fried Tofu','#b08a18','Crisp, juicy tofu for the plant-based crowd.','Definitely the best bánh mì I’ve had in Toronto. The fried tofu was so juicy.'],
+      ['Classic','#a0435a','The cold-cut original, stacked high.','So much meat packed in and I love the sauces used.']];
+    const fc = F.find(x=>x[0]===this.state.f) || F[0];
+    const fills = F.map(x=>({name:x[0], sel:String(x[0]===fc[0]), pick:()=>this.setState({f:x[0]}),
+      style: x[0]===fc[0] ? 'background:#f1efe6;color:#14110c;border-color:#f1efe6' : 'color:#f1efe6'}));
+    const ex = this.state.exploded;
+    const L = [
+      ['top','Little Bánh Mì','Top bun','#d9a441','#14110c','A bun that’s crackly outside and pillowy inside, built to order at a tiny stall in Market 707. Open each layer to see what goes in.','min(240px,18vw) min(240px,18vw) 0 0;padding-top:min(60px,4vw)'],
+      ['cil','Cilantro + Chili','Herbs','#2e7d32','#f1efe6','Fresh coriander, sliced chilis and a house habanero sauce that regulars call “super fragrant.” Ask for extra if you can take it.','0'],
+      ['cuc','Cucumber','Crunch','#a9d18e','#14110c','Cool cucumber spears for crunch and freshness against the grilled meat.','0'],
+      ['pik','Pickled Carrot + Daikon','House pickles','#f37021','#14110c','Sweet-sour pickled carrot and daikon, the bright snap every bánh mì needs.','0'],
+      ['fill',fc[0],'Filling · tap to swap',fc[1],'#f1efe6','','0'],
+      ['spr','House Spread','Base','#f3dcae','#14110c','A rich spread on the bottom half to hold it all together.','0'],
+      ['bot','Bottom Bun','Visit','#d9a441','#14110c','Lunch only. They sell out, so come early.','0 0 min(140px,10vw) min(140px,10vw);padding-bottom:min(50px,3vw)']];
+    const toggle = id=>()=>this.setState({open: this.state.open===id?null:id});
+    const layers = L.map(([id,name,tag,bg,fg,body,rad],i)=>({ name, tag, body, open:String(this.state.open===id), isOpen:this.state.open===id,
+      isTop:id==='top', isFill:id==='fill', isBottom:id==='bot', toggle:toggle(id), sign: this.state.open===id?'−':'+',
+      style:'position:relative;background:'+bg+';color:'+fg+';border-radius:'+rad+';transform:'+(ex?('rotate('+[ -1.2,1.5,-.8,1.1,-1.4,.9,-.6][i]+'deg) translateX('+[ -10,16,-6,12,-14,8,-4][i]+'px)'):'none')+';'+(id==='top'?'box-shadow:inset 0 -18px 0 rgba(0,0,0,.08)':'')+(id==='bot'?'box-shadow:inset 0 18px 0 rgba(255,255,255,.18)':'') }));
+    const names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const H={1:[11.5,15],2:[11.5,17],3:[11.5,17],4:[11.5,17],5:[11.5,17],6:[11.5,16.5]};
+    const fmt=h=>{const hh=Math.floor(h),m=Math.round((h-hh)*60);return (((hh+11)%12)+1)+(m?':'+String(m).padStart(2,'0'):'')+(hh>=12?' p.m.':' a.m.');};
+    let now; try { now = new Date(new Date().toLocaleString('en-US',{timeZone:'America/Toronto'})); } catch(e){ now = new Date(); }
+    const d=now.getDay(), hr=now.getHours()+now.getMinutes()/60, t=H[d];
+    const isOpen = !!(t && hr>=t[0] && hr<t[1]);
+    const hours=[1,2,3,4,5,6,0].map(i=>({day:names[i],t:H[i]?fmt(H[i][0])+' – '+fmt(H[i][1]):'Closed',
+      style:'display:flex;justify-content:space-between;padding:4px 0;font-size:15px;'+(i===d?'font-weight:800':'')}));
+    const menuRows = [['Grilled Chicken','The house favourite.','BÁNH MÌ'],['Spicy Beef','Grilled per order, with chili.','BÁNH MÌ'],['Pork','Caramelized, fatty and lean.','BÁNH MÌ'],['Fried Tofu','Crispy and juicy. Vegetarian.','BÁNH MÌ'],['Classic','The cold-cut original.','BÁNH MÌ'],['Fried Rolls','Golden and crackly.','SIDE'],['Vietnamese Iced Coffee','Drip coffee, condensed milk, ice.','DRINK']].map(([n,d,k],i)=>({n,d,k,no:String(i+1).padStart(2,'0')}));
+    const quotes = ['Definitely the best bánh mì I’ve had in Toronto.','Everything is top-notch: the meat, the flavour, the spice, the bread.','100% a must-try!'];
+    const FQ=[['Where exactly is the stall?','Inside Market 707, the row of shipping containers on Dundas St W at Bathurst. Look for Unit 4B.'],['Do you have vegetarian options?','Yes. The fried tofu bánh mì gets the same pickles, herbs and chili as the rest.'],['Can I order ahead?','Yes, on Uber Eats. Regulars say it arrives warm and not soggy.'],['When are you open?','Lunch only: Monday 11:30 to 3, Tuesday to Friday 11:30 to 5, Saturday 11:30 to 4:30. Closed Sunday.']];
+    const faq = FQ.map(([q,a],i)=>({q,a,isOpen:this.state.faq===i,open:String(this.state.faq===i),sign:this.state.faq===i?'−':'+',toggle:()=>this.setState({faq:this.state.faq===i?-1:i})}));
+    return { menuRows, quotes, faq, layers, fills, fillDesc:fc[2], fillQuote:fc[3], explode:()=>this.setState({exploded:!ex}),
+      explodeLabel: ex?'Put it back together':'Explode the sandwich',
+      stackStyle: 'gap:'+(ex?'34px':'0px'), hours, openMsg: isOpen?'OPEN NOW':'CLOSED NOW' };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
