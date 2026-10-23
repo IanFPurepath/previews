@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Chi's Kitchen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#e8590c;color:#1a0f0a;font-family:"DM Sans",system-ui,sans-serif}
+a{color:inherit}
+.ck *{box-sizing:border-box}
+.ck .wrap{max-width:1300px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.ck .sy{font-family:"Syne",system-ui,sans-serif;font-weight:800;letter-spacing:-.03em}
+.ck .page{transition:background-color .6s,color .6s}
+.ck .ankara{height:46px;background-color:#1a0f0a;background-image:repeating-conic-gradient(from 45deg,#ffcc00 0 25%,#1a0f0a 0 50%),radial-gradient(circle,#2f9e5b 30%,transparent 32%);background-size:46px 46px,23px 23px;background-blend-mode:normal}
+.ck .ankara2{height:30px;background:repeating-linear-gradient(90deg,#1a0f0a 0 12px,#ffcc00 12px 24px,#c1121f 24px 36px,#2f9e5b 36px 48px)}
+.ck .hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center}
+.ck .pep{all:unset;cursor:pointer;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;transition:transform .2s}
+.ck .pep:hover{transform:scale(1.12) rotate(-8deg)}
+.ck .pep:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.ck input[type=range]{width:100%;accent-color:#1a0f0a;height:28px}
+.ck .dishes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.ck .wob{animation:wob 1.6s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-4deg) scale(1.04)}}
+.ck .shake{animation:sh .25s linear infinite}
+@keyframes sh{25%{transform:translate(2px,-1px)}75%{transform:translate(-2px,1px)}}
+.ck .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.ck .hero,.ck .two{grid-template-columns:1fr}.ck .dishes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.ck *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="ck page" style="{{pageStyle}}">
+  <div class="wrap" style="padding-block:10px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:12px;opacity:.85">
+    <span><b>CONCEPT PREVIEW</b> · made for Chi's Kitchen, not their official site</span><span>Menu shown is a preview. We load your exact dishes and prices.</span>
+  </div>
+  <div class="ankara" aria-hidden="true"></div>
+
+  <header class="wrap" style="padding-block:50px 60px">
+    <div class="hero">
+      <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+        <span style="align-self:flex-start;padding:8px 14px;border-radius:999px;border:2px solid currentColor;font-weight:700;font-size:14px">West African takeout · North York</span>
+        <h1 class="sy" style="margin:0;font-size:clamp(64px,11vw,170px);line-height:.82">Chi's<br>Kitchen</h1>
+        <p style="margin:0;font-size:clamp(18px,1.8vw,22px);line-height:1.45;max-width:34ch">Smoky party jollof, peppery soups and suya cooked fresh for pickup. No dine-in, just very good food to take home.</p>
+      </div>
+      <div style="background:#fff6e6;color:#1a0f0a;border-radius:30px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)">
+        <label for="heat" class="sy" style="font-size:24px">How hot do you want it?</label>
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <b class="sy {{numClass}}" style="font-size:110px;line-height:.85;color:{{accent}};display:inline-block">{{level}}</b>
+          <span class="sy" style="font-size:28px;line-height:1">{{levelName}}</span>
+        </div>
+        <input id="heat" type="range" min="1" max="5" step="1" value="{{level}}" onInput="{{onRange}}" onChange="{{onRange}}" aria-valuetext="{{levelName}}">
+        <div style="display:flex;justify-content:space-between;gap:4px">
+          <sc-for list="{{peppers}}" as="p" hint-placeholder-count="5">
+            <button class="pep" onClick="{{p.pick}}" aria-label="{{p.label}}" style="{{p.style}}">
+              <svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true"><path d="M22 8 C26 4 30 6 30 6 C28 8 26 10 25 12" fill="none" stroke="#2f9e5b" stroke-width="3" stroke-linecap="round"/><path d="M14 14 C20 8 30 10 28 18 C26 28 16 34 8 34 C14 28 10 20 14 14Z" fill="{{p.fill}}"/></svg>
+            </button>
+          </sc-for>
+        </div>
+        <p style="margin:0;font-size:15px;color:#5a463b">{{levelTip}}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap" style="padding-block:10px 70px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:22px">
+      <h2 class="sy" style="margin:0;font-size:clamp(38px,5.4vw,78px);line-height:.92">Your heat, your plate</h2>
+      <span style="font-weight:700">{{picksLabel}}</span>
+    </div>
+    <div class="dishes">
+      <sc-for list="{{dishes}}" as="d" hint-placeholder-count="8">
+        <div style="{{d.style}}">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">{{d.kind}}</span><span style="font-weight:700;font-size:13px">{{d.heat}}</span></div>
+          <b class="sy" style="font-size:26px;line-height:1">{{d.n}}</b>
+          <p style="margin:0;font-size:14.5px;line-height:1.45">{{d.d}}</p>
+          <sc-if value="{{d.match}}" hint-placeholder-val="{{ false }}"><span style="align-self:flex-start;margin-top:auto;padding:6px 10px;border-radius:999px;background:#1a0f0a;color:#fff6e6;font-size:12px;font-weight:700">Good for you</span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#fff6e6;color:#1a0f0a;padding-block:90px">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:44px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c1121f">From Chi's kitchen</span>
+          <h2 class="sy" style="margin:0;font-size:clamp(40px,5.6vw,82px);line-height:.9">Cooked like Sunday at home</h2>
+          <p style="margin:0;font-size:18px;line-height:1.6;max-width:48ch">No dining room, no shortcuts. Just a small North York kitchen cooking West African food the long way: stews built from a proper pepper base, rice that picks up that smoky party-pot flavour, and plantain fried to order.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+          <div style="background:#1a0f0a;color:#fff6e6;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px"><b class="sy" style="font-size:52px;line-height:1;color:#ffcc00">01</b><b>Call</b><span style="font-size:14px">(437) 225-4130</span></div>
+          <div style="background:#c1121f;color:#fff6e6;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px"><b class="sy" style="font-size:52px;line-height:1">02</b><b>Pick your heat</b><span style="font-size:14px">1 to 5, your call</span></div>
+          <div style="background:#2f9e5b;color:#fff6e6;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px"><b class="sy" style="font-size:52px;line-height:1">03</b><b>Pick up</b><span style="font-size:14px">325 Bogert Ave</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#ffcc00;color:#1a0f0a;padding-block:80px">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:30px;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 420px;min-width:0">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase">Owambe ready</span>
+        <h2 class="sy" style="margin:6px 0 0;font-size:clamp(40px,6vw,90px);line-height:.88">Party trays of jollof</h2>
+      </div>
+      <p style="margin:0;flex:1 1 320px;font-size:18px;line-height:1.55">Birthdays, church events, office lunches. Order jollof, fried rice, chicken and dodo by the tray. Give us a few days' notice and your headcount.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:80px">
+    <h2 class="sy" style="margin:0 0 22px;font-size:clamp(36px,4.6vw,64px)">Questions</h2>
+    <div style="display:grid;gap:10px;max-width:900px">
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+        <div style="background:rgba(255,246,230,.16);border-radius:18px;overflow:hidden">
+          <button onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px 22px;font-weight:700;font-size:18px"><span>{{q.q}}</span><span class="sy">{{q.sign}}</span></button>
+          <sc-if value="{{q.isOpen}}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 22px 20px;line-height:1.55">{{q.a}}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div class="ankara2" aria-hidden="true"></div>
+  <section style="background:#1a0f0a;color:#fff6e6;padding-block:70px">
+    <div class="wrap two">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ffcc00">Pickup only</span>
+        <b class="sy" style="font-size:clamp(36px,4.6vw,64px);line-height:.95">325 Bogert Ave</b>
+        <span>North York · M2N 1L8 · near Yonge &amp; Sheppard</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Chi%27s+Kitchen+325+Bogert+Ave+North+York" target="_blank" rel="noopener" style="font-weight:700;color:#ffcc00">Get directions →</a>
+      </div>
+      <div style="background:#fff6e6;color:#1a0f0a;border-radius:26px;padding:28px;display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase">Call to order</span>
+        <b class="sy" style="font-size:clamp(34px,4vw,54px);user-select:all">(437) 225-4130</b>
+        <span>Tell us your heat level. Party trays of jollof on request.</span>
+        <span style="font-weight:700">5.0★ from 26 Google reviews</span>
+      </div>
+    </div>
+  </section>
+  <div class="ankara" aria-hidden="true"></div>
+  <footer style="background:#1a0f0a;color:#d8c8b8">
+    <div class="wrap" style="padding-block:28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px">
+      <b class="sy" style="font-size:30px;color:#fff6e6">Chi's Kitchen</b>
+      <span>325 Bogert Ave, North York · (437) 225-4130 · Takeout only</span>
+      <span style="font-size:13px">Site concept by Ian</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { level:3, faq:0 }; }
+  renderVals() {
+    const LV = [
+      [1,'Easy does it','#1f6b3a','#fff6e6','#1f6b3a','All flavour, barely any burn. Perfect for first-timers and kids.'],
+      [2,'A little kick','#e3b23c','#1a0f0a','#a3730e','Warm, not sweaty. Most people start here.'],
+      [3,'Proper pepper','#e8590c','#1a0f0a','#c2410c','How it’s cooked at home. You will feel it.'],
+      [4,'Bring water','#c1121f','#fff6e6','#c1121f','Scotch bonnet forward. Keep a malt close.'],
+      [5,'Scotch bonnet mode','#5c0a0a','#fff6e6','#7a0d0d','Only for the brave. We did warn you.']];
+    const lv = this.state.level, L = LV[lv-1];
+    const set = v=>this.setState({level:Math.max(1,Math.min(5,+v||1))});
+    const peppers = LV.map(x=>({label:'Heat '+x[0]+': '+x[1], pick:()=>set(x[0]), fill: x[0]<=lv ? '#d62828' : '#d8c8b8',
+      style: x[0]===lv ? 'background:#1a0f0a' : 'background:#f1e4d2'}));
+    const D = [
+      ['Jollof Rice','Rice','Tomato and pepper rice with that smoky party-pot bottom.',2],
+      ['Fried Rice','Rice','Vegetable fried rice, West African style.',1],
+      ['Egusi Soup','Soup','Ground melon seed soup with leafy greens. With a swallow.',3],
+      ['Pepper Soup','Soup','Light, fiery broth with goat or fish and warming spices.',5],
+      ['Suya','Grill','Thin beef skewers in yaji spice, with onion and tomato.',4],
+      ['Moi Moi','Side','Steamed bean pudding, soft and savoury.',1],
+      ['Dodo','Side','Sweet fried ripe plantain.',1],
+      ['Puff-Puff','Sweet','Fluffy fried dough balls.',1]];
+    const dishes = D.map(([n,kind,d,h])=>{ const match = h<=lv && h>=lv-2;
+      return {n,kind,d,match,heat:'Heat '+h,
+        style:'border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:8px;min-height:190px;transition:all .4s;'+(match?'background:#fff6e6;color:#1a0f0a;transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(0,0,0,.7)':'background:rgba(255,246,230,.16);color:inherit;opacity:.75') }; });
+    const n = dishes.filter(d=>d.match).length;
+    const FQ=[['Can I eat in?','No dine-in. Everything is made fresh for pickup, so call ahead and it will be ready when you arrive.'],['How spicy is spicy?','Use the heat meter. Level 3 is how it is cooked at home; level 5 is scotch bonnet all the way.'],['Do you cater?','Yes, party trays of jollof, fried rice, chicken and dodo. Give a few days’ notice and your headcount.'],['What should a first-timer get?','Jollof rice with chicken and a side of dodo. You cannot go wrong.']];
+    const faq = FQ.map(([q,a],i)=>({q,a,isOpen:this.state.faq===i,open:String(this.state.faq===i),sign:this.state.faq===i?'−':'+',toggle:()=>this.setState({faq:this.state.faq===i?-1:i})}));
+    return { faq, level:lv, levelName:L[1], levelTip:L[5], accent:L[4], peppers, dishes,
+      onRange:e=>set(e && e.target ? e.target.value : lv),
+      picksLabel: n+' dishes match heat '+lv,
+      numClass: lv>=5?'shake':(lv>=4?'wob':''),
+      pageStyle:'width:100%;overflow-x:clip;background-color:'+L[2]+';color:'+L[3] };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
