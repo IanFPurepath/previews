@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Tito P's Filipino Cuisine</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&amp;family=Archivo:wght@400;600;800;900&amp;display=swap">
+<style>
+body{margin:0;background:#8fd3ff;color:#101734;font-family:"Archivo",system-ui,sans-serif}
+a{color:#0038a8}a:hover{color:#00246e}
+.jp *{box-sizing:border-box}
+.jp .wrap{max-width:1300px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.jp .dg{font-family:"Dela Gothic One","Arial Black",sans-serif;font-weight:400}
+.jp .cloud{position:absolute;background:#fff;border-radius:999px;animation:drift 40s linear infinite}
+@keyframes drift{from{transform:translateX(-20vw)}to{transform:translateX(120vw)}}
+.jp .jeep{position:absolute;bottom:56px;width:min(300px,38vw);transform:translateX(-50%);transition:left 1.4s cubic-bezier(.6,.05,.3,1)}
+.jp .bounce{animation:bob .35s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+.jp .wheel{position:absolute;bottom:-18%;width:22%;aspect-ratio:1/1;border-radius:50%;background:#1b1b1f;border:6px solid #c9d1d9}
+.jp .spin{animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.jp .dash{position:absolute;left:0;right:0;top:50%;height:6px;background:repeating-linear-gradient(90deg,#fcd116 0 50px,transparent 50px 100px);animation:road 1.2s linear infinite}
+@keyframes road{to{background-position:-100px 0}}
+.jp .stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.jp .stop{all:unset;cursor:pointer;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px;transition:transform .15s}
+.jp .stop:hover{transform:translateY(-3px)}
+.jp .stop:focus-visible,.jp .opt:focus-visible{outline:3px solid #ce1126;outline-offset:3px}
+.jp .opt{all:unset;cursor:pointer;padding:14px 16px;border-radius:14px;display:flex;justify-content:space-between;gap:10px;font-weight:800}
+.jp .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center}
+.jp .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.jp .panel{animation:in .5s cubic-bezier(.2,1.3,.4,1)}
+@keyframes in{from{transform:translateY(24px);opacity:.3}}
+@media (max-width:860px){.jp .split{grid-template-columns:1fr}.jp .stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.jp .opts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.jp *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="jp" style="width:100%;overflow-x:clip">
+  <div style="background:#101734;color:#c9d4ff;font-size:12px">
+    <div class="wrap" style="padding-block:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px">
+      <span><b style="color:#fcd116">CONCEPT PREVIEW</b> · made for Tito P's Filipino Cuisine, not their official site</span><span>Menu from Uber Eats, Oct 2026</span>
+    </div>
+  </div>
+
+  <div style="position:relative;overflow:hidden;background:#8fd3ff">
+    <div class="cloud" aria-hidden="true" style="top:40px;width:160px;height:44px;animation-delay:-8s"></div>
+    <div class="cloud" aria-hidden="true" style="top:110px;width:240px;height:60px;animation-delay:-26s;opacity:.8"></div>
+    <div class="wrap" style="position:relative;padding-block:34px 0;text-align:center">
+      <div style="display:inline-block;background:#fcd116;border:5px solid #101734;border-radius:18px;padding:10px 26px;box-shadow:0 0 0 5px #ce1126,0 10px 0 5px #0038a8">
+        <span class="dg" style="font-size:clamp(14px,1.6vw,18px);letter-spacing:.18em">FOUR WINDS ↔ YORK U</span>
+      </div>
+      <h1 class="dg" style="margin:22px 0 0;font-size:clamp(60px,11vw,170px);line-height:.85;color:#101734">TITO P'S</h1>
+      <p style="margin:10px auto 0;max-width:42ch;font-size:clamp(17px,1.7vw,21px);font-weight:600">Filipino street grilling in North York. Hop on: pick a stop and the jeepney takes you there.</p>
+    </div>
+
+    <div style="position:relative;height:250px;margin-top:20px" aria-hidden="true">
+      <div style="position:absolute;left:0;right:0;bottom:0;height:110px;background:#3a3f4b">
+        <div class="dash" style="{{dashStyle}}"></div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:110px;height:16px;background:#7bc96f"></div>
+      <sc-for list="{{posts}}" as="p" hint-placeholder-count="4">
+        <div style="{{p.style}}"><div style="width:6px;height:70px;background:#101734;margin:0 auto"></div><div class="dg" style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);background:{{p.color}};color:#fff;border-radius:8px;padding:4px 10px;font-size:13px;white-space:nowrap">{{p.no}}</div></div>
+      </sc-for>
+      <div class="jeep" style="{{jeepStyle}}">
+        <div class="{{jeepClass}}" style="position:relative;width:100%;aspect-ratio:2.6/1">
+          <div style="position:absolute;inset:0 0 14% 0;background:#c9d1d9;border-radius:18px 40px 10px 10px;border:4px solid #101734;overflow:hidden">
+            <div style="position:absolute;left:0;right:0;top:0;height:26%;background:#fcd116;border-bottom:4px solid #101734;display:grid;place-items:center" class="dg"><span style="font-size:clamp(9px,1.1vw,14px);color:#ce1126">TITO P'S · KAIN NA</span></div>
+            <div style="position:absolute;left:6%;right:22%;top:34%;height:30%;display:flex;gap:6%"><span style="flex:1;background:#8fd3ff;border:3px solid #101734;border-radius:6px"></span><span style="flex:1;background:#8fd3ff;border:3px solid #101734;border-radius:6px"></span><span style="flex:1;background:#8fd3ff;border:3px solid #101734;border-radius:6px"></span></div>
+            <div style="position:absolute;right:4%;top:30%;width:15%;height:40%;background:#8fd3ff;border:3px solid #101734;border-radius:6px 18px 6px 6px"></div>
+            <div style="position:absolute;left:0;right:0;bottom:12%;height:10%;background:repeating-linear-gradient(90deg,#ce1126 0 20px,#0038a8 20px 40px)"></div>
+          </div>
+          <div class="wheel {{wheelClass}}" style="left:12%"></div>
+          <div class="wheel {{wheelClass}}" style="right:14%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#3a3f4b;padding-block:0 26px">
+    <div class="wrap stops">
+      <sc-for list="{{stops}}" as="s" hint-placeholder-count="4">
+        <button class="stop" onClick="{{s.go}}" aria-pressed="{{s.sel}}" style="{{s.style}}"><span style="font-size:12px;font-weight:900;letter-spacing:.16em">STOP {{s.no}}</span><b class="dg" style="font-size:clamp(18px,2vw,26px)">{{s.name}}</b><span style="font-size:13.5px;opacity:.85">{{s.sub}}</span></button>
+      </sc-for>
+    </div>
+  </div>
+
+  <main style="background:#fffbec;padding-block:60px 80px">
+    <div class="wrap">
+      <sc-if value="{{at.silog}}" hint-placeholder-val="{{ true }}">
+        <div class="panel split">
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#ce1126;font-size:13px">Sinangag + itlog + ulam</span>
+            <h2 class="dg" style="margin:0;font-size:clamp(38px,5vw,72px);line-height:.95">Build your silog</h2>
+            <div class="opts">
+              <sc-for list="{{opts}}" as="o" hint-placeholder-count="8"><button class="opt" onClick="{{o.pick}}" aria-pressed="{{o.sel}}" style="{{o.style}}"><span>{{o.name}}</span><span>{{o.price}}</span></button></sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+            <div style="position:relative;width:min(380px,100%);aspect-ratio:1/1;border-radius:50%;background:#fff;border:12px solid #e6ecff;box-shadow:0 40px 70px -40px rgba(16,23,52,.6)" role="img" aria-label="{{plateLabel}}">
+              <div style="position:absolute;left:12%;top:16%;width:44%;height:44%;border-radius:50%;background:#f3e2b3;display:grid;place-items:center;font-weight:800;font-size:14px;color:#6b5320;text-align:center">Garlic rice</div>
+              <div style="position:absolute;right:12%;top:12%;width:32%;height:32%;border-radius:50%;background:#fff;box-shadow:0 0 0 6px #f6f6f6;display:grid;place-items:center"><div style="width:46%;height:46%;border-radius:50%;background:#fcb400"></div></div>
+              <div style="{{ulamStyle}}">{{cur.name}}</div>
+            </div>
+            <b class="dg" style="font-size:30px;text-align:center">{{cur.full}} · {{cur.price}}</b>
+            <p style="margin:0;text-align:center;max-width:40ch;color:#46507a">{{cur.desc}}</p>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{at.inasal}}" hint-placeholder-val="{{ false }}">
+        <div class="panel split">
+          <div style="background:#ce1126;color:#fffbec;border-radius:32px;padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:14px;transform:rotate(-1.5deg)">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:#fcd116">Inihaw · off the charcoal</span>
+            <h2 class="dg" style="margin:0;font-size:clamp(40px,5.6vw,80px);line-height:.92">Chicken Inasal</h2>
+            <p style="margin:0;font-size:18px;line-height:1.5">Chicken marinated in calamansi, lemongrass and annatto, grilled over real charcoal until smoky and golden. With garlic rice.</p>
+            <b class="dg" style="font-size:52px;color:#fcd116">$17.99</b>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <p class="dg" style="margin:0;font-size:clamp(26px,3vw,40px);line-height:1.1">Time-honoured marinades. Open fire. The taste of the streets back home.</p>
+            <a href="https://www.ubereats.com/ca/store/tito-ps-filipino-cuisine-north-york/Gf_X2JXGVNicos9yUcvDnA" target="_blank" rel="noopener" style="align-self:flex-start;background:#06c167;color:#04130a;padding:16px 24px;border-radius:14px;font-weight:900;text-decoration:none">Order inasal on Uber Eats</a>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{at.sweets}}" hint-placeholder-val="{{ false }}">
+        <div class="panel split">
+          <div style="background:#fcd116;border-radius:32px;padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:14px">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:#ce1126">Inside Tito P's</span>
+            <h2 class="dg" style="margin:0;font-size:clamp(38px,5vw,72px);line-height:.92">Amaya's Sweet Treats</h2>
+            <p style="margin:0;font-size:18px;line-height:1.5">Filipino baked goods and pastries from the in-house bakery. Save room.</p>
+          </div>
+          <div style="background:#0038a8;color:#fffbec;border-radius:32px;padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;gap:14px">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:#fcd116">Barkada night?</span>
+            <h2 class="dg" style="margin:0;font-size:clamp(34px,4.4vw,60px);line-height:.92">Catering trays</h2>
+            <p style="margin:0;font-size:18px;line-height:1.5">Inasal and silog by the tray for birthdays, student events and the whole floor. Message ahead on WhatsApp.</p>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{at.visit}}" hint-placeholder-val="{{ false }}">
+        <div class="panel split">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#ce1126;font-size:13px">Para po! You've arrived</span>
+            <h2 class="dg" style="margin:0;font-size:clamp(36px,4.8vw,68px);line-height:.95">45 Four Winds Dr, Unit G</h2>
+            <p style="margin:0;font-size:18px">North York · M3J 2T6 · University City plaza, by York U</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Tito+P%27s+Filipino+Cuisine+45+Four+Winds+Dr+North+York" target="_blank" rel="noopener" style="font-weight:900">Get directions →</a>
+          </div>
+          <div style="background:#101734;color:#fffbec;border-radius:32px;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:12px">
+            <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#fcd116;font-size:13px">Call or WhatsApp</span>
+            <b class="dg" style="font-size:clamp(34px,4vw,54px);user-select:all">(647) 993-4419</b>
+            <span>Pickup, catering and today's hours.</span>
+            <a href="https://www.ubereats.com/ca/store/tito-ps-filipino-cuisine-north-york/Gf_X2JXGVNicos9yUcvDnA" target="_blank" rel="noopener" style="align-self:flex-start;background:#06c167;color:#04130a;padding:16px 24px;border-radius:14px;font-weight:900;text-decoration:none">Order on Uber Eats</a>
+            <span style="font-size:14px;color:#c9d4ff">5.0★ from 122 Google reviews</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+
+  <section style="background:#0038a8;color:#fffbec;padding-block:90px;position:relative;overflow:hidden">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#fcd116;font-size:13px">The full board</span>
+        <h2 class="dg" style="margin:0;font-size:clamp(40px,5.6vw,80px);line-height:.92">Every plate, one price</h2>
+        <p style="margin:0;font-size:18px;line-height:1.55;max-width:44ch">All silog plates come with garlic fried rice and a fried egg. Add a drink or a treat from Amaya's at the counter.</p>
+        <p style="margin:0;font-size:15px;color:#c9d4ff">“ACTUAL Filipino hidden gem near York University!” · @thetitoleo on TikTok</p>
+      </div>
+      <div style="background:#101734;border:4px solid #fcd116;border-radius:24px;padding:24px;display:grid">
+        <sc-for list="{{board}}" as="b" hint-placeholder-count="8">
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:2px dotted rgba(252,209,22,.35)"><span style="font-weight:800">{{b.n}} <span style="font-weight:400;color:#c9d4ff">· {{b.u}}</span></span><b class="dg" style="color:#fcd116;white-space:nowrap">{{b.p}}</b></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fffbec;padding-block:90px">
+    <div class="wrap">
+      <span style="font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#ce1126;font-size:13px">Kwento</span>
+      <h2 class="dg" style="margin:8px 0 26px;font-size:clamp(38px,5vw,72px);line-height:.95">Questions from the barkada</h2>
+      <div style="display:grid;gap:10px;max-width:900px">
+        <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+          <div style="background:#fff;border-radius:18px;box-shadow:inset 0 0 0 2px #dfe5fb;overflow:hidden">
+            <button onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px 22px;font-weight:900;font-size:17px"><span>{{q.q}}</span><span class="dg" style="color:#ce1126">{{q.sign}}</span></button>
+            <sc-if value="{{q.isOpen}}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 22px 20px;line-height:1.55;color:#46507a">{{q.a}}</p></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:14px;background:repeating-linear-gradient(90deg,#0038a8 0 40px,#fcd116 40px 80px,#ce1126 80px 120px,#fff 120px 160px)" aria-hidden="true"></div>
+  <footer style="background:#101734;color:#dbe4ff">
+    <div class="wrap" style="padding-block:30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px">
+      <b class="dg" style="font-size:30px;color:#fcd116">TITO P'S</b>
+      <span>45 Four Winds Dr, Unit G, North York · (647) 993-4419</span>
+      <span style="font-size:13px">Site concept by Ian · Salamat po!</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { stop:0, moving:false, s:'Tapsilog', faq:0 }; }
+  componentWillUnmount(){ clearTimeout(this._t); }
+  renderVals() {
+    const ST = [['01','Silog','Build your plate','#ce1126'],['02','Inasal','Off the charcoal','#0038a8'],['03','Sweets','Amaya’s & catering','#e0a800'],['04','Para po!','Find us','#101734']];
+    const pos = [12,37,62,87];
+    const go = i=>()=>{ if(i===this.state.stop) return; clearTimeout(this._t); this.setState({stop:i,moving:true}); this._t=setTimeout(()=>this.setState({moving:false}),1450); };
+    const st = this.state.stop, mv = this.state.moving;
+    const stops = ST.map((s,i)=>({no:s[0],name:s[1],sub:s[2],sel:String(i===st),go:go(i),
+      style: i===st ? 'background:'+s[3]+';color:#fffbec;box-shadow:0 0 0 3px #fcd116' : 'background:#4a505e;color:#e8ecf5'}));
+    const posts = ST.map((s,i)=>({no:s[1],color:s[3],style:'position:absolute;bottom:126px;left:'+pos[i]+'%;transform:translateX(-50%);width:6px'}));
+    const S = [
+      ['Tapsilog','Tapa','$16.99','Thin-sliced cured beef, sweet and garlicky.','#8a3b1d'],
+      ['Longsilog','Longganisa','$15.99','Sweet Filipino pork sausage.','#b23a2a'],
+      ['Tosilog','Tocino','$15.99','Sweet cured pork, caramelized.','#d2413b'],
+      ['Sisilog','Sisig','$16.99','Chopped pork, crispy and tangy with calamansi.','#9a5a2b'],
+      ['Bangsilog','Bangus','$15.99','Fried milkfish, crisp skin.','#c4a265'],
+      ['Lumpiasilog','Lumpia','$14.99','Crispy Filipino spring rolls.','#d69a3a'],
+      ['Hotsilog','Hotdog','$14.99','The red Filipino hotdog. A classic.','#e0463a'],
+      ['Chicken Inasal','Inasal','$17.99','Charcoal-grilled chicken with garlic rice.','#e08a1e']];
+    const c = S.find(x=>x[0]===this.state.s) || S[0];
+    const opts = S.map(x=>({name:x[0],price:x[2],sel:String(x[0]===c[0]),pick:()=>this.setState({s:x[0]}),
+      style: x[0]===c[0] ? 'background:#0038a8;color:#fffbec' : 'background:#fff;color:#101734;box-shadow:inset 0 0 0 2px #dfe5fb'}));
+    const board = S.map(x=>({n:x[0],u:x[1],p:x[2]}));
+    const FQ=[['What does “silog” mean?','It’s sinangag (garlic fried rice) plus itlog (egg) plus your ulam. Tapa makes it tapsilog, tocino makes it tosilog, and so on.'],['Do you deliver?','Yes, on Uber Eats. Or call or WhatsApp (647) 993-4419 for pickup.'],['Can you cater a student event?','Yes. Trays of inasal and silog for clubs, birthdays and study nights. Message us a few days ahead.'],['Where are you exactly?','Unit G in the University City plaza at 45 Four Winds Dr, a short walk from York U and Finch West station.']];
+    const faq = FQ.map(([q,a],i)=>({q,a,isOpen:this.state.faq===i,open:String(this.state.faq===i),sign:this.state.faq===i?'−':'+',toggle:()=>this.setState({faq:this.state.faq===i?-1:i})}));
+    return { board, faq, stops, posts, opts, cur:{name:c[1],full:c[0],price:c[2],desc:c[3]},
+      plateLabel:c[0]+': garlic rice, fried egg and '+c[1],
+      ulamStyle:'position:absolute;left:30%;bottom:10%;width:52%;height:40%;border-radius:46% 54% 50% 50%;background:'+c[4]+';display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;transition:background .3s',
+      jeepStyle:'left:'+pos[st]+'%', jeepClass: mv?'bounce':'', wheelClass: mv?'spin':'',
+      dashStyle: mv?'':'animation-play-state:paused',
+      at:{silog:st===0,inasal:st===1,sweets:st===2,visit:st===3} };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
