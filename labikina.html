@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>La Bikina</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&amp;family=Bungee+Shade&amp;family=Rubik:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0;background:#2a0f3d;color:#fff3e0;font-family:"Rubik",system-ui,sans-serif}
+a{color:#ffc93c}a:hover{color:#fff}
+.lo *{box-sizing:border-box}
+.lo .wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lo .bg{background-color:#2a0f3d;background-image:radial-gradient(circle at 20px 20px,rgba(255,201,60,.12) 3px,transparent 4px);background-size:40px 40px}
+.lo .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;perspective:1400px}
+.lo .cardbtn{all:unset;cursor:pointer;display:block;aspect-ratio:3/4.3;position:relative}
+.lo .cardbtn:focus-visible{outline:4px solid #ffc93c;outline-offset:4px;border-radius:14px}
+.lo .inner{position:absolute;inset:0;transition:transform .7s cubic-bezier(.3,1.4,.4,1);transform-style:preserve-3d}
+.lo .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;border:5px solid #fff3e0;box-shadow:0 18px 30px -18px #000;overflow:hidden;display:flex;flex-direction:column;padding:12px}
+.lo .back{transform:rotateY(180deg)}
+.lo .called{animation:pulse 1s ease-in-out 3}
+@keyframes pulse{50%{transform:scale(1.06) rotate(-2deg)}}
+.lo .drum{animation:wob 2.4s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-6deg)}}
+.lo .bigbtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:12px;padding:18px 28px;border-radius:999px;background:#ffc93c;color:#2a0f3d;font-family:Bungee,sans-serif;font-size:20px;box-shadow:0 8px 0 #b2841a;transition:transform .12s,box-shadow .12s}
+.lo .bigbtn:active{transform:translateY(6px);box-shadow:0 2px 0 #b2841a}
+.lo .bigbtn:focus-visible{outline:4px solid #fff;outline-offset:4px}
+.lo .ghost{all:unset;cursor:pointer;padding:14px 20px;border-radius:999px;border:2px solid rgba(255,243,224,.5);font-weight:800}
+.lo .info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lo .win{animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.4) rotate(-10deg);opacity:0}}
+@media (max-width:900px){.lo .grid{grid-template-columns:repeat(3,minmax(0,1fr))}.lo .info{grid-template-columns:1fr}}
+@media (max-width:560px){.lo .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media (prefers-reduced-motion:reduce){.lo *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="lo bg" style="width:100%;overflow-x:clip;min-height:100%">
+  <div class="wrap" style="padding-block:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:#d8c2e6">
+    <span><b style="color:#ffc93c">CONCEPT PREVIEW</b> · made for La Bikina, not their official site</span><span>Menu from Uber Eats, Oct 2026</span>
+  </div>
+
+  <header class="wrap" style="padding-block:24px 30px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px">
+    <div style="min-width:0">
+      <p style="margin:0 0 6px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:13px;color:#ff4fa3">Kensington Market · 210 Augusta Ave</p>
+      <h1 style="margin:0;font-family:'Bungee Shade',Bungee,sans-serif;font-weight:400;font-size:clamp(56px,10vw,150px);line-height:.85;color:#ffc93c">LA BIKINA</h1>
+      <p style="margin:12px 0 0;font-size:clamp(17px,1.7vw,21px);max-width:40ch">Mexican street food made with corazón. Play the board to see the menu: flip a card, or let el gritón call one.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="drum" aria-hidden="true" style="width:64px;height:64px;border-radius:50%;background:conic-gradient(#ff4fa3 0 25%,#ffc93c 0 50%,#00b3a4 0 75%,#ff6b2c 0);border:4px solid #fff3e0"></div>
+        <button class="bigbtn" onClick="{{draw}}">Draw a card</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ghost" onClick="{{reset}}">Shuffle &amp; reset</button><a href="#historia" style="font-weight:800">Our story</a><a href="#menu" style="font-weight:800">Full menu</a><a href="https://www.ubereats.com/ca/store/la-bikina-mexican-street-food/GpkYWVZsUWGZ4ipcva9g3A" target="_blank" rel="noopener" style="font-weight:800">Order</a></div>
+    </div>
+  </header>
+
+  <div class="wrap" style="padding-bottom:22px">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#fff3e0;color:#2a0f3d;border-radius:18px;padding:16px 22px" aria-live="polite">
+      <span style="font-family:Bungee,sans-serif;font-size:clamp(18px,2.4vw,28px)">{{caller}}</span>
+      <span style="font-weight:800">{{count}} of 16 flipped</span>
+    </div>
+    <sc-if value="{{won}}" hint-placeholder-val="{{ false }}">
+      <div class="win" style="margin-top:14px;background:#ff4fa3;border:5px solid #ffc93c;border-radius:18px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+        <span style="font-family:Bungee,sans-serif;font-size:clamp(30px,5vw,60px);color:#fff3e0">¡LOTERÍA!</span>
+        <span style="font-weight:800;font-size:17px">A full row. Now go eat it.</span>
+        <a href="https://www.ubereats.com/ca/store/la-bikina-mexican-street-food/GpkYWVZsUWGZ4ipcva9g3A" target="_blank" rel="noopener" style="background:#06c167;color:#04130a;padding:14px 22px;border-radius:999px;font-weight:800;text-decoration:none">Order on Uber Eats</a>
+      </div>
+    </sc-if>
+  </div>
+
+  <main class="wrap" style="padding-bottom:60px">
+    <div class="grid">
+      <sc-for list="{{cards}}" as="c" hint-placeholder-count="16">
+        <button class="cardbtn" onClick="{{c.flip}}" aria-pressed="{{c.open}}" aria-label="{{c.aria}}">
+          <div class="inner" style="{{c.innerStyle}}">
+            <div class="face" style="{{c.frontStyle}}">
+              <div style="display:flex;justify-content:space-between;font-family:Bungee,sans-serif;font-size:20px"><span>{{c.no}}</span><span>✦</span></div>
+              <div style="flex:1;display:grid;place-items:center">
+                <div style="{{c.glyphStyle}}">{{c.glyph}}</div>
+              </div>
+              <div style="background:#fff3e0;color:#2a0f3d;border-radius:8px;text-align:center;font-family:Bungee,sans-serif;font-size:clamp(13px,1.4vw,18px);padding:8px 4px">{{c.title}}</div>
+            </div>
+            <div class="face back" style="background:#fff3e0;color:#2a0f3d;border-color:{{c.color}};gap:8px">
+              <div style="display:flex;justify-content:space-between;font-family:Bungee,sans-serif;font-size:14px;color:{{c.color}}"><span>No. {{c.no}}</span><span>{{c.kind}}</span></div>
+              <b style="font-family:Bungee,sans-serif;font-weight:400;font-size:clamp(17px,1.9vw,24px);line-height:1.05">{{c.name}}</b>
+              <p style="margin:0;font-size:clamp(12.5px,1.2vw,14.5px);line-height:1.4;flex:1;min-height:0;overflow:hidden">{{c.desc}}</p>
+              <b style="font-family:Bungee,sans-serif;font-size:clamp(22px,2.6vw,32px);color:{{c.color}}">{{c.price}}</b>
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+    <p style="margin:16px 0 0;font-size:13px;color:#d8c2e6">Prices from La Bikina's Uber Eats menu. In-store prices may differ.</p>
+  </main>
+
+  <section id="historia" style="background:#fff3e0;color:#2a0f3d;padding-block:90px">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <span style="font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:13px;color:#ff4fa3">Nuestra historia</span>
+        <h2 style="margin:0;font-family:Bungee,sans-serif;font-weight:400;font-size:clamp(36px,5vw,68px);line-height:.95;text-wrap:balance">A little piece of Mexico on Augusta Ave</h2>
+        <p style="margin:0;font-size:18px;line-height:1.6;max-width:52ch">La Bikina opened in Kensington Market with one idea: antojitos that taste like home. Masa is pressed by hand, salsas are made in-house, and the tamales are steamed in real corn husks. The counter doubles as a little shop for embroidered, hand-painted hats made by Mexican artisans.</p>
+        <p style="margin:0;font-size:18px;line-height:1.6;max-width:52ch">The market noticed fast: 469 Google reviews, every one adding up to a perfect 5.0.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+        <div style="background:#ff4fa3;color:#fff3e0;border-radius:22px;padding:24px;transform:rotate(-2deg)"><b style="font-family:Bungee,sans-serif;font-size:46px;display:block;line-height:1">5.0</b>Google rating</div>
+        <div style="background:#00b3a4;color:#2a0f3d;border-radius:22px;padding:24px;transform:rotate(2deg)"><b style="font-family:Bungee,sans-serif;font-size:46px;display:block;line-height:1">469</b>reviews</div>
+        <div style="background:#ffc93c;color:#2a0f3d;border-radius:22px;padding:24px;transform:rotate(1deg)"><b style="font-family:Bungee,sans-serif;font-size:46px;display:block;line-height:1">A mano</b>masa pressed by hand</div>
+        <div style="background:#2a0f3d;color:#fff3e0;border-radius:22px;padding:24px;transform:rotate(-1deg)"><b style="font-family:Bungee,sans-serif;font-size:46px;display:block;line-height:1">4</b>days a week</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="wrap" style="padding-block:90px">
+    <span style="font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:13px;color:#ffc93c">El menú completo</span>
+    <h2 style="margin:8px 0 30px;font-family:Bungee,sans-serif;font-weight:400;font-size:clamp(36px,5vw,68px);line-height:.95">The whole menu, no cards needed</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px">
+      <sc-for list="{{menuCols}}" as="col" hint-placeholder-count="3">
+        <div style="background:rgba(255,243,224,.06);border:2px solid rgba(255,243,224,.18);border-radius:22px;padding:24px">
+          <b style="font-family:Bungee,sans-serif;font-weight:400;font-size:26px;color:{{col.color}}">{{col.name}}</b>
+          <sc-for list="{{col.items}}" as="i" hint-placeholder-count="5">
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed rgba(255,243,224,.2)"><span style="font-weight:600">{{i.n}}</span><span style="font-family:Bungee,sans-serif;color:#ffc93c;white-space:nowrap">{{i.p}}</span></div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#ff4fa3;color:#2a0f3d;padding-block:80px;overflow:hidden">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:22px">
+      <span style="font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:13px">Lo que dicen</span>
+      <p style="margin:0;font-family:Bungee,sans-serif;font-size:clamp(28px,4.4vw,62px);line-height:1.02;max-width:20ch">“Kensington Market’s new Mexican street food spot is drawing big crowds.”</p>
+      <span style="font-weight:800">Streets of Toronto</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin-top:10px">
+        <div style="background:#fff3e0;border-radius:20px;padding:22px"><b style="font-family:Bungee,sans-serif;font-weight:400">Enchiladas verdes</b><p style="margin:6px 0 0">“Saucy and filling,” drenched in house-made tomatillo salsa.</p></div>
+        <div style="background:#fff3e0;border-radius:20px;padding:22px"><b style="font-family:Bungee,sans-serif;font-weight:400">Tamales</b><p style="margin:6px 0 0">The quick on-the-go snack as you wander the market.</p></div>
+        <div style="background:#fff3e0;border-radius:20px;padding:22px"><b style="font-family:Bungee,sans-serif;font-weight:400">Sopes</b><p style="margin:6px 0 0">Three thick corn sopes per order. Made for sharing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:90px">
+    <span style="font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:13px;color:#00b3a4">Preguntas</span>
+    <h2 style="margin:8px 0 26px;font-family:Bungee,sans-serif;font-weight:400;font-size:clamp(36px,5vw,68px);line-height:.95">Good to know</h2>
+    <div style="display:grid;gap:10px;max-width:860px">
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+        <div style="background:#fff3e0;color:#2a0f3d;border-radius:18px;overflow:hidden">
+          <button onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px 22px;font-weight:800;font-size:17px"><span>{{q.q}}</span><span style="font-family:Bungee,sans-serif;color:#ff4fa3">{{q.sign}}</span></button>
+          <sc-if value="{{q.isOpen}}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 22px 20px;line-height:1.55">{{q.a}}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:70px">
+    <div class="info">
+      <div style="background:#00b3a4;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px">Ven a vernos</span>
+        <b style="font-family:Bungee,sans-serif;font-weight:400;font-size:32px;line-height:1">210 Augusta Ave</b>
+        <span>Kensington Market · M5T 2L6</span>
+        <span style="font-family:Bungee,sans-serif;font-size:22px;user-select:all">(647) 570-5663</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=La+Bikina+210+Augusta+Ave+Toronto" target="_blank" rel="noopener" style="color:#2a0f3d;font-weight:800">Get directions →</a>
+      </div>
+      <div style="background:#fff3e0;color:#2a0f3d;border-radius:22px;padding:26px">
+        <span style="display:block;margin-bottom:8px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:#ff4fa3">Hours · {{openMsg}}</span>
+        <sc-for list="{{hours}}" as="h" hint-placeholder-count="7"><div style="{{h.style}}"><span>{{h.day}}</span><span>{{h.t}}</span></div></sc-for>
+      </div>
+      <div style="background:#ff6b2c;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px">Order</span>
+        <a href="https://www.ubereats.com/ca/store/la-bikina-mexican-street-food/GpkYWVZsUWGZ4ipcva9g3A" target="_blank" rel="noopener" style="background:#06c167;color:#04130a;padding:16px;border-radius:14px;font-weight:800;text-decoration:none;text-align:center">Uber Eats</a>
+        <a href="https://www.doordash.com/en/store/la-bikina-mexican-street-food-toronto-49530205/" target="_blank" rel="noopener" style="background:#2a0f3d;color:#fff3e0;padding:16px;border-radius:14px;font-weight:800;text-decoration:none;text-align:center">DoorDash</a>
+        <span style="font-size:14px">Instagram @labikina.streetfoodmx · hand-painted hats by Mexican artisans at the counter</span>
+      </div>
+    </div>
+  </section>
+  <footer style="background:#1a0726;border-top:6px solid #ffc93c">
+    <div class="wrap" style="padding-block:34px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center">
+      <b style="font-family:'Bungee Shade',Bungee,sans-serif;font-weight:400;font-size:34px;color:#ffc93c">LA BIKINA</b>
+      <nav style="display:flex;flex-wrap:wrap;gap:18px;font-weight:700"><a href="#historia">Historia</a><a href="#menu">Menu</a><a href="https://www.ubereats.com/ca/store/la-bikina-mexican-street-food/GpkYWVZsUWGZ4ipcva9g3A" target="_blank" rel="noopener">Order</a></nav>
+      <span style="font-size:13px;color:#d8c2e6">210 Augusta Ave, Toronto · (647) 570-5663 · Site concept by Ian</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { open: [], called: null, faq: 0 }; }
+  renderVals() {
+    const C = [
+      ['La Enchilada','E','Enchiladas','5 corn tortillas with marinated chicken, house tomatillo salsa, crema, fresh cheese and onion.','$21.99','Plato','#ff4fa3'],
+      ['El Tamal','T','Tamales (3)','Soft masa steamed in corn husk, with chicken or slow-braised pork.','$15.00','Tamal','#ffc93c'],
+      ['La Tostada','O','Tostadas (3)','Thick handmade corn tostadas with your filling, lettuce, crema and salsa.','$16.99','Plato','#00b3a4'],
+      ['La Discada','D','Discada Norteña','Grilled beef, chicken breast, peppers and onion, chopped and piled high.','$29.99','Para compartir','#ff6b2c'],
+      ['El Mole','M','Enmoladas','5 soft corn tortillas with shredded chicken under rich mole.','$21.99','Plato','#9b4dff'],
+      ['El Chilaquil','C','Chilaquiles','Crispy tortillas in house salsa with grilled meat, crema and cheese.','$25.00','Plato','#ff4fa3'],
+      ['El Guisado','G','Tacos de Guisado (4)','Street-style tacos with rich homemade stews.','$23.00','Tacos','#00b3a4'],
+      ['La Birria','B','Tamal de Birria (3)','Fluffy masa filled with slow-cooked birria.','$21.00','Tamal','#ffc93c'],
+      ['El Rollito','R','Mexican Rollitos (4)','Warm flour tortillas rolled with seasoned meat and refried beans.','$16.99','Plato','#ff6b2c'],
+      ['La Quesadilla','Q','Corn Quesadillas (3)','Pressed by hand on fresh corn masa.','$19.99','Plato','#9b4dff'],
+      ['El Ranchero','R','Desayuno Ranchero','A big Mexican breakfast plate.','$35.00','Desayuno','#ff4fa3'],
+      ['La Bikina','LB','Combo La Bikina 1','3 chicken enchiladas, chilaquiles and 3 enmoladas.','$25.00','Combo','#ffc93c'],
+      ['La Pareja','2','Combo 1 for two','5 enchiladas, 2 tamales and 2 drinks.','$29.90','Combo','#00b3a4'],
+      ['La Familia','4','Combo 3 for four','4 enchiladas, 4 tamales, 4 drinks plus chilaquiles or discada.','$59.90','Combo','#ff6b2c'],
+      ['El Sombrero','S','Artesanías','Embroidered, hand-painted hats made by Mexican artisans. Take a little piece of Mexico home.','At the counter','Tienda','#9b4dff'],
+      ['El Mercado','K','Kensington Market','Find us at 210 Augusta Ave. Thu & Fri from 4 p.m., weekends from 11 a.m.','Come by','Visita','#ff4fa3']];
+    const open = this.state.open, called = this.state.called;
+    const flip = (i)=>{ const s=new Set(this.state.open); s.has(i)?s.delete(i):s.add(i); this.setState({open:[...s], called:i}); };
+    const cards = C.map((c,i)=>{ const isOpen = open.includes(i);
+      return { no:String(i+1).padStart(2,'0'), title:c[0], glyph:c[1], name:c[2], desc:c[3], price:c[4], kind:c[5], color:c[6],
+        open:String(isOpen), aria:(isOpen?c[2]+', '+c[4]:'Card '+(i+1)+', '+c[0]+'. Flip to reveal'),
+        flip:()=>flip(i),
+        innerStyle:'transform:rotateY('+(isOpen?180:0)+'deg)'+(called===i?' ;':''),
+        frontStyle:'background:'+c[6]+';color:#2a0f3d',
+        glyphStyle:'width:72%;aspect-ratio:1/1;border-radius:50%;background:#2a0f3d;color:'+c[6]+';display:grid;place-items:center;font-family:Bungee,sans-serif;font-size:clamp(34px,4.6vw,70px);box-shadow:inset 0 0 0 6px #fff3e0' }; });
+    const draw = ()=>{ const left=C.map((_,i)=>i).filter(i=>!this.state.open.includes(i)); if(!left.length) return; const i=left[Math.floor(Math.random()*left.length)]; this.setState({open:[...this.state.open,i], called:i}); };
+    const rows=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15]];
+    const won = rows.some(r=>r.every(i=>open.includes(i)));
+    const caller = called==null ? 'Tap a card or press Draw.' : (open.includes(called) ? '¡'+C[called][0]+'! · '+C[called][2]+' · '+C[called][4] : 'Card turned back over.');
+    const names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const H={0:[11,21],4:[16,20],5:[16,20.5],6:[11,21]};
+    const fmt=h=>{const hh=Math.floor(h),m=Math.round((h-hh)*60);return (((hh+11)%12)+1)+(m?':'+String(m).padStart(2,'0'):'')+(hh>=12?' p.m.':' a.m.');};
+    let now; try { now = new Date(new Date().toLocaleString('en-US',{timeZone:'America/Toronto'})); } catch(e){ now = new Date(); }
+    const d=now.getDay(), hr=now.getHours()+now.getMinutes()/60, t=H[d];
+    const isOpen = !!(t && hr>=t[0] && hr<t[1]);
+    const hours=[1,2,3,4,5,6,0].map(i=>({day:names[i],t:H[i]?fmt(H[i][0])+' – '+fmt(H[i][1]):'Closed',
+      style:'display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed rgba(42,15,61,.2);font-size:15px;'+(i===d?'font-weight:800;color:#ff4fa3':'')}));
+    const menuCols = [
+      {name:'Platos',color:'#ff4fa3',items:[['Enchiladas','$21.99'],['Enmoladas','$21.99'],['Chilaquiles','$25.00'],['Tacos de Guisado (4)','$23.00'],['Tostadas (3)','$16.99'],['Mexican Rollitos (4)','$16.99'],['Corn Quesadillas (3)','$19.99'],['Discada Norteña','$29.99'],['Desayuno Ranchero','$35.00']]},
+      {name:'Tamales',color:'#ffc93c',items:[['Tamales (3)','$15.00'],['Tamal de Birria (3)','$21.00']]},
+      {name:'Combos',color:'#00b3a4',items:[['Combo La Bikina 1','$25.00'],['Combo La Bikina 2','$25.00'],['Combo 1 · for 2','$29.90'],['Combo 2 · for 2','$29.90'],['Combo 3 · for 4','$59.90']]}
+    ].map(c=>({...c,items:c.items.map(([n,p])=>({n,p}))}));
+    const FQ = [['Do you deliver?','Yes. Order on Uber Eats or DoorDash, or come pick up at 210 Augusta Ave.'],['Are there vegetarian options?','Ask at the counter about today’s meat-free options.'],['Can you feed a group?','The Combo 3 feeds four for $59.90. For bigger orders, call (647) 570-5663 a day ahead.'],['When are you open?','Thursday and Friday evenings from 4 p.m., Saturday and Sunday from 11 a.m. to 9 p.m.']];
+    const faq = FQ.map(([q,a],i)=>({q,a,isOpen:this.state.faq===i,open:String(this.state.faq===i),sign:this.state.faq===i?'−':'+',toggle:()=>this.setState({faq:this.state.faq===i?-1:i})}));
+    return { cards, draw, menuCols, faq, reset:()=>this.setState({open:[],called:null}), won, caller, count:open.length, hours, openMsg: isOpen?'open now':'closed now' };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
