@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Ovenbird Pizza</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Work+Sans:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0;background:#f4f8fb;color:#1d2b4f;font-family:"Work Sans",system-ui,sans-serif}
+a{color:#d7261e}a:hover{color:#8f150f}
+.ob *{box-sizing:border-box}
+.ob .wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.ob .bf{font-family:"Bagel Fat One","Arial Black",sans-serif;font-weight:400}
+.ob .tiles{height:64px;background-color:#f4f8fb;background-image:radial-gradient(circle at 50% 50%,#f2b705 0 9px,transparent 10px),radial-gradient(circle at 0 0,#1f4fa3 0 20px,transparent 21px),radial-gradient(circle at 100% 0,#1f4fa3 0 20px,transparent 21px),radial-gradient(circle at 0 100%,#1f4fa3 0 20px,transparent 21px),radial-gradient(circle at 100% 100%,#1f4fa3 0 20px,transparent 21px);background-size:64px 64px}
+.ob .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.ob .oven{position:relative;width:min(560px,100%);aspect-ratio:1.15/1;margin-inline:auto}
+.ob .dome{position:absolute;inset:0 0 18% 0;border-radius:50% 50% 0 0/62% 62% 0 0;background:#c8553d;box-shadow:inset 0 -20px 0 #a8432f}
+.ob .mouth{position:absolute;left:24%;right:24%;bottom:18%;height:42%;border-radius:50% 50% 0 0/80% 80% 0 0;overflow:hidden;transition:background .6s,box-shadow .6s}
+.ob .pizza{position:absolute;left:50%;bottom:6%;width:62%;aspect-ratio:1/1;border-radius:50%;transform:translateX(-50%) scaleY(.42);transition:filter 1s}
+.ob .spin{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:translateX(-50%) scaleY(.42) rotate(360deg)}}
+.ob .flame{position:absolute;bottom:4%;width:14%;aspect-ratio:1/1.6;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#ffb703;animation:fl .5s ease-in-out infinite alternate;filter:blur(1px)}
+@keyframes fl{to{transform:scaleY(1.2) translateY(-6px);background:#fb8500}}
+.ob .base{position:absolute;left:4%;right:4%;bottom:0;height:20%;background:#1f4fa3;border-radius:10px;background-image:radial-gradient(circle,#f2b705 0 6px,transparent 7px);background-size:40px 40px}
+.ob .fire{all:unset;cursor:pointer;padding:18px 30px;border-radius:999px;background:#d7261e;color:#fff;font-weight:800;font-size:18px;box-shadow:0 8px 0 #8f150f;transition:transform .1s}
+.ob .fire:active{transform:translateY(6px);box-shadow:0 2px 0 #8f150f}
+.ob .fire:focus-visible,.ob .tg:focus-visible{outline:3px solid #f2b705;outline-offset:3px}
+.ob .tg{all:unset;cursor:pointer;padding:12px 16px;border-radius:999px;font-weight:800;font-size:15px}
+.ob .top{position:absolute;border-radius:50%;transition:opacity .3s, transform .4s cubic-bezier(.2,1.6,.4,1)}
+.ob .menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+@media (max-width:900px){.ob .hero,.ob .menu{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.ob *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="ob" style="width:100%;overflow-x:clip">
+  <div style="background:#1d2b4f;color:#dfe8f5;font-size:12px">
+    <div class="wrap" style="padding-block:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px">
+      <span><b style="color:#f2b705">SAMPLE DESIGN</b> · Ovenbird Pizza is a fictional restaurant made to show the style</span><span>Design by Ian · ian@gymbudz.ca</span>
+    </div>
+  </div>
+  <nav class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px">
+    <b class="bf" style="font-size:32px;color:#d7261e">ovenbird</b>
+    <div style="display:flex;gap:16px;font-weight:800;flex-wrap:wrap"><a href="#bake" style="color:#1d2b4f;text-decoration:none">Bake one</a><a href="#pies" style="color:#1d2b4f;text-decoration:none">Pies</a><a href="#visit" style="color:#1d2b4f;text-decoration:none">Visit</a></div>
+  </nav>
+
+  <header id="bake" class="wrap" style="padding-block:30px 70px">
+    <div class="hero">
+      <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+        <span style="align-self:flex-start;background:#f2b705;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px">905°F · wood-fired · 90 seconds</span>
+        <h1 class="bf" style="margin:0;font-size:clamp(58px,9vw,136px);line-height:.88;color:#d7261e">Ninety seconds to perfect.</h1>
+        <p style="margin:0;font-size:clamp(17px,1.7vw,21px);line-height:1.5;max-width:38ch">That's how long a Neapolitan pie spends in our oven. Pick your toppings, then fire it and watch.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{toggles}}" as="t" hint-placeholder-count="6"><button class="tg" onClick="{{t.pick}}" aria-pressed="{{t.sel}}" style="{{t.style}}">{{t.n}}</button></sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+          <button class="fire" onClick="{{fire}}">{{fireLabel}}</button>
+          <span class="bf" style="font-size:64px;line-height:1;color:#1d2b4f;font-variant-numeric:tabular-nums" aria-live="polite">{{clock}}</span>
+        </div>
+        <span style="font-weight:600;color:#55618a">{{status}}</span>
+      </div>
+      <div class="oven" role="img" aria-label="{{ovenLabel}}">
+        <div class="dome"></div>
+        <div style="position:absolute;left:44%;top:-6%;width:12%;height:14%;background:#a8432f;border-radius:6px 6px 0 0"></div>
+        <div class="mouth" style="{{mouthStyle}}">
+          <sc-if value="{{baking}}" hint-placeholder-val="{{ false }}"><span class="flame" style="left:8%"></span><span class="flame" style="left:22%;animation-delay:-.2s"></span><span class="flame" style="right:10%;animation-delay:-.35s"></span></sc-if>
+          <div class="pizza {{spinClass}}" style="{{pizzaStyle}}">
+            <div style="position:absolute;inset:9%;border-radius:50%;background:#d7261e"></div>
+            <div style="position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 30% 40%,#fff6dc 0 12%,transparent 13%),radial-gradient(circle at 65% 30%,#fff6dc 0 11%,transparent 12%),radial-gradient(circle at 55% 68%,#fff6dc 0 12%,transparent 13%)"></div>
+            <sc-for list="{{placed}}" as="p" hint-placeholder-count="6"><span class="top" style="{{p.style}}"></span></sc-for>
+          </div>
+        </div>
+        <div class="base"></div>
+      </div>
+    </div>
+  </header>
+  <div class="tiles" aria-hidden="true"></div>
+
+  <section id="pies" class="wrap" style="padding-block:90px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:26px">
+      <h2 class="bf" style="margin:0;font-size:clamp(42px,6vw,90px);line-height:.9">The pies</h2>
+      <p style="margin:0;max-width:38ch;color:#55618a">Sample menu for a fictional pizzeria. 12-inch, 48-hour dough, San Marzano tomato.</p>
+    </div>
+    <div class="menu">
+      <sc-for list="{{pies}}" as="p" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:18px 0;border-bottom:3px dotted #1f4fa3">
+          <b class="bf" style="font-size:28px;color:#1d2b4f">{{p.n}}</b>
+          <b class="bf" style="font-size:28px;color:#d7261e">{{p.p}}</b>
+          <span style="grid-column:1/-1;color:#55618a">{{p.d}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#1f4fa3;color:#f4f8fb;padding-block:80px">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:22px">
+      <div><b class="bf" style="font-size:72px;line-height:1;color:#f2b705;display:block">48h</b>cold-fermented dough</div>
+      <div><b class="bf" style="font-size:72px;line-height:1;color:#f2b705;display:block">905°</b>oven floor, in Fahrenheit</div>
+      <div><b class="bf" style="font-size:72px;line-height:1;color:#f2b705;display:block">90s</b>from peel to plate</div>
+    </div>
+  </section>
+
+  <section id="visit" class="wrap" style="padding-block:80px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+      <div style="background:#fff;border-radius:26px;padding:28px;box-shadow:0 30px 60px -40px rgba(29,43,79,.5)"><span style="font-weight:800;letter-spacing:.16em;font-size:12px;color:#d7261e">VISIT</span><b class="bf" style="display:block;font-size:34px;margin-top:6px">Ossington Ave</b><span style="color:#55618a">Toronto · (416) 555-0188 · sample</span></div>
+      <div style="background:#fff;border-radius:26px;padding:28px;box-shadow:0 30px 60px -40px rgba(29,43,79,.5)"><span style="font-weight:800;letter-spacing:.16em;font-size:12px;color:#d7261e">HOURS</span><b class="bf" style="display:block;font-size:34px;margin-top:6px">Tue–Sun</b><span style="color:#55618a">5 p.m. until the dough runs out</span></div>
+      <div style="background:#d7261e;color:#fff;border-radius:26px;padding:28px"><span style="font-weight:800;letter-spacing:.16em;font-size:12px">ORDER</span><b class="bf" style="display:block;font-size:34px;margin-top:6px">Pickup &amp; delivery</b><span>Order links for your DoorDash and Uber Eats go here.</span></div>
+    </div>
+  </section>
+  <div class="tiles" aria-hidden="true"></div>
+  <footer style="background:#1d2b4f;color:#dfe8f5">
+    <div class="wrap" style="padding-block:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px">
+      <b class="bf" style="font-size:24px;color:#f2b705">ovenbird</b><span>Sample design · not a real restaurant · Design by Ian</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { t:90, running:false, done:false, tops:['Basil','Pepperoni'] }; }
+  componentWillUnmount(){ clearInterval(this._i); }
+  renderVals() {
+    const s = this.state;
+    const T = [
+      ['Basil',[[30,30],[62,58],[44,70]],'#2d6a4f',12],
+      ['Pepperoni',[[28,56],[58,32],[70,62],[40,40]],'#a4161a',15],
+      ['Mushroom',[[50,26],[30,70],[72,46]],'#b08968',12],
+      ['Olives',[[38,30],[64,72],[26,46],[56,50]],'#1b1b1b',7],
+      ['Hot honey',[[48,48],[36,60]],'#f2b705',10],
+      ['Nduja',[[60,40],[34,36],[52,64]],'#d0461f',11]];
+    const toggles = T.map(t=>{const on=s.tops.includes(t[0]); return {n:t[0],sel:String(on),
+      pick:()=>{const x=new Set(this.state.tops); x.has(t[0])?x.delete(t[0]):x.add(t[0]); this.setState({tops:[...x]});},
+      style:on?'background:#1d2b4f;color:#fff':'background:#fff;color:#1d2b4f;box-shadow:inset 0 0 0 2px #c9d6ea'};});
+    const placed = [];
+    T.forEach(t=>t[1].forEach(([x,y])=>placed.push({style:'left:'+x+'%;top:'+y+'%;width:'+t[3]+'%;height:'+t[3]+'%;background:'+t[2]+';transform:translate(-50%,-50%) scale('+(s.tops.includes(t[0])?1:0)+');opacity:'+(s.tops.includes(t[0])?1:0)})));
+    const fire = ()=>{
+      if (this.state.running) return;
+      clearInterval(this._i);
+      this.setState({t:90,running:true,done:false});
+      this._i = setInterval(()=>{ const n=this.state.t-1; if(n<=0){ clearInterval(this._i); this.setState({t:0,running:false,done:true}); } else this.setState({t:n}); },1000);
+    };
+    const char = s.done ? 'radial-gradient(circle at 14% 50%,#3b2a1a 0 3%,transparent 4%),radial-gradient(circle at 80% 30%,#3b2a1a 0 3%,transparent 4%),radial-gradient(circle at 60% 88%,#3b2a1a 0 2.5%,transparent 3.5%),' : '';
+    const progress = (90-s.t)/90;
+    const pizzaStyle = 'background:'+char+(s.done?'#d99a4e':(s.running?'#e9b97a':'#f6d7a7'))+';filter:brightness('+(1-progress*.08).toFixed(2)+')';
+    return { toggles, placed, fire, pizzaStyle, spinClass: s.running?'spin':'',
+      baking: s.running,
+      clock: Math.floor(s.t/60)+':'+String(s.t%60).padStart(2,'0'),
+      fireLabel: s.running ? 'Baking…' : (s.done ? 'Fire another' : 'Fire the oven'),
+      status: s.running ? 'Turning the pie for an even char.' : (s.done ? 'Leopard-spotted crust. Your '+(s.tops.join(' + ')||'margherita')+' pie is ready.' : 'Oven is at 905°F and waiting.'),
+      mouthStyle: 'background:'+(s.running?'#2a1208':'#160b06')+';box-shadow:'+(s.running?'inset 0 0 60px 10px #fb8500':'inset 0 0 30px #000'),
+      ovenLabel: 'Wood-fired oven with a pizza topped with '+(s.tops.join(', ')||'tomato and mozzarella'),
+      pies: [['Margherita','San Marzano tomato, fior di latte, basil, olive oil','$17'],['Diavola','Tomato, mozzarella, spicy salami, chili oil','$20'],['Funghi','Fior di latte, roasted mushrooms, thyme, garlic','$19'],['Nduja & Hot Honey','Spicy Calabrian nduja, mozzarella, hot honey','$22'],['Bianca','Ricotta, mozzarella, lemon zest, black pepper','$18'],['Marinara','Tomato, garlic, oregano. No cheese, vegan','$14'],['Burrata','Tomato base, whole burrata added after the bake','$24'],['Kids Cheese','Small pie, tomato and mozzarella','$11']].map(([n,d,p])=>({n,d,p})) };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
