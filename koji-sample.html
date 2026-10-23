@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Kōji Ramen House</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&amp;family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#1c2340;color:#f3efe6;font-family:"IBM Plex Sans",system-ui,sans-serif}
+a{color:#ffd166}a:hover{color:#fff}
+.kj *{box-sizing:border-box}
+.kj .wrap{max-width:1300px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.kj .pop{font-family:"Mochiy Pop One",system-ui,sans-serif;font-weight:400}
+.kj .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.kj .stage{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:36px;align-items:start}
+.kj .machine{background:#ece8df;color:#1c2340;border-radius:30px;padding:22px;box-shadow:inset 0 -10px 0 #cfc9bc,0 40px 80px -40px #000}
+.kj .row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kj .key{all:unset;cursor:pointer;border-radius:14px;padding:14px 10px;min-height:92px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;position:relative;transition:transform .1s,box-shadow .1s}
+.kj .key:active{transform:translateY(4px)}
+.kj .key:focus-visible,.kj .print:focus-visible{outline:3px solid #e2231a;outline-offset:3px}
+.kj .lamp{position:absolute;top:10px;right:10px;width:12px;height:12px;border-radius:50%}
+.kj .print{all:unset;cursor:pointer;display:block;text-align:center;padding:18px;border-radius:16px;background:#e2231a;color:#fff;font-weight:700;font-size:18px;box-shadow:0 6px 0 #9c140e}
+.kj .print:active{transform:translateY(4px);box-shadow:0 2px 0 #9c140e}
+.kj .bowl{position:relative;width:min(460px,100%);aspect-ratio:1/1;margin-inline:auto;border-radius:50%;background:#2b2b2b;box-shadow:0 0 0 18px #f3efe6,0 0 0 26px #e2231a,0 50px 80px -30px #000}
+.kj .broth{position:absolute;inset:6%;border-radius:50%;transition:background .5s}
+.kj .top{position:absolute;transition:transform .5s cubic-bezier(.2,1.6,.4,1),opacity .3s}
+.kj .steam{animation:st 3s ease-in-out infinite}
+@keyframes st{0%{opacity:0;transform:translateY(10px)}50%{opacity:.7}100%{opacity:0;transform:translateY(-30px)}}
+.kj .tk{animation:slide .7s cubic-bezier(.2,1.2,.4,1)}
+@keyframes slide{from{transform:translateY(-40px);opacity:0}}
+@media (max-width:960px){.kj .stage{grid-template-columns:1fr}}
+@media (max-width:560px){.kj .row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.kj *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="kj" style="width:100%;overflow-x:clip">
+  <div style="background:#ffd166;color:#1c2340" class="mono">
+    <div class="wrap" style="padding-block:8px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:12px">
+      <span><b>SAMPLE DESIGN</b> · Kōji Ramen House is a fictional restaurant made to show the style</span><span>Design by Ian · ian@gymbudz.ca</span>
+    </div>
+  </div>
+
+  <header class="wrap" style="padding-block:46px 30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+    <div style="min-width:0">
+      <p class="mono" style="margin:0 0 8px;font-size:13px;letter-spacing:.16em;color:#ffd166">食券 · PICK A TICKET</p>
+      <h1 class="pop" style="margin:0;font-size:clamp(54px,9vw,130px);line-height:.9">Kōji<br>Ramen</h1>
+    </div>
+    <p style="margin:0;max-width:36ch;font-size:clamp(17px,1.7vw,20px);line-height:1.5;color:#cfd3e6">Like the ticket machines in Tokyo. Press a broth, choose your noodle, add toppings. Your bowl builds as you go.</p>
+  </header>
+
+  <main class="wrap" style="padding-bottom:80px">
+    <div class="stage">
+      <div class="machine" id="machine">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><span class="pop" style="font-size:22px">KŌJI</span><span class="mono" style="background:#1c2340;color:#7CFC9A;padding:6px 12px;border-radius:8px;font-size:18px">{{display}}</span></div>
+        <p class="mono" style="margin:0 0 8px;font-size:12px;letter-spacing:.14em">1 · BROTH</p>
+        <div class="row"><sc-for list="{{broths}}" as="b" hint-placeholder-count="4"><button class="key" onClick="{{b.pick}}" aria-pressed="{{b.sel}}" style="{{b.style}}"><span class="lamp" style="{{b.lamp}}"></span><b style="font-size:16px;padding-right:16px">{{b.n}}</b><span class="mono" style="font-size:15px">{{b.p}}</span></button></sc-for></div>
+        <p class="mono" style="margin:16px 0 8px;font-size:12px;letter-spacing:.14em">2 · NOODLE</p>
+        <div class="row"><sc-for list="{{noodles}}" as="b" hint-placeholder-count="4"><button class="key" onClick="{{b.pick}}" aria-pressed="{{b.sel}}" style="{{b.style}}"><span class="lamp" style="{{b.lamp}}"></span><b style="font-size:16px;padding-right:16px">{{b.n}}</b><span class="mono" style="font-size:12px">{{b.p}}</span></button></sc-for></div>
+        <p class="mono" style="margin:16px 0 8px;font-size:12px;letter-spacing:.14em">3 · TOPPINGS</p>
+        <div class="row"><sc-for list="{{tops}}" as="b" hint-placeholder-count="8"><button class="key" onClick="{{b.pick}}" aria-pressed="{{b.sel}}" style="{{b.style}}"><span class="lamp" style="{{b.lamp}}"></span><b style="font-size:16px;padding-right:16px">{{b.n}}</b><span class="mono" style="font-size:15px">{{b.p}}</span></button></sc-for></div>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:18px">
+          <div style="flex:1"><button class="print" onClick="{{print}}">Print my ticket · {{total}}</button></div>
+          <div class="mono" style="width:90px;height:52px;border-radius:10px;background:#1c2340;color:#ece8df;display:grid;place-items:center;font-size:11px;text-align:center">TICKET<br>SLOT</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:30px;align-items:center">
+        <div style="position:relative;width:100%">
+          <svg viewBox="0 0 200 60" width="200" height="60" aria-hidden="true" style="position:absolute;left:50%;top:-50px;transform:translateX(-50%)"><g class="steam" fill="none" stroke="#f3efe6" stroke-width="4" stroke-linecap="round" opacity=".7"><path d="M70 55c-10-12 10-18 0-32"/><path d="M100 55c-10-12 10-18 0-32"/><path d="M130 55c-10-12 10-18 0-32"/></g></svg>
+          <div class="bowl" role="img" aria-label="{{bowlLabel}}">
+            <div class="broth" style="{{brothStyle}}"></div>
+            <div style="position:absolute;inset:26%;border-radius:50%;background:repeating-radial-gradient(circle,#f2d88a 0 3px,transparent 3px 7px);opacity:.9"></div>
+            <sc-for list="{{placed}}" as="t" hint-placeholder-count="4"><div class="top" style="{{t.style}}"></div></sc-for>
+          </div>
+        </div>
+        <sc-if value="{{printed}}" hint-placeholder-val="{{ false }}">
+          <div class="tk mono" style="background:#fff;color:#1c2340;width:min(300px,100%);padding:18px;border-radius:4px;box-shadow:0 20px 40px -20px #000">
+            <div style="text-align:center;font-weight:600;border-bottom:1px dashed #1c2340;padding-bottom:8px">KŌJI · No. {{ticketNo}}</div>
+            <sc-for list="{{lines}}" as="l" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;padding-top:6px;font-size:14px"><span>{{l.n}}</span><span>{{l.p}}</span></div></sc-for>
+            <div style="display:flex;justify-content:space-between;border-top:1px dashed #1c2340;margin-top:8px;padding-top:8px;font-weight:600"><span>TOTAL</span><span>{{total}}</span></div>
+            <p style="margin:10px 0 0;font-size:11px;text-align:center">Hand this to the chef. いただきます</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+
+  <section style="background:#ece8df;color:#1c2340;padding-block:90px">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+      <div style="grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:10px">
+        <h2 class="pop" style="margin:0;font-size:clamp(38px,5.4vw,78px);line-height:.95">Eighteen hours<br>in every bowl</h2>
+        <p style="margin:0;max-width:40ch;font-size:18px;line-height:1.55">Pork bones simmered overnight, noodles made fresh each morning, tare aged in house. Sample copy for a fictional shop.</p>
+      </div>
+      <div style="background:#1c2340;color:#f3efe6;border-radius:24px;padding:26px"><b class="pop" style="font-size:54px;color:#ffd166;display:block;line-height:1">18h</b>broth simmer</div>
+      <div style="background:#e2231a;color:#fff;border-radius:24px;padding:26px"><b class="pop" style="font-size:54px;display:block;line-height:1">4</b>broths, one vegan</div>
+      <div style="background:#fff;border-radius:24px;padding:26px;box-shadow:inset 0 0 0 2px #cfc9bc"><b class="pop" style="font-size:54px;display:block;line-height:1">22</b>counter seats</div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:90px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px">
+      <div>
+        <p class="mono" style="margin:0 0 8px;font-size:13px;letter-spacing:.16em;color:#ffd166">SIDES &amp; DRINKS</p>
+        <sc-for list="{{sides}}" as="s" hint-placeholder-count="6"><div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(243,239,230,.15)"><span><b>{{s.n}}</b> <span style="color:#cfd3e6">· {{s.d}}</span></span><span class="mono">{{s.p}}</span></div></sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="mono" style="margin:0;font-size:13px;letter-spacing:.16em;color:#ffd166">WHAT GUESTS SAY · SAMPLE</p>
+        <p class="pop" style="margin:0;font-size:clamp(24px,2.6vw,36px);line-height:1.25">“The ticket machine is half the fun. The tonkotsu is the other half.”</p>
+        <p style="margin:0;color:#cfd3e6">Placeholder review. Your real Google reviews go here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#e2231a;color:#fff">
+    <div class="wrap" style="padding-block:40px;display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:center">
+      <b class="pop" style="font-size:clamp(28px,3.4vw,44px)">Open late · 11 a.m. to midnight</b>
+      <span class="mono">Queen St W, Toronto · (416) 555-0142 · sample</span>
+      <a href="#machine" style="background:#fff;color:#e2231a;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none">Build a bowl</a>
+    </div>
+  </section>
+  <footer style="background:#121729;color:#cfd3e6">
+    <div class="wrap mono" style="padding-block:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px">
+      <span>KŌJI RAMEN HOUSE · SAMPLE DESIGN</span><span>Design by Ian · ian@gymbudz.ca</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { broth:'Tonkotsu', noodle:'Regular', tops:['Chashu','Ajitama'], printed:false, no:101 }; }
+  renderVals() {
+    const B = [['Tonkotsu',17,'#e9d8b4'],['Shoyu',16,'#9a5b2a'],['Miso',16.5,'#c98a3c'],['Vegan Tantan',17,'#d2552f']];
+    const N = [['Soft','yawarakame'],['Regular','futsū'],['Firm','katame'],['Extra firm','barikata']];
+    const T = [['Chashu',4],['Ajitama',2.5],['Nori',1],['Corn',1.5],['Menma',1.5],['Scallion',1],['Chili oil',1],['Kaedama',3]];
+    const s = this.state, money = v=>'$'+v.toFixed(2);
+    const on = 'background:#e2231a;color:#fff;box-shadow:0 2px 0 #9c140e', off = 'background:#fff;color:#1c2340;box-shadow:0 6px 0 #cfc9bc';
+    const lampOn = 'background:#7CFC9A;box-shadow:0 0 10px #7CFC9A', lampOff = 'background:#d6d0c4';
+    const broths = B.map(b=>({n:b[0],p:money(b[1]),sel:String(s.broth===b[0]),pick:()=>this.setState({broth:b[0],printed:false}),style:s.broth===b[0]?on:off,lamp:s.broth===b[0]?lampOn:lampOff}));
+    const noodles = N.map(b=>({n:b[0],p:b[1],sel:String(s.noodle===b[0]),pick:()=>this.setState({noodle:b[0],printed:false}),style:s.noodle===b[0]?on:off,lamp:s.noodle===b[0]?lampOn:lampOff}));
+    const tog = n=>()=>{ const t=new Set(this.state.tops); t.has(n)?t.delete(n):t.add(n); this.setState({tops:[...t],printed:false}); };
+    const tops = T.map(b=>{const o=s.tops.includes(b[0]); return {n:b[0],p:'+'+money(b[1]),sel:String(o),pick:tog(b[0]),style:o?on:off,lamp:o?lampOn:lampOff};});
+    const br = B.find(b=>b[0]===s.broth);
+    const total = br[1] + s.tops.reduce((a,n)=>a+T.find(t=>t[0]===n)[1],0);
+    const look = {
+      'Chashu':'left:14%;top:22%;width:26%;height:26%;border-radius:50%;background:radial-gradient(circle,#f0c9a6 30%,#b5653a 32%,#8a4526 70%)',
+      'Ajitama':'right:16%;top:20%;width:20%;height:24%;border-radius:50%;background:radial-gradient(circle at 50% 55%,#f29c11 0 36%,#fff7e3 38%)',
+      'Nori':'right:10%;top:44%;width:12%;height:34%;border-radius:4px;background:#1f2a1f;transform:rotate(12deg)',
+      'Corn':'left:40%;bottom:12%;width:20%;height:14%;border-radius:40%;background:radial-gradient(circle,#ffd23f 2px,#f4b400 3px);background-size:8px 8px',
+      'Menma':'left:12%;bottom:22%;width:22%;height:12%;border-radius:6px;background:repeating-linear-gradient(90deg,#c9a26b 0 6px,#a8824e 6px 9px);transform:rotate(-14deg)',
+      'Scallion':'left:44%;top:12%;width:16%;height:14%;border-radius:50%;background:radial-gradient(circle,#7ac74f 2px,transparent 3px);background-size:9px 9px',
+      'Chili oil':'left:56%;top:58%;width:14%;height:14%;border-radius:50%;background:radial-gradient(circle,#c1121f 0 40%,rgba(193,18,31,.4) 60%,transparent 70%)',
+      'Kaedama':'left:30%;top:34%;width:40%;height:30%;border-radius:50%;background:repeating-radial-gradient(circle,#f6e2a0 0 3px,transparent 3px 6px)'};
+    const placed = T.map(t=>({style:look[t[0]]+';opacity:'+(s.tops.includes(t[0])?1:0)+';transform:'+(s.tops.includes(t[0])?'scale(1)':'scale(.2)')+(t[0]==='Nori'?' rotate(12deg)':'')}));
+    const lines = [{n:s.broth+' · '+s.noodle,p:money(br[1])}].concat(s.tops.map(n=>({n:'+ '+n,p:money(T.find(t=>t[0]===n)[1])})));
+    const sides = [['Gyoza (5)','pan-fried pork','$7.00'],['Karaage','Japanese fried chicken','$9.00'],['Chashu Don','rice bowl','$8.50'],['Edamame','sea salt','$5.00'],['Ramune','marble soda','$4.00'],['Matcha Soft Serve','for after','$5.50']].map(([n,d,p])=>({n,d,p}));
+    return { sides, broths, noodles, tops, placed, lines, total:money(total), printed:s.printed, ticketNo:s.no,
+      print:()=>this.setState({printed:true,no:this.state.no+1}),
+      display: s.broth.toUpperCase().slice(0,8)+' '+money(total),
+      brothStyle:'background:radial-gradient(circle at 40% 35%,#fff8 0,transparent 30%),'+br[2],
+      bowlLabel: s.broth+' ramen, '+s.noodle.toLowerCase()+' noodles, with '+(s.tops.join(', ')||'no toppings') };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
