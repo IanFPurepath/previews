@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body style="margin:0">
+<title>Massawa Restaurant</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Manrope:wght@400;600;800&amp;family=Noto+Sans+Ethiopic:wght@500&amp;display=swap">
+<style>
+body{margin:0;background:#0b3c43;color:#f5ead6;font-family:"Manrope",system-ui,sans-serif}
+a{color:#f0b65a}a:hover{color:#fff}
+.ms *{box-sizing:border-box}
+.ms .wrap{max-width:1300px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.ms .serif{font-family:"Gloock",Georgia,serif;font-weight:400}
+.ms .hero{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:center}
+.ms .plate{position:relative;width:min(640px,100%);aspect-ratio:1/1;margin-inline:auto}
+.ms .injera{position:absolute;inset:7%;border-radius:50%;background-color:#e6cf9f;background-image:radial-gradient(circle,rgba(150,110,50,.28) 2px,transparent 3px),radial-gradient(circle,rgba(150,110,50,.18) 1.5px,transparent 2.5px);background-size:22px 22px,13px 13px;background-position:0 0,7px 9px;box-shadow:0 0 0 14px #c0392b,0 0 0 18px #0b3c43,0 0 0 30px #d9a441,0 50px 80px -30px #000}
+.ms .dish{all:unset;cursor:pointer;position:absolute;width:20%;aspect-ratio:1/1;border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;text-align:center;font-weight:800;font-size:clamp(10px,1.1vw,14px);color:#fff;transition:transform .3s cubic-bezier(.2,1.5,.4,1),box-shadow .3s}
+.ms .dish:hover{transform:translate(-50%,-50%) scale(1.1)}
+.ms .dish:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.ms .rounds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ms .pour{all:unset;cursor:pointer;padding:16px 26px;border-radius:999px;background:#f0b65a;color:#0b3c43;font-weight:800}
+.ms .pour:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ms .jeb{transition:transform .9s cubic-bezier(.4,1.6,.4,1);transform-origin:70% 80%}
+.ms .steam{animation:st 2.6s ease-in-out infinite}
+@keyframes st{0%{opacity:0;transform:translateY(8px)}40%{opacity:.8}100%{opacity:0;transform:translateY(-18px)}}
+.ms .visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:900px){.ms .hero,.ms .visit{grid-template-columns:1fr}.ms .rounds{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.ms *{animation:none!important;transition:none!important}}
+</style>
+<template id="dc-tpl">
+
+<div class="ms" style="width:100%;overflow-x:clip">
+  <div class="wrap" style="padding-block:10px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:12px;color:#a9c8c4;border-bottom:1px solid rgba(245,234,214,.12)">
+    <span><b style="color:#f0b65a">CONCEPT PREVIEW</b> · made for Massawa Restaurant, not their official site</span><span>Menu shown is a preview. We load your exact dishes and prices.</span>
+  </div>
+
+  <header class="wrap" style="padding-block:50px 80px">
+    <div class="hero">
+      <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+        <p style="margin:0;font-family:'Noto Sans Ethiopic',sans-serif;font-size:22px;color:#f0b65a">እንቋዕ ብደሓን መጻእኩም</p>
+        <h1 class="serif" style="margin:0;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:-.01em">Massawa</h1>
+        <p style="margin:0;font-size:clamp(18px,1.7vw,21px);line-height:1.55;max-width:36ch;color:#d9e6e2">Eritrean home cooking on Eglinton West. Everything is served on injera and shared from one platter, so the plate is the menu. Tap a dish.</p>
+        <div style="background:rgba(245,234,214,.06);border:1px solid rgba(245,234,214,.16);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:8px;min-height:180px" aria-live="polite">
+          <span style="font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:{{sel.color}}">{{sel.kind}}</span>
+          <b class="serif" style="font-size:40px;line-height:1">{{sel.name}}</b>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#d9e6e2">{{sel.desc}}</p>
+        </div>
+        <div style="display:flex;gap:28px;flex-wrap:wrap"><div><b class="serif" style="font-size:36px;display:block">5.0★</b><span style="font-size:13px;color:#a9c8c4">46 Google reviews</span></div><div><b class="serif" style="font-size:36px;display:block">Dine in</b><span style="font-size:13px;color:#a9c8c4">or take out</span></div></div>
+      </div>
+      <div class="plate">
+        <div class="injera"></div>
+        <sc-for list="{{dishes}}" as="d" hint-placeholder-count="8">
+          <button class="dish" onClick="{{d.pick}}" aria-pressed="{{d.on}}" style="{{d.style}}">{{d.short}}</button>
+        </sc-for>
+        <div style="position:absolute;left:50%;top:50%;width:28%;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:{{sel.color}};display:grid;place-items:center;text-align:center;padding:10px;box-shadow:inset 0 -10px 20px rgba(0,0,0,.25);transition:background .4s">
+          <span class="serif" style="font-size:clamp(16px,2vw,26px);line-height:1.05;color:#fff">{{sel.name}}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section style="background:#f5ead6;color:#2a1a12;padding-block:90px">
+    <div class="wrap">
+      <p style="margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#a7261b">The coffee ceremony</p>
+      <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-end;justify-content:space-between">
+        <h2 class="serif" style="margin:0;font-size:clamp(42px,6vw,88px);line-height:.92;max-width:14ch">Three rounds. Stay for all of them.</h2>
+        <div style="display:flex;align-items:center;gap:22px">
+          <svg viewBox="0 0 120 140" width="120" height="140" aria-hidden="true">
+            <g class="steam" fill="none" stroke="#a7261b" stroke-width="3" stroke-linecap="round"><path d="M96 40c-6-8 6-12 0-20"/></g>
+            <g class="jeb" style="{{jebStyle}}">
+              <path d="M40 30 C30 60 20 80 24 108 C28 128 76 128 80 108 C84 80 72 60 62 30 Z" fill="#2a1a12"/>
+              <rect x="44" y="18" width="14" height="16" rx="3" fill="#2a1a12"/>
+              <path d="M78 84 L104 52" stroke="#2a1a12" stroke-width="7" stroke-linecap="round"/>
+              <path d="M26 70 C6 72 6 100 26 100" fill="none" stroke="#2a1a12" stroke-width="6"/>
+            </g>
+          </svg>
+          <button class="pour" onClick="{{pour}}">{{pourLabel}}</button>
+        </div>
+      </div>
+      <div class="rounds" style="margin-top:36px">
+        <sc-for list="{{rounds}}" as="r" hint-placeholder-count="3">
+          <div style="{{r.style}}">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase">Round {{r.no}}</span><span style="{{r.cup}}"></span></div>
+            <b class="serif" style="font-size:44px;line-height:1">{{r.name}}</b>
+            <p style="margin:0;line-height:1.5">{{r.desc}}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:90px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <span style="font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#f0b65a">The table</span>
+        <h2 class="serif" style="margin:0;font-size:clamp(40px,5.4vw,78px);line-height:.95">Named for the port on the Red Sea</h2>
+        <p style="margin:0;font-size:18px;line-height:1.65;color:#d9e6e2;max-width:50ch">Massawa is Eritrea’s great harbour city, and this kitchen on Eglinton West cooks like a family table there: slow stews, tangy injera and plenty of time at the table.</p>
+        <p style="margin:0;font-size:18px;line-height:1.65;color:#d9e6e2;max-width:50ch">Order a combination platter for the table and everyone tears from the same injera. That’s the point.</p>
+      </div>
+      <div style="display:grid;gap:12px">
+        <sc-for list="{{menuGroups}}" as="g" hint-placeholder-count="2">
+          <div style="border:1px solid rgba(245,234,214,.2);border-radius:24px;padding:24px">
+            <b class="serif" style="font-size:30px;color:{{g.color}}">{{g.name}}</b>
+            <sc-for list="{{g.items}}" as="i" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid rgba(245,234,214,.12)"><span><b>{{i.n}}</b> <span style="color:#a9c8c4">· {{i.d}}</span></span><span style="color:#f0b65a;white-space:nowrap;font-size:14px">Ask</span></div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <p style="margin:0;font-size:13px;color:#a9c8c4">Preview menu. Your real dishes, platters and prices go here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#a7261b;color:#f5ead6;padding-block:70px">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px">
+      <div><b class="serif" style="font-size:64px;line-height:1;display:block">5.0</b><span>stars on Google, from 46 reviews</span></div>
+      <div><b class="serif" style="font-size:34px;line-height:1.1;display:block">Family platters</b><span>One big injera for the whole table, any mix of stews.</span></div>
+      <div><b class="serif" style="font-size:34px;line-height:1.1;display:block">Group dinners</b><span>Birthdays, community nights and gatherings. Call ahead.</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-block:80px">
+    <div class="visit">
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#f0b65a">Visit</span><b class="serif" style="font-size:40px;line-height:1">1610 Eglinton Ave W</b><span style="color:#d9e6e2">York, ON M6E 2G8 · Little Jamaica, near Oakwood station</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Massawa+Restaurant+1610+Eglinton+Ave+W+Toronto" target="_blank" rel="noopener" style="font-weight:800">Get directions →</a></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#f0b65a">Reserve or order</span><b class="serif" style="font-size:40px;line-height:1;user-select:all">(647) 272-1673</b><span style="color:#d9e6e2">Call for takeout, family platters and group dinners.</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#f0b65a">Good to know</span><span style="color:#d9e6e2;line-height:1.6">Eat with your hands, the traditional way. Plenty of vegetarian and vegan dishes.</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:90px">
+    <h2 class="serif" style="margin:0 0 22px;font-size:clamp(36px,4.6vw,60px)">First time?</h2>
+    <div style="display:grid;gap:10px;max-width:900px">
+      <sc-for list="{{faq}}" as="q" hint-placeholder-count="4">
+        <div style="border-top:1px solid rgba(245,234,214,.2)">
+          <button onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:18px 0;font-size:20px" class="serif"><span>{{q.q}}</span><span style="color:#f0b65a">{{q.sign}}</span></button>
+          <sc-if value="{{q.isOpen}}" hint-placeholder-val="{{ false }}"><p style="margin:0;padding:0 0 20px;line-height:1.6;color:#d9e6e2;max-width:62ch">{{q.a}}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="background:#072a2f;border-top:6px solid #a7261b">
+    <div class="wrap" style="padding-block:30px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px">
+      <b class="serif" style="font-size:34px">Massawa</b>
+      <span style="color:#a9c8c4">1610 Eglinton Ave W · (647) 272-1673</span>
+      <span style="font-size:13px;color:#a9c8c4">Site concept by Ian</span>
+    </div>
+  </footer>
+</div>
+</template>
+<div id="dc-root"></div>
+<script>(function(){
+  function lookup(path, scope){
+    path = path.trim();
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i=0;i<parts.length;i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var WHOLE = /^\s*\{\{([^}]+)\}\}\s*$/, ANY = /\{\{([^}]+)\}\}/g;
+  function interp(str, scope){ return str.replace(ANY, function(_, p){ var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-for'){
+      var list = lookup((node.getAttribute('list')||'').replace(/[{}]/g,''), scope) || [], as = node.getAttribute('as') || 'item';
+      list.forEach(function(item, i){ var s = Object.create(scope); s[as] = item; s.$index = i; node.childNodes.forEach(function(c){ build(c, s, out); }); });
+      return;
+    }
+    if (tag === 'sc-if'){
+      var v = lookup((node.getAttribute('value')||'').replace(/[{}]/g,''), scope);
+      if (v) node.childNodes.forEach(function(c){ build(c, scope, out); });
+      return;
+    }
+    if (tag === 'helmet') return;
+    var el = node.namespaceURI && node.namespaceURI !== 'http://www.w3.org/1999/xhtml' ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+    el.__h = {};
+    for (var a=0;a<node.attributes.length;a++){
+      var at = node.attributes[a], name = at.name, val = at.value, m = val.match(WHOLE);
+      if (/^on[a-z]+$/i.test(name)){ if (m){ var fn = lookup(m[1], scope); if (typeof fn === 'function') el.__h[name.slice(2).toLowerCase()] = fn; } continue; }
+      if (m){ var raw = lookup(m[1], scope); if (raw === false || raw == null) continue; val = String(raw); }
+      else if (val.indexOf('{{') > -1) val = interp(val, scope);
+      if (name.indexOf(':') > -1 && at.namespaceURI) el.setAttributeNS(at.namespaceURI, name, val); else el.setAttribute(name, val);
+    }
+    var kids = []; node.childNodes.forEach(function(c){ build(c, scope, kids); });
+    kids.forEach(function(k){ el.appendChild(k); });
+    out.push(el);
+  }
+  function wire(el){
+    if (!el.__h) return;
+    if (!el.__bound) el.__bound = {};
+    Object.keys(el.__h).forEach(function(t){
+      if (el.__bound[t]) return; el.__bound[t] = true;
+      el.addEventListener(t, function(e){ var f = el.__h && el.__h[t]; if (f) f(e); });
+    });
+  }
+  function patch(oldEl, newEl){
+    if (oldEl.nodeType === 3){ if (oldEl.nodeValue !== newEl.nodeValue) oldEl.nodeValue = newEl.nodeValue; return; }
+    var i, seen = {};
+    for (i=0;i<newEl.attributes.length;i++){ var a = newEl.attributes[i]; seen[a.name] = 1; if (oldEl.getAttribute(a.name) !== a.value) oldEl.setAttribute(a.name, a.value); }
+    for (i=oldEl.attributes.length-1;i>=0;i--){ var n = oldEl.attributes[i].name; if (!seen[n]) oldEl.removeAttribute(n); }
+    if (oldEl.localName === 'input' && newEl.hasAttribute('value') && document.activeElement !== oldEl) oldEl.value = newEl.getAttribute('value');
+    oldEl.__h = newEl.__h; wire(oldEl);
+    patchKids(oldEl, Array.prototype.slice.call(newEl.childNodes));
+  }
+  function same(a, b){ return a.nodeType === b.nodeType && (a.nodeType === 3 || a.nodeName === b.nodeName); }
+  function patchKids(parent, next){
+    var cur = Array.prototype.slice.call(parent.childNodes), i;
+    for (i=0;i<next.length;i++){
+      var o = cur[i], n = next[i];
+      if (!o){ parent.appendChild(n); deepWire(n); }
+      else if (same(o, n)) patch(o, n);
+      else { parent.replaceChild(n, o); deepWire(n); }
+    }
+    for (i=cur.length-1;i>=next.length;i--) parent.removeChild(cur[i]);
+  }
+  function deepWire(n){ if (n.nodeType !== 1) return; wire(n); n.querySelectorAll('*').forEach(wire); }
+  window.DCLogic = function(props){ this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function(p){ var s = typeof p === 'function' ? p(this.state) : p; this.state = Object.assign({}, this.state, s); this.__render(); };
+  DCLogic.prototype.forceUpdate = function(){ this.__render(); };
+  window.__dcBoot = function(Comp){
+    var tpl = document.getElementById('dc-tpl'), root = document.getElementById('dc-root');
+    var c = new Comp({});
+    c.__render = function(){ var out = []; var vals = c.renderVals() || {}; tpl.content.childNodes.forEach(function(n){ build(n, vals, out); }); patchKids(root, out); };
+    c.__render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+</script>
+<script>
+class Component extends DCLogic {
+  constructor(p){ super(p); this.state = { d:0, round:0, faq:0 }; }
+  renderVals() {
+    const D = [
+      ['Zigni','Zigni','Beef · spicy','Beef slow-stewed in berbere, the red spice blend at the heart of Eritrean cooking.','#a7261b'],
+      ['Tsebhi Derho','Derho','Chicken · spicy','Chicken stew in berbere with a whole boiled egg. A celebration dish.','#8a3a1c'],
+      ['Shiro','Shiro','Vegan','Silky ground chickpea stew with garlic and onion. Comfort in a bowl.','#c7832d'],
+      ['Alicha','Alicha','Vegan · mild','Cabbage, potato and carrot gently cooked with turmeric and ginger.','#d8a31a'],
+      ['Tibsi','Tibsi','Beef or lamb','Tender cubes sautéed with onion, peppers and rosemary, served sizzling.','#5e2c1f'],
+      ['Hamli','Hamli','Vegan','Collard greens with garlic. Fresh and bright next to the stews.','#3f7a3a'],
+      ['Timtimo','Timtimo','Vegan · spicy','Red lentils simmered with berbere until rich and soft.','#b8431f'],
+      ['Ful','Ful','Breakfast','Mashed fava beans with tomato, onion, chili and yogurt. Eaten with fresh bread.','#7a5a2e']];
+    const sel = D[this.state.d];
+    const dishes = D.map((x,i)=>{ const a = -Math.PI/2 + i*2*Math.PI/D.length, r = 33;
+      return { short:x[1], on:String(i===this.state.d), pick:()=>this.setState({d:i}),
+        style:'left:'+(50+r*Math.cos(a)).toFixed(2)+'%;top:'+(50+r*Math.sin(a)).toFixed(2)+'%;background:'+x[4]+';box-shadow:'+(i===this.state.d?'0 0 0 5px #fff, 0 16px 30px -12px #000':'inset 0 -8px 14px rgba(0,0,0,.25)') }; });
+    const R = [['Awel','The first and strongest pour. Beans roasted in front of you, incense in the air.'],['Kalaay','The second round, a little lighter. The conversation gets going.'],['Bereka','The third pour, “the blessing.” Leaving before it is bad luck.']];
+    const n = this.state.round;
+    const rounds = R.map((x,i)=>({no:i+1,name:x[0],desc:x[1],
+      style:'border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:10px;transition:all .5s;'+(i<n?'background:#2a1a12;color:#f5ead6':'background:#fff;color:#2a1a12;box-shadow:inset 0 0 0 2px #e4d5bb'),
+      cup:'width:34px;height:24px;border-radius:0 0 14px 14px;border:3px solid currentColor;background:'+(i<n?'#a7261b':'transparent') }));
+    const menuGroups = [
+      {name:'From the vegetable side',color:'#9ed3a0',items:[['Shiro','chickpea stew'],['Alicha','turmeric vegetables'],['Hamli','collard greens'],['Timtimo','spiced red lentils']]},
+      {name:'From the meat side',color:'#f0b65a',items:[['Zigni','berbere beef'],['Tsebhi Derho','chicken & egg'],['Tibsi','sautéed beef or lamb'],['Ful','fava beans, breakfast']]}
+    ].map(g=>({...g,items:g.items.map(([n,d])=>({n,d}))}));
+    const FQ=[['How do I eat it?','Tear a piece of injera with your right hand, pinch up some stew, and eat. The injera under the food soaks up the sauce and is the best bite at the end.'],['Is it spicy?','Some dishes are, like zigni and timtimo. Alicha, hamli and shiro are mild. Ask and we will balance the platter.'],['Is it good for vegans?','Very. Many Eritrean dishes are naturally vegan. A vegetarian combination is the easy order.'],['Can I take it home?','Yes. Call (647) 272-1673 and we will pack your platter for pickup.']];
+    const faq = FQ.map(([q,a],i)=>({q,a,isOpen:this.state.faq===i,open:String(this.state.faq===i),sign:this.state.faq===i?'−':'+',toggle:()=>this.setState({faq:this.state.faq===i?-1:i})}));
+    return { menuGroups, faq, dishes, sel:{name:sel[0],kind:sel[2],desc:sel[3],color:sel[4]}, rounds,
+      pour:()=>this.setState({round: n>=3?0:n+1}),
+      pourLabel: n>=3 ? 'Start a fresh pot' : 'Pour round '+(n+1),
+      jebStyle:'transform:rotate('+(n>0&&n<=3?-28:0)+'deg)' };
+  }
+}
+
+__dcBoot(Component);
+</script>
+
+</body>
+</html>
